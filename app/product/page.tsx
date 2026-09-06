@@ -1,0 +1,5 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight, BarChart3, BrainCircuit, TimerReset } from 'lucide-react';
+export const metadata: Metadata = { title: 'Product', description: 'Explore the Arc IQ practice assessment experience.', alternates: { canonical: '/product' } };
+export default function ProductPage() { return <main id="main-content"><header className="page-header shell"><span className="eyebrow">Product / Arc IQ</span><h1>Less theatre. More useful signal.</h1><p>A calm, focused assessment experience that explains its own limits.</p><Link className="button primary" href="/test">Try the assessment <ArrowRight size={16}/></Link></header><section className="feature-grid shell"><article><BrainCircuit/><h2>Balanced practice</h2><p>Twelve original questions across four familiar reasoning domains.</p></article><article><TimerReset/><h2>Self-paced</h2><p>A visible timer provides context, but scoring never rewards rushing.</p></article><article><BarChart3/><h2>Immediate profile</h2><p>See total accuracy, domain breakdowns, and answer explanations on submission.</p></article></section></main>; }

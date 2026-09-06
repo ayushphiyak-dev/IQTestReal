@@ -4,15 +4,18 @@ import { AdSenseScript } from '@/components/adsense/AdSenseScript';
 import { ConsentProvider } from '@/components/consent/ConsentProvider';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { CommandMenu } from '@/components/CommandMenu';
 import { siteConfig } from '@/config/site';
 import './globals.css';
+import './product.css';
+import './command-fix.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: { default: 'Signal & Craft', template: '%s — Signal & Craft' },
+  title: { default: 'Arc IQ — See how you reason', template: '%s — Arc IQ' },
   description: siteConfig.siteDescription,
   alternates: { canonical: '/' },
   openGraph: { type: 'website', siteName: siteConfig.siteName, title: siteConfig.siteName, description: siteConfig.siteDescription, url: '/' },
@@ -22,6 +25,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.siteName, url: siteConfig.siteUrl, description: siteConfig.siteDescription, potentialAction: { '@type': 'SearchAction', target: `${siteConfig.siteUrl}/search?q={search_term_string}`, 'query-input': 'required name=search_term_string' } };
-  return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><SiteHeader />{children}<SiteFooter /></ConsentProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c') }} /></body></html>;
+  const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.siteName, url: siteConfig.siteUrl, description: siteConfig.siteDescription };
+  return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><SiteHeader />{children}<SiteFooter /><CommandMenu /></ConsentProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c') }} /></body></html>;
 }

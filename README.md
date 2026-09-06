@@ -1,62 +1,29 @@
-# Signal & Craft
+# Arc IQ
 
-A production-minded independent publication for field notes, practical frameworks, and responsible technology analysis. It uses the Next.js App Router model through the Sites/Vinext runtime, React, TypeScript, Tailwind CSS, Geist, and a structured article system.
+A production-quality practice reasoning assessment built with the Next App Router model through Sites/Vinext, React, TypeScript, Tailwind CSS, Geist, Lucide, and Framer Motion.
 
-## Requirements
-
-- Node.js 22.13 or newer
-- npm
-
-## Installation
+## Local development
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
-## Environment setup
-
-Set `NEXT_PUBLIC_SITE_URL` to the canonical production origin. Keep AdSense off until approval and CMP setup. Configure `CONTACT_EMAIL` and a server-side `CONTACT_WEBHOOK_URL` that accepts the validated JSON contact payload. Never commit `.env.local`.
-
-## Development and validation
+Quality checks:
 
 ```bash
-npm run dev
-npm run lint
 npm run typecheck
+npm run lint
 npm run build
-npm run start
 ```
 
-Server components are the default. Client code is limited to theme preference, consent state, advertising activation, and the contact submission experience.
+## Product behavior
 
-## Production deployment
+- The assessment includes 12 original questions across pattern, verbal, quantitative, and logical reasoning.
+- Scores and attempt history are stored in local browser storage under `arc-iq-attempts`.
+- The Arc Index is percentage correct, not a standardized or clinical IQ score.
+- Contact delivery, analytics, advertising, and a consent platform remain disabled until their environment variables are configured.
 
-Push `main` to GitHub and import it in Vercel for automatic production deployments, or use the included Sites configuration. See `docs/DEPLOYMENT.md` for the domain, DNS, HTTPS, canonical, robots, and sitemap checklist.
+## Required launch configuration
 
-## Vercel and custom domain
-
-Choose one hostname as canonical, redirect the alternative, and set that exact origin in `NEXT_PUBLIC_SITE_URL`. Preview deployments receive `noindex` when `VERCEL_ENV=preview`.
-
-## AdSense and ads.txt
-
-Read `docs/ADSENSE.md`. Advertising is optional and invisible while disabled. Add the exact account-provided line as `public/ads.txt` only after AdSense supplies it; do not rename the example prematurely.
-
-## CMP / consent setup
-
-Read `components/consent/README.md`. Connect a Google-certified CMP before serving personalised advertising where publisher consent requirements apply. The included abstraction is not a fake banner and makes no compliance claim.
-
-## Content publishing
-
-Read `docs/CONTENT_GUIDELINES.md`. The structured sample articles are marked as demo content in code and must be replaced or formally reviewed and adopted before a public launch. Draft and review statuses are excluded from public article queries and the sitemap.
-
-## SEO checklist
-
-Confirm the canonical production URL, unique metadata, JSON-LD, valid dates, article references, internal links, sitemap, robots rules, redirect policy, and Search Console ownership. Never add review or rating schema without real supporting data.
-
-## License
-
-No licence has been selected. Add one only when the publisher chooses the terms for source and editorial content.
+Replace `SITE_OWNER_NAME` and `SITE_CONTACT_EMAIL` in the legal pages and configure `CONTACT_EMAIL` before public launch. Optional integrations should only be enabled after their privacy disclosures and consent behavior have been reviewed.
