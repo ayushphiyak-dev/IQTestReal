@@ -1,0 +1,4 @@
+import type { MetadataRoute } from 'next';
+import { categories, publishedArticles } from '@/lib/content';
+import { siteConfig } from '@/config/site';
+export default function sitemap(): MetadataRoute.Sitemap { const staticPaths = ['', '/articles', '/categories', '/about', '/contact', '/privacy-policy', '/cookie-policy', '/terms', '/disclaimer', '/editorial-policy']; return [...staticPaths.map(path => ({ url: `${siteConfig.siteUrl}${path}`, lastModified: new Date('2026-09-06'), changeFrequency: path === '' ? 'weekly' as const : 'monthly' as const, priority: path === '' ? 1 : .7 })), ...publishedArticles.map(article => ({ url: `${siteConfig.siteUrl}/articles/${article.slug}`, lastModified: new Date(article.updatedAt), changeFrequency: 'monthly' as const, priority: .8 })), ...categories.map(category => ({ url: `${siteConfig.siteUrl}/categories/${category.slug}`, lastModified: new Date('2026-09-06'), changeFrequency: 'monthly' as const, priority: .6 }))]; }
