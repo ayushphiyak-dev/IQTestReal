@@ -39,4 +39,3 @@ npm run build
 This project is licensed under the [MIT License](LICENSE).
 
 The assessment randomizes 15 questions across five reasoning categories and stores completed attempts locally in the browser. Results are labelled Estimated IQ. Advertising, analytics, and contact delivery remain disabled until explicitly configured.
-

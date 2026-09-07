@@ -21,4 +21,3 @@ export function CommandMenu() {
   if (!open) return <button type="button" className="command-hint" onClick={() => setOpen(true)} aria-label="Search IQTestReal"><Search size={15}/> Search</button>;
   return <dialog open className="command-backdrop" aria-label="Quick navigation"><div className="command-dialog"><button type="button" className="command-close" onClick={() => setOpen(false)} aria-label="Close command menu">×</button><input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search IQTestReal" aria-label="Search navigation"/><div>{filtered.map(({ label, href, icon: Icon }) => <button type="button" key={href} onClick={() => { window.location.assign(href); }}><Icon size={17}/><span>{label}</span><kbd>↵</kbd></button>)}{filtered.length === 0 && <p>No matching destination.</p>}</div><footer><span>Navigate IQTestReal</span><span>ESC to close</span></footer></div></dialog>;
 }
-

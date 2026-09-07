@@ -20,4 +20,3 @@ export function ConsentBanner() {
   if (!visible) return null;
   return <aside className="consent-banner" aria-label="Cookie consent"><div><strong>Your privacy matters</strong><p>IQTestReal uses essential storage for your theme and local result history. Optional analytics and advertising stay off until you choose otherwise. <Link href="/cookie-policy">Read the Cookie Policy</Link>.</p></div><div className="consent-actions"><button type="button" className="button" onClick={() => choose('denied')}>Use essential only</button><button type="button" className="button primary" onClick={() => choose('granted')}>Allow optional</button></div></aside>;
 }
-

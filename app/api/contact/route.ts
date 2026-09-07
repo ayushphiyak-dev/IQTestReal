@@ -40,4 +40,3 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, message: 'Failed to send message. Please try again.' }, { status: 500 });
   }
 }
-

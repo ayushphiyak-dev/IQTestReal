@@ -9,4 +9,3 @@ export const siteConfig = {
   adsenseEnabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
   analyticsEnabled: Boolean(process.env.NEXT_PUBLIC_GA_ID),
 };
-

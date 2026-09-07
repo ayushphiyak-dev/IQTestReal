@@ -51,4 +51,3 @@
 .learning-grid h3 { margin:0 0 14px; font-size:22px; }
 .learning-links { display:flex; gap:10px; margin-top:28px; }
 @media(max-width:760px){.learning-section{padding:75px 12px 20px}.learning-grid{grid-template-columns:1fr}.learning-grid article{padding:24px}.learning-links{display:grid}}
-
