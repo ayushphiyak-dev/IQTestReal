@@ -1,6 +1,0 @@
-import type { Metadata } from 'next';
-import { SafeLink as Link } from '@/components/SafeLink';
-import { ArrowRight } from 'lucide-react';
-export const metadata: Metadata = { title: 'The IQTestReal experience', description: 'Explore the free IQTestReal reasoning assessment.', alternates: { canonical: '/product' } };
-export default function ProductPage() { return <main id="main-content"><header className="page-header shell"><span className="eyebrow">The experience / IQTestReal</span><h1>A broader, calmer free IQ test.</h1><p>Original questions, transparent scoring, and explanations you can actually use.</p><Link className="button primary" href="/test">Take the free test <ArrowRight size={16}/></Link></header><section className="feature-grid shell"><article><h2>Five categories</h2><p>Logic, pattern, numerical, spatial, and analogy questions create a more varied practice session.</p></article><article><h2>Fresh every time</h2><p>A larger bank and randomized options prevent the exact same test from repeating.</p></article><article><h2>Useful results</h2><p>See Estimated IQ, percentile, classification, accuracy, category strengths, and explanations.</p></article></section></main>; }
-
