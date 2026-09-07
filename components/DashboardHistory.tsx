@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import { SafeLink as Link } from '@/components/SafeLink';
 import { useSyncExternalStore } from 'react';
 import type { Attempt } from './IQAssessment';
 function subscribe(callback: () => void) { window.addEventListener('storage', callback); window.addEventListener('iqtestreal-history', callback); return () => { window.removeEventListener('storage', callback); window.removeEventListener('iqtestreal-history', callback); }; }
