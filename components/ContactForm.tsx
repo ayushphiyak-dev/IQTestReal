@@ -1,29 +1,25 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbxir1Qtdqh2DlH_DXkLM3PwTuiaAJKH3023Bb1UPYI1sRj0mpODpVFmC_XwkbCL8EaRSg/exec';
 
 export function ContactForm() {
-  const started = useRef(0);
-  useEffect(() => { started.current = Date.now(); }, []);
-  const [state, setState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [message, setMessage] = useState('');
+  const [sending, setSending] = useState(false);
+  const [response, setResponse] = useState('');
+  const [success, setSuccess] = useState(false);
   async function submit(event: React.SubmitEvent<HTMLFormElement>) {
-    event.preventDefault(); setState('sending'); setMessage('');
-    const form = new FormData(event.currentTarget);
-    const payload = Object.fromEntries(form.entries());
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = { name: (form.elements.namedItem('nameInput') as HTMLInputElement).value, email: (form.elements.namedItem('emailInput') as HTMLInputElement).value, subject: (form.elements.namedItem('subjectInput') as HTMLInputElement).value, message: (form.elements.namedItem('messageInput') as HTMLTextAreaElement).value };
+    setSending(true); setResponse('Sending...'); setSuccess(false);
     try {
-      const response = await fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ...payload, startedAt: started.current }) });
-      const data = await response.json() as { message?: string };
-      if (response.status === 503) {
-        const recipient = 'help@iqtestreal.com';
-        const subject = encodeURIComponent(typeof payload.subject === 'string' ? payload.subject : 'IQTestReal contact');
-        const body = encodeURIComponent(`Name: ${typeof payload.name === 'string' ? payload.name : ''}\nEmail: ${typeof payload.email === 'string' ? payload.email : ''}\n\n${typeof payload.message === 'string' ? payload.message : ''}`);
-        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-        setState('success'); setMessage('Your email client is ready with the message.'); return;
-      }
-      if (!response.ok) throw new Error(data.message || 'Message could not be sent.');
-      event.currentTarget.reset(); setState('success'); setMessage('Your message was sent. We will reply using the address you provided.');
-    } catch (error) { setState('error'); setMessage(error instanceof Error ? error.message : 'Message could not be sent.'); }
+      await fetch(webAppUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) });
+      setResponse('Message sent successfully!'); setSuccess(true); form.reset();
+    } catch (error) {
+      console.error('Error:', error); setResponse('Failed to send message. Please try again.'); setSuccess(false);
+    } finally { setSending(false); }
   }
-  return <form className="contact-form" onSubmit={submit} noValidate><div className="form-row"><label>Name<input name="name" minLength={2} maxLength={80} required autoComplete="name" /></label><label>Email<input name="email" type="email" maxLength={160} required autoComplete="email" /></label></div><label>Subject<input name="subject" minLength={3} maxLength={120} required /></label><label>Message<textarea name="message" minLength={20} maxLength={5000} required rows={8}/></label><label className="honeypot" aria-hidden="true">Company website<input name="website" tabIndex={-1} autoComplete="off" /></label><button className="button primary" disabled={state === 'sending'}>{state === 'sending' ? 'Sending…' : 'Send message'}</button><output className={`form-status ${state}`}>{message}</output></form>;
+  return <><form id="contactForm" className="contact-form" onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '600px', margin: 'auto' }}><div className="form-row" style={{ display: 'flex', gap: '10px' }}><input type="text" id="nameInput" name="nameInput" placeholder="Name" required style={{ flex: 1, padding: '10px' }} /><input type="email" id="emailInput" name="emailInput" placeholder="Email" required style={{ flex: 1, padding: '10px' }} /></div><input type="text" id="subjectInput" name="subjectInput" placeholder="Subject" required style={{ padding: '10px' }} /><textarea id="messageInput" name="messageInput" placeholder="Message" rows={5} required style={{ padding: '10px' }} /><button type="submit" disabled={sending} style={{ padding: '12px', background: '#000', color: '#fff', border: 'none', cursor: sending ? 'wait' : 'pointer' }}>{sending ? 'Sending...' : 'Send message'}</button></form><p id="responseMessage" className={`form-status ${success ? 'success' : ''}`} style={{ textAlign: 'center', marginTop: '10px', fontWeight: 'bold' }}>{response}</p></>;
 }
+
