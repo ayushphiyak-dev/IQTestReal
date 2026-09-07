@@ -1,6 +1,8 @@
 const fallbackWebAppUrl = 'https://script.google.com/macros/s/AKfycbxir1Qtdqh2DlH_DXkLM3PwTuiaAJKH3023Bb1UPYI1sRj0mpODpVFmC_XwkbCL8EaRSg/exec';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export const runtime = 'edge';
+
 function readString(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
 }
@@ -40,3 +42,4 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, message: 'Failed to send message. Please try again.' }, { status: 500 });
   }
 }
+
