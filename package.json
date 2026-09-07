@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22.13.0 <23"
   },
+  "allowScripts": [
+    "esbuild",
+    "sharp",
+    "workerd"
+  ],
   "scripts": {
     "dev": "vinext dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
-    "lint": "oxlint",
+    "lint": "oxlint --ignore-pattern .output",
     "typecheck": "tsc --noEmit",
     "format": "oxfmt"
   },
