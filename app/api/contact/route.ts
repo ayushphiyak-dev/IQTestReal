@@ -1,4 +1,4 @@
-const fallbackWebAppUrl = 'https://script.google.com/macros/s/AKfycbxir1Qtdqh2DlH_DXkLM3PwTuiaAJKH3023Bb1UPYI1sRj0mpODpVFmC_XwkbCL8EaRSg/exec';
+const googleAppsScriptUrl = 'https://script.google.com/macros/s/AKfycbxir1Qtdqh2DlH_DXkLM3PwTuiaAJKH3023Bb1UPYI1sRj0mpODpVFmC_XwkbCL8EaRSg/exec';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const runtime = 'edge';
@@ -21,10 +21,10 @@ export async function POST(request: Request) {
       return Response.json({ ok: false, message: 'Check each field and try again.' }, { status: 400 });
     }
 
-    const webAppUrl = process.env.CONTACT_WEB_APP_URL || process.env.CONTACT_WEBHOOK_URL || fallbackWebAppUrl;
-    const upstream = await fetch(webAppUrl, {
+    const upstream = await fetch(googleAppsScriptUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      cache: 'no-store',
       body: JSON.stringify({
         name,
         email,
