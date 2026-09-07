@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IQTestReal brain icon">
+  <rect width="64" height="64" rx="16" fill="#102125"/>
+  <path d="M31 17c-5-5-13-1-12 5-6 1-7 9-3 12-3 5 1 11 7 10 1 6 8 8 12 4V22c0-2-2-4-4-5Zm2 5c3-5 11-4 12 2 5 1 6 8 2 11 3 5-1 11-7 10-1 6-8 8-12 4V22c0-2 2-4 5-5Z" fill="#f08b68"/>
+  <path d="M25 22v6m-6 1 6 2m-3 7 5-2m18-13v6m6 1-6 2m3 7-5-2M32 18v30" fill="none" stroke="#fff8ef" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
