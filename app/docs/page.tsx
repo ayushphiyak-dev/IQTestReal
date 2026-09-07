@@ -1,6 +1,0 @@
-import type { Metadata } from 'next';
-import { SafeLink as Link } from '@/components/SafeLink';
-import { ProsePage } from '@/components/ProsePage';
-export const metadata: Metadata = { title: 'Test guide', description: 'A quick guide to taking and understanding the IQTestReal assessment.', alternates: { canonical: '/docs' } };
-export default function DocsPage() { return <ProsePage kicker="Guide / Quick start" title="Use IQTestReal with the right expectations." intro="A concise guide to taking the free assessment and interpreting your result."><h2>Before you start</h2><p>Set aside about ten uninterrupted minutes. Use no calculator, search engine, or help from another person if you want the result to reflect your unaided attempt.</p><h2>During the assessment</h2><p>Choose one answer for every question. You can move backward, restart, or submit after the final question. Every new attempt randomizes its questions and options.</p><h2>After submission</h2><p>Your result includes an Estimated IQ, percentile, classification, accuracy, category strengths, and explanations. Read the <Link href="/score-guide">Score Guide</Link> before drawing conclusions.</p><h2>Result storage</h2><p>History is saved only in local browser storage on this device. Visit <Link href="/dashboard">My results</Link> to review it.</p></ProsePage>; }
-
