@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { SafeLink as Link } from '@/components/SafeLink';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, Clock3, RotateCcw, Share2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';

@@ -1,11 +1,11 @@
 :root {
-  --bg: #f6f8f7;
+  --bg: #fbf8f3;
   --surface: #ffffff;
   --ink: #102125;
   --muted: #5d6d70;
   --border: #d4dfdd;
-  --accent: #126782;
-  --soft: #eaf1ef;
+  --accent: #d95d45;
+  --soft: #f5e9df;
 }
 
 .dark {
@@ -14,18 +14,18 @@
   --ink: #eef8f6;
   --muted: #9ab0b1;
   --border: #294044;
-  --accent: #52b7a5;
-  --soft: #172d31;
+  --accent: #f08b68;
+  --soft: #2a2021;
 }
 
-.logo-mark { background: #126782 !important; }
-.dark .logo-mark { background: #347f74 !important; }
+.logo-mark { background: #d95d45 !important; }
+.dark .logo-mark { background: #bd624c !important; }
 .choice-grid a { display:grid; place-items:center; min-height:50px; background:transparent; color:var(--ink); border:1px solid var(--border); border-radius:6px; }
 .choice-grid a:hover, .choice-grid a.active { background:color-mix(in srgb,var(--accent) 12%,var(--surface)); border-color:var(--accent); color:var(--accent); }
 .button, .nav-cta, .article-card, .test-shell {
   transition: transform .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.button:hover, .nav-cta:hover { box-shadow: 0 8px 22px #12678222; }
+.button:hover, .nav-cta:hover { box-shadow: 0 8px 22px #d95d4522; }
 .home-hero, .test-shell, .article-card { animation: rise-in .5s ease both; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .home-hero, .test-shell, .article-card { animation: none; } }
