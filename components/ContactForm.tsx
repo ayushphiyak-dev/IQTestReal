@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbxir1Qtdqh2DlH_DXkLM3PwTuiaAJKH3023Bb1UPYI1sRj0mpODpVFmC_XwkbCL8EaRSg/exec';
-
 export function ContactForm() {
   const [sending, setSending] = useState(false);
   const [response, setResponse] = useState('');
@@ -14,8 +12,10 @@ export function ContactForm() {
     const formData = { name: (form.elements.namedItem('nameInput') as HTMLInputElement).value, email: (form.elements.namedItem('emailInput') as HTMLInputElement).value, subject: (form.elements.namedItem('subjectInput') as HTMLInputElement).value, message: (form.elements.namedItem('messageInput') as HTMLTextAreaElement).value };
     setSending(true); setResponse('Sending...'); setSuccess(false);
     try {
-      await fetch(webAppUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) });
-      setResponse('Message sent successfully!'); setSuccess(true); form.reset();
+      const result = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      const payload = await result.json() as { ok?: boolean; message?: string };
+      if (!result.ok || !payload.ok) throw new Error(payload.message || 'Contact service unavailable');
+      setResponse(payload.message || 'Message sent successfully!'); setSuccess(true); form.reset();
     } catch (error) {
       console.error('Error:', error); setResponse('Failed to send message. Please try again.'); setSuccess(false);
     } finally { setSending(false); }
