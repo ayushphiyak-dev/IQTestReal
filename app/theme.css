@@ -20,6 +20,13 @@
 
 .logo-mark { background: #d95d45 !important; }
 .dark .logo-mark { background: #bd624c !important; }
+.brand-mark { display:block; width:36px; height:36px; border-radius:10px; }
+.site-search { display:flex; align-items:center; gap:12px; max-width:700px; margin-top:32px; padding:0 18px; background:var(--surface); border:1px solid var(--border); }
+.site-search input { width:100%; padding:18px 0; background:transparent; color:var(--ink); border:0; outline:0; font-size:16px; }
+.search-results { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding-top:65px; }
+.search-empty { color:var(--muted); grid-column:1/-1; }
+@media(max-width:980px){.search-results{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.search-results{grid-template-columns:1fr;padding-top:35px}}
 .choice-grid a { display:grid; place-items:center; min-height:50px; background:transparent; color:var(--ink); border:1px solid var(--border); border-radius:6px; }
 .choice-grid a:hover, .choice-grid a.active { background:color-mix(in srgb,var(--accent) 12%,var(--surface)); border-color:var(--accent); color:var(--accent); }
 .button, .nav-cta, .article-card, .test-shell {
