@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { SafeLink as Link } from '@/components/SafeLink';
 import { ArrowRight, BrainCircuit, ChartNoAxesCombined, CheckCircle2, Clock3, ShieldCheck } from 'lucide-react';
 
 export default function Home() {
