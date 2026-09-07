@@ -1,7 +1,7 @@
 export const siteConfig = {
   siteName: 'IQTestReal',
   siteDescription: 'A free, transparent IQ-style reasoning test with Estimated IQ, percentile, and category insights.',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://signal-and-craft-journal.phiyakanil.chatgpt.site',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://iqtestreal.phiyakanil.chatgpt.site',
   ownerName: 'IQTestReal',
   contactEmail: process.env.CONTACT_EMAIL || 'help@iqtestreal.com',
   socialLinks: {} as Record<string, string>,
