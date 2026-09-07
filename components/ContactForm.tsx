@@ -14,6 +14,13 @@ export function ContactForm() {
     try {
       const response = await fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ...payload, startedAt: started.current }) });
       const data = await response.json() as { message?: string };
+      if (response.status === 503) {
+        const recipient = 'help@iqtestreal.com';
+        const subject = encodeURIComponent(typeof payload.subject === 'string' ? payload.subject : 'IQTestReal contact');
+        const body = encodeURIComponent(`Name: ${typeof payload.name === 'string' ? payload.name : ''}\nEmail: ${typeof payload.email === 'string' ? payload.email : ''}\n\n${typeof payload.message === 'string' ? payload.message : ''}`);
+        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        setState('success'); setMessage('Your email client is ready with the message.'); return;
+      }
       if (!response.ok) throw new Error(data.message || 'Message could not be sent.');
       event.currentTarget.reset(); setState('success'); setMessage('Your message was sent. We will reply using the address you provided.');
     } catch (error) { setState('error'); setMessage(error instanceof Error ? error.message : 'Message could not be sent.'); }

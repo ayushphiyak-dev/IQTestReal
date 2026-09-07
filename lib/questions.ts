@@ -1,26 +1,39 @@
-export const domains = ['Pattern', 'Verbal', 'Quantitative', 'Logic'] as const;
+export const domains = ['Logic', 'Pattern', 'Numerical', 'Spatial', 'Analogy'] as const;
 export type Domain = (typeof domains)[number];
+export type Question = { id: string; domain: Domain; prompt: string; options: string[]; correct: string; explanation: string };
 
-export type Question = {
-  id: number;
-  domain: Domain;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string;
-};
-
-export const questions: Question[] = [
-  { id: 1, domain: 'Pattern', prompt: 'Which number completes the sequence: 2, 6, 12, 20, 30, ?', options: ['36', '40', '42', '44'], correctIndex: 2, explanation: 'The gaps are +4, +6, +8, +10, then +12.' },
-  { id: 2, domain: 'Pattern', prompt: 'Complete the alternating sequence: A, C, B, D, C, ?', options: ['D', 'E', 'F', 'G'], correctIndex: 1, explanation: 'Two interleaved sequences advance A–B–C and C–D–E.' },
-  { id: 3, domain: 'Pattern', prompt: 'A symbol rotates 90° clockwise, then 180° clockwise, repeating. If it starts pointing up, where does it point after three moves?', options: ['Up', 'Right', 'Down', 'Left'], correctIndex: 0, explanation: 'Up → right (+90°) → left (+180°) → up (+90°).' },
-  { id: 4, domain: 'Verbal', prompt: 'Blueprint is to building as recipe is to…', options: ['Kitchen', 'Ingredient', 'Meal', 'Chef'], correctIndex: 2, explanation: 'A blueprint guides the creation of a building; a recipe guides the creation of a meal.' },
-  { id: 5, domain: 'Verbal', prompt: 'Which word is the closest opposite of “scarce”?', options: ['Hidden', 'Abundant', 'Fragile', 'Costly'], correctIndex: 1, explanation: 'Scarce means limited or insufficient; abundant means plentiful.' },
-  { id: 6, domain: 'Verbal', prompt: 'Which item does not belong with the others?', options: ['Sonnet', 'Haiku', 'Novel', 'Limerick'], correctIndex: 2, explanation: 'A novel is prose; the other three are poetic forms.' },
-  { id: 7, domain: 'Quantitative', prompt: 'A €60 item is discounted by 25%. What is its sale price?', options: ['€35', '€40', '€45', '€48'], correctIndex: 2, explanation: '25% of 60 is 15, so the sale price is 60 − 15 = 45.' },
-  { id: 8, domain: 'Quantitative', prompt: 'If 4 machines make 4 parts in 4 minutes, how many parts do 8 machines make in 8 minutes?', options: ['8', '12', '16', '32'], correctIndex: 2, explanation: 'Each machine makes one part every four minutes, so each makes two parts in eight minutes.' },
-  { id: 9, domain: 'Quantitative', prompt: 'The average of 8, 12, 16, and x is 14. What is x?', options: ['18', '20', '22', '24'], correctIndex: 1, explanation: 'The required total is 56. The known values total 36, leaving 20.' },
-  { id: 10, domain: 'Logic', prompt: 'All lumes are quiet. No quiet things are alarms. Which conclusion must be true?', options: ['No lumes are alarms', 'Some alarms are lumes', 'All alarms are loud', 'Some quiet things are lumes'], correctIndex: 0, explanation: 'If every lume is quiet and no quiet thing is an alarm, no lume can be an alarm.' },
-  { id: 11, domain: 'Logic', prompt: 'Mira is older than Theo. Theo is older than Nia. Which statement must be true?', options: ['Nia is older than Mira', 'Mira is older than Nia', 'Theo and Mira are the same age', 'Nothing can be concluded'], correctIndex: 1, explanation: 'The greater-than relationship is transitive: Mira > Theo > Nia.' },
-  { id: 12, domain: 'Logic', prompt: 'If a report is approved, Mira or Theo signed it. The report was approved, and Mira did not sign. What must be true?', options: ['Theo signed it', 'No one signed it', 'Mira signed it', 'The report was rejected'], correctIndex: 0, explanation: 'At least one of the two people signed. Since it was not Mira, it must have been Theo.' },
+export const questionBank: Question[] = [
+  { id: 'logic-1', domain: 'Logic', prompt: 'All ravens are birds. No birds are mammals. What must be true?', options: ['No ravens are mammals', 'Some mammals are ravens', 'All birds are ravens', 'Ravens are not animals'], correct: 'No ravens are mammals', explanation: 'If every raven is a bird and no bird is a mammal, a raven cannot be a mammal.' },
+  { id: 'logic-2', domain: 'Logic', prompt: 'Mina is taller than Jo. Jo is taller than Ren. Who is shortest?', options: ['Mina', 'Jo', 'Ren', 'Cannot be known'], correct: 'Ren', explanation: 'The order is Mina, then Jo, then Ren.' },
+  { id: 'logic-3', domain: 'Logic', prompt: 'If the alarm is set, the light flashes. The light is not flashing. What follows?', options: ['The alarm is set', 'The alarm is not set', 'The light is broken', 'Nothing follows'], correct: 'The alarm is not set', explanation: 'If setting the alarm always causes a flash, no flash means the alarm was not set.' },
+  { id: 'logic-4', domain: 'Logic', prompt: 'Exactly one of Ada, Bo, and Cy won. Ada did not win. Bo did not win. Who won?', options: ['Ada', 'Bo', 'Cy', 'No one'], correct: 'Cy', explanation: 'With exactly one winner and the first two ruled out, Cy won.' },
+  { id: 'logic-5', domain: 'Logic', prompt: 'Some artists are teachers. All teachers read. Which conclusion is supported?', options: ['Some artists read', 'All artists read', 'No artists read', 'No teachers are artists'], correct: 'Some artists read', explanation: 'The artists who are teachers must read.' },
+  { id: 'logic-6', domain: 'Logic', prompt: 'A box contains only red or blue cards. It contains no blue cards. What must be true?', options: ['Every card is red', 'Every card is blue', 'The box is empty', 'The cards are green'], correct: 'Every card is red', explanation: 'If the only possibilities are red and blue and blue is absent, all cards are red.' },
+  { id: 'pattern-1', domain: 'Pattern', prompt: 'Which number comes next? 3, 6, 12, 24, …', options: ['30', '36', '42', '48'], correct: '48', explanation: 'Each value doubles.' },
+  { id: 'pattern-2', domain: 'Pattern', prompt: 'Which letter comes next? B, E, H, K, …', options: ['L', 'M', 'N', 'O'], correct: 'N', explanation: 'The sequence advances three letters at a time.' },
+  { id: 'pattern-3', domain: 'Pattern', prompt: 'Which number completes the sequence? 1, 4, 9, 16, …', options: ['20', '24', '25', '36'], correct: '25', explanation: 'These are consecutive squares: 1², 2², 3², 4², 5².' },
+  { id: 'pattern-4', domain: 'Pattern', prompt: 'Find the missing value: 2, 5, 11, 23, …', options: ['35', '41', '47', '49'], correct: '47', explanation: 'Multiply by two and add one each time.' },
+  { id: 'pattern-5', domain: 'Pattern', prompt: 'Which pair follows the same relationship as 2 : 8?', options: ['3 : 9', '4 : 16', '5 : 20', '6 : 30'], correct: '4 : 16', explanation: 'The second number is the first number squared.' },
+  { id: 'pattern-6', domain: 'Pattern', prompt: 'A sequence repeats red, blue, blue, green. What is item 10?', options: ['Red', 'Blue', 'Green', 'Cannot be known'], correct: 'Blue', explanation: 'Item 10 is the second position in the repeating four-item cycle.' },
+  { id: 'numerical-1', domain: 'Numerical', prompt: 'What is 15% of 200?', options: ['15', '20', '30', '35'], correct: '30', explanation: '10% is 20 and 5% is 10, totaling 30.' },
+  { id: 'numerical-2', domain: 'Numerical', prompt: 'A train travels 180 km in 3 hours. What is its average speed?', options: ['45 km/h', '60 km/h', '75 km/h', '90 km/h'], correct: '60 km/h', explanation: 'Speed equals distance divided by time: 180 ÷ 3.' },
+  { id: 'numerical-3', domain: 'Numerical', prompt: 'If x + 7 = 19, what is x?', options: ['10', '11', '12', '13'], correct: '12', explanation: 'Subtract seven from both sides.' },
+  { id: 'numerical-4', domain: 'Numerical', prompt: 'A €80 item is reduced by 25%. What is the new price?', options: ['€55', '€60', '€65', '€70'], correct: '€60', explanation: 'A quarter of €80 is €20; €80 − €20 = €60.' },
+  { id: 'numerical-5', domain: 'Numerical', prompt: 'What is the median of 3, 7, 8, 12, and 20?', options: ['7', '8', '10', '12'], correct: '8', explanation: 'The middle value in the ordered list is 8.' },
+  { id: 'numerical-6', domain: 'Numerical', prompt: 'A recipe for 4 people uses 300 g of rice. How much is needed for 10 people?', options: ['600 g', '650 g', '750 g', '900 g'], correct: '750 g', explanation: 'Each person needs 75 g, so 10 people need 750 g.' },
+  { id: 'spatial-1', domain: 'Spatial', prompt: 'A cube has six faces. If three faces meet at one corner, how many faces remain unseen from that corner?', options: ['2', '3', '4', '5'], correct: '3', explanation: 'Three of the six faces meet at and are visible from a corner.' },
+  { id: 'spatial-2', domain: 'Spatial', prompt: 'A paper arrow points north. It is rotated 90° clockwise, then 180° clockwise. Which way does it point?', options: ['North', 'East', 'South', 'West'], correct: 'West', explanation: 'North → east → west.' },
+  { id: 'spatial-3', domain: 'Spatial', prompt: 'Which shape has exactly one line of symmetry?', options: ['Scalene triangle', 'Isosceles triangle', 'Parallelogram', 'Irregular pentagon'], correct: 'Isosceles triangle', explanation: 'An isosceles triangle has one axis through its apex and base midpoint.' },
+  { id: 'spatial-4', domain: 'Spatial', prompt: 'A rectangular box is painted on every outside face and cut into 8 equal cubes. How many small cubes have paint on three faces?', options: ['1', '2', '4', '8'], correct: '8', explanation: 'Each of the eight corner cubes has three painted faces.' },
+  { id: 'spatial-5', domain: 'Spatial', prompt: 'A square is folded once along its vertical middle and then unfolded. How many equal rectangles are visible?', options: ['1', '2', '3', '4'], correct: '2', explanation: 'One fold divides the square into two equal panels.' },
+  { id: 'spatial-6', domain: 'Spatial', prompt: 'Which object can roll in every direction without changing its outline?', options: ['Cube', 'Cylinder', 'Sphere', 'Cone'], correct: 'Sphere', explanation: 'A sphere has the same circular outline from every direction.' },
+  { id: 'analogy-1', domain: 'Analogy', prompt: 'Bird is to nest as bee is to…', options: ['Hive', 'Flower', 'Honey', 'Wing'], correct: 'Hive', explanation: 'A nest is a bird’s home; a hive is a bee’s home.' },
+  { id: 'analogy-2', domain: 'Analogy', prompt: 'Generous is to giving as cautious is to…', options: ['Rushing', 'Waiting', 'Avoiding risk', 'Celebrating'], correct: 'Avoiding risk', explanation: 'The second word describes the characteristic behavior.' },
+  { id: 'analogy-3', domain: 'Analogy', prompt: 'Thermometer is to temperature as compass is to…', options: ['Distance', 'Direction', 'Weight', 'Speed'], correct: 'Direction', explanation: 'Each tool measures or indicates the named property.' },
+  { id: 'analogy-4', domain: 'Analogy', prompt: 'Chapter is to book as scene is to…', options: ['Actor', 'Stage', 'Play', 'Ticket'], correct: 'Play', explanation: 'A chapter is a component of a book; a scene is a component of a play.' },
+  { id: 'analogy-5', domain: 'Analogy', prompt: 'Transparent is to opaque as flexible is to…', options: ['Soft', 'Rigid', 'Thin', 'Bright'], correct: 'Rigid', explanation: 'Each pair describes opposing properties.' },
+  { id: 'analogy-6', domain: 'Analogy', prompt: 'Seed is to tree as egg is to…', options: ['Nest', 'Bird', 'Feather', 'Shell'], correct: 'Bird', explanation: 'A seed can develop into a tree; an egg can develop into a bird.' },
 ];
+
+function shuffle<T>(items: T[]) { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
+export function createTestSet(perDomain = 3) { return shuffle(domains.flatMap((domain) => shuffle(questionBank.filter((question) => question.domain === domain)).slice(0, perDomain)).map((question) => ({ ...question, options: shuffle(question.options) }))); }

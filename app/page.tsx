@@ -1,22 +1,3 @@
 import Link from 'next/link';
-import { ArrowRight, BrainCircuit, Clock3, ShieldCheck } from 'lucide-react';
-
-export default function Home() {
-  return <main id="main-content">
-    <section className="home-hero shell">
-      <div className="hero-copy">
-        <span className="kicker"><i/> Introducing Arc IQ / Beta</span>
-        <h1>See how you<br/><em>reason.</em></h1>
-        <p>A focused 12-question assessment across pattern, verbal, quantitative, and logical reasoning. Get a clear skills profile—not a clinical label.</p>
-        <div className="hero-actions"><Link className="button primary" href="/test">Begin assessment <ArrowRight size={17}/></Link><Link className="button" href="/methodology">How scoring works</Link></div>
-        <div className="trust-line"><span><Clock3/> About 10 minutes</span><span><ShieldCheck/> No account required</span></div>
-      </div>
-      <div className="assessment-preview" aria-label="Assessment preview">
-        <div className="preview-top"><span>QUESTION 04 / 12</span><span className="status"><i/> IN PROGRESS</span></div>
-        <div className="question-stage"><span className="domain">PATTERN REASONING</span><h2>Which value completes the sequence?</h2><div className="sequence"><span>3</span><b>→</b><span>6</span><b>→</b><span>12</span><b>→</b><span>?</span></div><div className="choice-grid"><button>18</button><button>20</button><button className="active">24</button><button>30</button></div></div>
-        <div className="preview-bottom"><span>04:38 elapsed</span><div><i/><i/><i/><i className="active"/><i/><i/><i/><i/><i/><i/><i/><i/></div><ArrowRight size={16}/></div>
-      </div>
-    </section>
-    <section className="signal-strip"><div className="shell"><span><BrainCircuit size={16}/> Four reasoning domains</span><span>12 carefully authored questions</span><span>Private by default</span><span>Immediate skill profile</span></div></section>
-  </main>;
-}
+import { ArrowRight, BrainCircuit, ChartNoAxesCombined, Clock3, ShieldCheck } from 'lucide-react';
+export default function Home() { return <main id="main-content"><section className="home-hero shell"><div className="hero-copy"><span className="kicker"><i/> IQTestReal / Free assessment</span><h1>Find your<br/><em>reasoning signal.</em></h1><p>Take a carefully authored, free IQ-style test across logic, pattern, numerical, spatial, and analogy questions. Receive an Estimated IQ, percentile, and category strengths in minutes.</p><div className="hero-actions"><Link className="button primary" href="/test">Start free IQ test <ArrowRight size={17}/></Link><Link className="button" href="/how-it-works">How it works</Link></div><div className="trust-line"><span><Clock3/> 10–12 minutes</span><span><ShieldCheck/> No account required</span><span><ChartNoAxesCombined/> Results explained</span></div></div><div className="assessment-preview" aria-label="IQTestReal assessment preview"><div className="preview-top"><span>QUESTION 07 / 15</span><span className="status"><i/> ESTIMATING</span></div><div className="question-stage"><span className="domain">NUMERICAL REASONING</span><h2>If 15% of 200 is x, what is x?</h2><div className="sequence"><span>15%</span><b>×</b><span>200</span><b>=</b><span>?</span></div><div className="choice-grid"><button>15</button><button>20</button><button className="active">30</button><button>35</button></div></div><div className="preview-bottom"><span>07:42 elapsed</span><div><i/><i/><i/><i className="active"/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/></div><ArrowRight size={16}/></div></div></section><section className="signal-strip"><div className="shell"><span><BrainCircuit size={16}/> Five reasoning categories</span><span>15 unique questions</span><span>Randomized every test</span><span>Transparent score guide</span></div></section></main>; }

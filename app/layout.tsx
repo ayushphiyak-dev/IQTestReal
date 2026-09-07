@@ -9,17 +9,18 @@ import { siteConfig } from '@/config/site';
 import './globals.css';
 import './product.css';
 import './command-fix.css';
+import './iqtest.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: { default: 'Arc IQ — See how you reason', template: '%s — Arc IQ' },
+  title: { default: 'IQTestReal — Free IQ Test', template: '%s — IQTestReal' },
   description: siteConfig.siteDescription,
   alternates: { canonical: '/' },
-  openGraph: { type: 'website', siteName: siteConfig.siteName, title: siteConfig.siteName, description: siteConfig.siteDescription, url: '/' },
-  twitter: { card: 'summary', title: siteConfig.siteName, description: siteConfig.siteDescription },
+  openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: '/' },
+  twitter: { card: 'summary', title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription },
   icons: { icon: '/favicon.svg' },
   robots: process.env.VERCEL_ENV === 'preview' ? { index: false, follow: false } : { index: true, follow: true },
 };
