@@ -1,7 +1,0 @@
-import { SafeLink as Link } from '@/components/SafeLink';
-import { BrandMark } from './BrandMark';
-import { ThemeToggle } from './ThemeToggle';
-import { ConsentSettingsButton } from './consent/ConsentSettingsButton';
-
-export function SiteFooter() { return <footer className="site-footer"><div className="shell footer-grid"><div><span className="wordmark"><BrandMark /><span>IQTestReal</span></span><p>Clear, responsible tools for understanding reasoning performance.</p><ThemeToggle/></div><div><span>Explore</span><Link href="/test">IQ Test</Link><Link href="/how-it-works">How It Works</Link><Link href="/score-guide">Score Guide</Link><Link href="/articles">Articles</Link><Link href="/faq">FAQ</Link><Link href="/search">Search</Link></div><div><span>About</span><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy-policy">Privacy Policy</Link><Link href="/cookie-policy">Cookie Policy</Link><ConsentSettingsButton /><Link href="/terms">Terms</Link><Link href="/disclaimer">Disclaimer</Link><Link href="/editorial-policy">Editorial Policy</Link></div></div><div className="shell footer-base"><span>© 2026 IQTestReal</span><span><i/> Free practice assessment</span><span>Estimated IQ · Not diagnostic</span></div></footer>; }
-
