@@ -17,15 +17,27 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      { source: '/index.html', destination: '/', permanent: true },
+      { source: '/home', destination: '/', permanent: true },
+      { source: '/iq-test', destination: '/test', permanent: true },
+      { source: '/results', destination: '/dashboard', permanent: true },
+    ];
+  },
   async headers() {
-    return [{ source: '/(.*)', headers: [
-      { key: 'Content-Security-Policy', value: contentSecurityPolicy },
-      { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-      { key: 'X-Content-Type-Options', value: 'nosniff' },
-      { key: 'X-Frame-Options', value: 'DENY' },
-      { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-    ] }];
+    return [
+      { source: '/iqtestreal-brain.png', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
+      { source: '/(.*)', headers: [
+        { key: 'Content-Security-Policy', value: contentSecurityPolicy },
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'X-Frame-Options', value: 'DENY' },
+        { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+      ] },
+    ];
   },
 };
 
 export default nextConfig;
+
