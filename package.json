@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "dev": "vinext dev",
-    "build": "vite build",
-    "start": "node .output/server/index.mjs",
+    "build": "vinext build",
+    "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint --ignore-pattern .output",
     "typecheck": "tsc --noEmit",
     "format": "oxfmt"
