@@ -1,6 +1,0 @@
-import type { Metadata } from 'next';
-import { ContactForm } from '@/components/ContactForm';
-import { siteConfig } from '@/config/site';
-export const metadata: Metadata = { title: 'Contact', description: 'Contact the IQTestReal editorial team.', alternates: { canonical: '/contact' } };
-export default function ContactPage() { return <main id="main-content"><header className="page-header shell"><span className="eyebrow">Contact / IQTestReal</span><h1>Send a clear note.</h1><p>Use this form for question feedback, accessibility issues, privacy requests, or editorial questions.</p></header><section className="contact-layout shell"><div><h2>Before you send</h2><p>For a direct reply, email <a className="text-link" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>. You can also use the form; it validates your message and sends it to the IQTestReal contact workflow.</p><p>Please do not send passwords, payment details, or other sensitive material.</p></div><ContactForm /></section></main>; }
-
