@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: '/' },
   twitter: { card: 'summary', title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription },
-  icons: { icon: '/iqtestreal-brain.svg', shortcut: '/iqtestreal-brain.svg', apple: '/iqtestreal-brain.svg' },
+  icons: { icon: '/iqtestreal-brain.png?v=2', shortcut: '/iqtestreal-brain.png?v=2', apple: '/iqtestreal-brain.png?v=2' },
   robots: process.env.VERCEL_ENV === 'preview' ? { index: false, follow: false } : { index: true, follow: true },
 };
 
@@ -36,4 +36,3 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.siteName, url: siteConfig.siteUrl, description: siteConfig.siteDescription };
   return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><SiteHeader />{children}<SiteFooter /><CommandMenu /><ConsentBanner /></ConsentProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c') }} /></body></html>;
 }
-
