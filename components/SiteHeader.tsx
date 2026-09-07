@@ -1,7 +1,0 @@
-import { SafeLink as Link } from '@/components/SafeLink';
-import { BrandMark } from './BrandMark';
-import { Menu, Search } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
-
-export function SiteHeader() { return <header className="site-header"><Link className="wordmark" href="/" aria-label="IQTestReal home"><BrandMark /><span>IQTestReal</span></Link><nav aria-label="Primary navigation"><Link href="/test">IQ Test</Link><Link href="/how-it-works">How it works</Link><Link href="/score-guide">Score guide</Link><Link href="/articles">Articles</Link><Link href="/faq">FAQ</Link><Link href="/search" aria-label="Search IQTestReal"><Search size={15}/></Link></nav><div className="header-actions"><Link className="login-link" href="/dashboard">My results</Link><ThemeToggle/><Link className="nav-cta" href="/test">Start free test</Link><details className="mobile-menu"><summary aria-label="Open navigation"><Menu size={18}/></summary><div><Link href="/test">IQ Test</Link><Link href="/how-it-works">How it works</Link><Link href="/score-guide">Score guide</Link><Link href="/articles">Articles</Link><Link href="/faq">FAQ</Link><Link href="/search">Search</Link><Link href="/dashboard">My results</Link></div></details></div></header>; }
-
