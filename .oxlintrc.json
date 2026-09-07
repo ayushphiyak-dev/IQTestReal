@@ -44,6 +44,7 @@
     "react/jsx-no-comment-textnodes": "error",
     "react/no-unescaped-entities": "error",
     "react/react-compiler": "error",
+    "jsx-a11y/prefer-tag-over-role": "off",
     "react/require-render-return": "error",
     "react/rules-of-hooks": "error",
     "typescript/ban-ts-comment": "error",
@@ -56,3 +57,4 @@
     "typescript/no-unsafe-function-type": "error"
   }
 }
+
