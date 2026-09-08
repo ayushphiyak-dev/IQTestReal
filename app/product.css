@@ -9,3 +9,53 @@
 @media(max-width:760px){.test-top{align-items:flex-start;flex-wrap:wrap;padding:17px}.test-progress-label{order:1;flex:1;flex-direction:column;align-items:flex-start;gap:5px}.timer{order:2}.test-restart{order:3;width:100%;justify-content:flex-start;padding-top:4px}.test-actions{padding:16px;gap:8px}.test-actions .button{flex:1;min-width:0!important;padding:0 9px}.score-ring{flex-basis:118px;width:118px;height:118px}.score-ring strong{font-size:38px}.score-ring span{font-size:10px}.result-head{align-items:flex-start}.category-chips{margin-top:22px}}
 @media(prefers-reduced-motion:reduce){.answer-options button,.test-shell,.score-ring{transition:none!important;animation:none!important}.answer-options button:hover:not(:disabled){transform:none}}
 
+/* Test motion system: state-led animation with a clear reduced-motion escape hatch. */
+.test-page{isolation:isolate}
+.test-page::before{position:absolute;inset:-35%;z-index:-2;background:conic-gradient(from 180deg at 50% 50%,transparent 0 22%,color-mix(in srgb,var(--accent) 12%,transparent) 30%,transparent 42% 67%,color-mix(in srgb,var(--accent) 9%,transparent) 76%,transparent 86%);content:"";filter:blur(42px);opacity:.8;animation:test-ambient-spin 24s linear infinite;pointer-events:none}
+.test-page::after{position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--accent) 8%,transparent),transparent 34rem);content:"";animation:test-breathe 8s ease-in-out infinite;pointer-events:none}
+.test-ambient{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.ambient-orb{position:absolute;width:clamp(130px,18vw,240px);aspect-ratio:1;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);border-radius:50%;opacity:.5;animation:test-orbit 11s ease-in-out infinite}
+.ambient-orb::after{position:absolute;top:16%;right:14%;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 24px 8px color-mix(in srgb,var(--accent) 45%,transparent);content:""}
+.ambient-orb-one{top:8%;left:-6%;transform:rotate(18deg)}
+.ambient-orb-two{right:-7%;bottom:4%;animation-delay:-4.5s;transform:scale(.72) rotate(-26deg)}
+.ambient-line{position:absolute;width:42vw;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 34%,transparent),transparent);opacity:.65;transform-origin:center;animation:test-line-sweep 9s ease-in-out infinite}
+.ambient-line-one{top:27%;right:-12%;transform:rotate(-23deg)}
+.ambient-line-two{bottom:22%;left:-12%;animation-delay:-3.5s;transform:rotate(21deg)}
+.test-shell{z-index:1;backdrop-filter:blur(12px);animation:test-shell-in .7s cubic-bezier(.2,.8,.2,1) both}
+.intro-card,.result-card{background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 95%,var(--accent)),var(--surface) 62%)}
+.intro-card::after,.result-card::after{position:absolute;right:34px;top:34px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 35%,transparent);content:"";animation:test-pulse 2.6s ease-out infinite}
+.assessment-card{background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 97%,var(--accent)),var(--surface))}
+.test-top{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 5%,transparent),transparent 62%)}
+.live-question{background:linear-gradient(145deg,transparent 55%,color-mix(in srgb,var(--accent) 3%,transparent));animation:question-reveal .52s cubic-bezier(.2,.8,.2,1) both}
+.question-meta{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.adaptive-label{display:flex;align-items:center;gap:7px;color:var(--muted);font:500 10px/1 var(--font-geist-mono);text-transform:uppercase;letter-spacing:.08em}
+.pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent);animation:test-pulse 2s ease-out infinite}
+.answer-options{gap:14px}
+.answer-options button{min-height:74px;border-radius:14px;background:color-mix(in srgb,var(--surface) 88%,var(--accent));animation:option-rise .46s cubic-bezier(.2,.8,.2,1) both}
+.answer-options button:nth-child(1){animation-delay:.04s}.answer-options button:nth-child(2){animation-delay:.1s}.answer-options button:nth-child(3){animation-delay:.16s}.answer-options button:nth-child(4){animation-delay:.22s}.answer-options button:nth-child(5){animation-delay:.28s}.answer-options button:nth-child(6){animation-delay:.34s}
+.answer-options button::before{position:absolute;inset:0;background:linear-gradient(105deg,transparent 25%,color-mix(in srgb,#fff 22%,transparent) 48%,transparent 68%);content:"";opacity:0;transform:translateX(-120%)}
+.answer-options button:hover::before{opacity:1;animation:option-sheen .8s ease-out both}
+.answer-options button>span:first-child{flex:0 0 30px}
+.test-actions{background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 4%,transparent),transparent)}
+.progress i{position:relative;overflow:hidden}
+.progress i::after{position:absolute;inset:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,#fff 38%,transparent),transparent);content:"";animation:progress-sheen 1.6s linear infinite}
+.timer{animation:timer-glow 2.8s ease-in-out infinite}
+.score-ring{animation:score-pop .85s cubic-bezier(.2,.8,.2,1) both,score-breathe 4s ease-in-out 1s infinite}
+.meter i{animation:meter-fill .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes test-ambient-spin{to{transform:rotate(360deg)}}
+@keyframes test-breathe{0%,100%{opacity:.45;transform:scale(.96)}50%{opacity:.9;transform:scale(1.04)}}
+@keyframes test-orbit{0%,100%{transform:translate3d(0,0,0) rotate(18deg)}50%{transform:translate3d(24px,18px,0) rotate(40deg)}}
+@keyframes test-line-sweep{0%,100%{opacity:.2;transform:translateX(-6%) rotate(-23deg)}50%{opacity:.8;transform:translateX(10%) rotate(-23deg)}}
+@keyframes test-shell-in{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes question-reveal{from{opacity:0;transform:translateX(24px) scale(.99)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes option-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes option-sheen{to{transform:translateX(120%)}}
+@keyframes progress-sheen{to{transform:translateX(180%)}}
+@keyframes test-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 40%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes timer-glow{0%,100%{color:var(--muted)}50%{color:var(--accent)}}
+@keyframes score-pop{from{opacity:0;transform:scale(.65) rotate(-14deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes score-breathe{0%,100%{filter:drop-shadow(0 18px 42px color-mix(in srgb,var(--accent) 15%,transparent))}50%{filter:drop-shadow(0 18px 52px color-mix(in srgb,var(--accent) 30%,transparent))}}
+@keyframes meter-fill{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+@media(max-width:760px){.test-page{padding:22px 8px}.ambient-line{width:80vw}.question-meta{align-items:flex-start;flex-direction:column;gap:10px}.answer-options button{min-height:68px}.test-shell{border-radius:14px}.intro-card::after,.result-card::after{right:24px;top:24px}}
+@media(prefers-reduced-motion:reduce){.test-page::before,.test-page::after,.ambient-orb,.ambient-line,.test-shell,.intro-card::after,.result-card::after,.live-question,.answer-options button,.progress i::after,.timer,.score-ring,.meter i,.pulse-dot{animation:none!important}.answer-options button::before{display:none}}
+
