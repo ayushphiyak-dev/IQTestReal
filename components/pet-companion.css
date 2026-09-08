@@ -56,3 +56,64 @@
 @media(max-width:760px){.critter-companion{width:58px;height:58px}.critter-actions button{min-height:40px}.critter-chat-head button{width:36px;height:36px}.critter-restore.command-hint{left:10px;bottom:max(10px,env(safe-area-inset-bottom));min-height:36px;padding-inline:10px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.critter-art,.critter-art *{animation:none!important;transition:none!important}}
 
+/* Shared animal motion: the pose is one connected rig; only attached joints move. */
+.animal{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 3px #0003)}
+.animal-pose{transform-box:view-box;transform-origin:80px 145px;animation:animal-breathe 4.8s ease-in-out infinite}
+.animal-breath{transform-box:view-box;transform-origin:80px 130px}
+.animal-head{transform-box:view-box;transform-origin:80px 82px;animation:animal-look 9s ease-in-out infinite}
+.animal-eye{transform-box:view-box;animation:animal-blink 6.5s ease-in-out infinite}
+.animal-tail,.animal-ear,.animal-foreleg{transform-box:view-box}
+.animal-cat .animal-tail{animation:cat-tail-natural 5s ease-in-out infinite}
+.animal-dog .animal-tail{animation:dog-tail-natural 1.9s ease-in-out infinite}
+.animal-dog .animal-ear{animation:dog-ear-soft 4.8s ease-in-out infinite}
+.animal-frog .animal-haunches{animation:frog-breathe 3.8s ease-in-out infinite}
+.animal-shadow{transform-box:fill-box;transform-origin:center;animation:animal-shadow 4.8s ease-in-out infinite}
+.animal-call,.animal-zzz,.animal-fly,.animal-tongue,.animal-happy,.animal-worried{opacity:0;pointer-events:none}
+.animal-call{font:600 12px var(--font-geist-mono);transform-origin:80px 15px}
+.animal-zzz{font:700 17px var(--font-geist-mono);fill:var(--muted)}
+.animal-fly{transform-box:view-box;transform-origin:140px 45px}
+.animal-smile{transition:opacity .2s ease,transform .2s ease}
+.animal[data-activity=call] .animal-call{opacity:1;animation:activity-call 3.6s ease both}
+.animal[data-activity=play] .animal-toy{animation:toy-play 3.6s ease-in-out both}
+.animal[data-activity=stretch] .animal-pose{animation:activity-stretch 3.6s ease-in-out both}
+.animal[data-activity=catch] .animal-fly{opacity:1;animation:fly-catch 3.6s ease-in-out both}
+.animal[data-activity=catch] .animal-tongue{opacity:1;animation:tongue-catch 3.6s ease-in-out both}
+.animal[data-activity=sleep] .animal-zzz{opacity:1;animation:zzz-float 3.4s ease-in-out infinite}
+.animal[data-activity=sleep] .animal-eye{animation:none;transform:scaleY(.12)}
+.animal[data-activity=lift] .animal-happy{opacity:1;animation:happy-pop .55s ease-out both}
+.animal[data-activity=lift] .animal-worried{opacity:1;animation:worry-pop .55s ease-out both}
+.animal[data-activity=lift] .animal-pose{animation:pickup-sway 1.6s ease-in-out infinite}
+.animal[data-activity=lift] .animal-foreleg{animation:legs-dangle .75s ease-in-out infinite alternate}
+.animal[data-activity=land] .animal-pose{animation:soft-land .5s ease-out both}
+.animal[data-activity=greet] .animal-pose{animation:greet-bounce .7s ease-out both}
+.animal[data-activity=greet] .animal-tail{animation:tail-greeting .7s ease-out both}
+.animal[data-activity=call] .animal-smile{transform:scale(1.1)}
+.animal[data-activity=call] .animal-happy{opacity:1}
+.animal[data-activity=catch] .animal-worried{opacity:1}
+.animal-small{filter:none}
+.animal-small .animal-call,.animal-small .animal-zzz,.animal-small .animal-toy{display:none}
+.critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom));}
+@keyframes animal-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(.8px) scale(1.012,.992)}}
+@keyframes animal-shadow{0%,100%{transform:scaleX(1);opacity:.15}50%{transform:scaleX(.86);opacity:.09}}
+@keyframes animal-look{0%,70%,100%{transform:translateX(0)}76%{transform:translateX(2px)}82%{transform:translateX(-1px)}}
+@keyframes animal-blink{0%,44%,48%,100%{transform:scaleY(1)}46%{transform:scaleY(.08)}}
+@keyframes cat-tail-natural{0%,70%,100%{transform:rotate(0)}80%{transform:rotate(7deg)}90%{transform:rotate(-5deg)}}
+@keyframes dog-tail-natural{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(8deg)}}
+@keyframes dog-ear-soft{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
+@keyframes frog-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.015,.985)}}
+@keyframes activity-call{0%{opacity:0;transform:scale(.8) translateY(5px)}18%,80%{opacity:1;transform:scale(1) translateY(0)}100%{opacity:0;transform:scale(.96) translateY(-3px)}}
+@keyframes toy-play{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-6px) rotate(12deg)}70%{transform:translateY(2px) rotate(-10deg)}}
+@keyframes activity-stretch{0%,100%{transform:scale(1)}35%{transform:scale(1.045,.965)}70%{transform:scale(.98,1.02)}}
+@keyframes fly-catch{0%{transform:translate(0,0) rotate(-8deg);opacity:0}20%{opacity:1}55%{transform:translate(-44px,34px) rotate(18deg);opacity:1}72%{transform:translate(-70px,48px) scale(.7);opacity:.2}100%{transform:translate(-70px,48px) scale(.2);opacity:0}}
+@keyframes tongue-catch{0%,38%{stroke-dasharray:0 100;opacity:0}55%{stroke-dasharray:70 100;opacity:1}76%,100%{stroke-dasharray:100 100;opacity:0}}
+@keyframes zzz-float{0%,100%{transform:translate(0,2px);opacity:.2}50%{transform:translate(3px,-5px);opacity:1}}
+@keyframes pickup-sway{0%,100%{transform:translateY(-2px) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
+@keyframes legs-dangle{0%{transform:rotate(-2deg)}100%{transform:rotate(3deg)}}
+@keyframes soft-land{0%{transform:translateY(-5px) scale(1.02)}60%{transform:translateY(2px) scale(.97,1.03)}100%{transform:translateY(0) scale(1)}}
+@keyframes greet-bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-5px)}65%{transform:translateY(1px)}}
+@keyframes tail-greeting{0%,100%{transform:rotate(0)}50%{transform:rotate(14deg)}}
+@keyframes happy-pop{0%{transform:scale(.8)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes worry-pop{0%{transform:translateY(3px)}50%{transform:translateY(-1px)}100%{transform:translateY(0)}}
+@media(max-width:760px){.critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom));}}
+@media(prefers-reduced-motion:reduce){.animal,.animal *{animation:none!important;transition:none!important}.animal[data-activity=sleep] .animal-zzz{opacity:1}.animal[data-activity=lift] .animal-happy,.animal[data-activity=lift] .animal-worried{opacity:1}}
+
