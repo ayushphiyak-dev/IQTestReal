@@ -57,9 +57,11 @@ function nextReaction(current: number, count: number) { return (current + 1) % c
 export function PetCompanion() {
   const [open, setOpen] = useState(false);
   const [showSelector, setShowSelector] = useState(false);
-  const [selectedId, setSelectedId] = useState<PetId>(loadPetId);
-  const [position, setPosition] = useState<Position>(loadPosition);
-  const [hidden, setHidden] = useState(loadHidden);
+  // Render stable defaults on the server and hydrate saved preferences after
+  // mount so localStorage never causes a client/server markup mismatch.
+  const [selectedId, setSelectedId] = useState<PetId>('cat');
+  const [position, setPosition] = useState<Position>(defaultPosition);
+  const [hidden, setHidden] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [landing, setLanding] = useState(false);
   const [reacting, setReacting] = useState(false);
@@ -69,6 +71,15 @@ export function PetCompanion() {
   const [recentFacts, setRecentFacts] = useState<string[]>([]);
   const dragRef = useRef<DragState | null>(null);
   const selected = getPet(selectedId);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setSelectedId(loadPetId());
+      setPosition(loadPosition());
+      setHidden(loadHidden());
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const keepVisible = () => setPosition((current) => clampPosition(current));
