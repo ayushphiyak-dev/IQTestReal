@@ -60,13 +60,13 @@
 .animal{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 3px #0003)}
 .animal-pose{transform-box:view-box;transform-origin:80px 145px;animation:animal-breathe 4.8s ease-in-out infinite}
 .animal-breath{transform-box:view-box;transform-origin:80px 130px}
-.animal-head{transform-box:view-box;transform-origin:80px 82px;animation:animal-look 9s ease-in-out infinite}
+.animal-head{transform-box:fill-box;transform-origin:center;animation:animal-look-safe 9s ease-in-out infinite}
 .animal-eye{transform-box:view-box;animation:animal-blink 6.5s ease-in-out infinite}
 .animal-tail,.animal-ear,.animal-foreleg{transform-box:view-box}
 .animal-cat .animal-tail{animation:cat-tail-natural 5s ease-in-out infinite}
 .animal-dog .animal-tail{animation:dog-tail-natural 1.9s ease-in-out infinite}
 .animal-dog .animal-ear{animation:dog-ear-soft 4.8s ease-in-out infinite}
-.animal-frog .animal-haunches{animation:frog-breathe 3.8s ease-in-out infinite}
+.animal-frog .animal-haunches{animation:none}
 .animal-shadow{transform-box:fill-box;transform-origin:center;animation:animal-shadow 4.8s ease-in-out infinite}
 .animal-call,.animal-zzz,.animal-fly,.animal-tongue,.animal-happy,.animal-worried{opacity:0;pointer-events:none}
 .animal-call{font:600 12px var(--font-geist-mono);transform-origin:80px 15px}
@@ -83,7 +83,7 @@
 .animal[data-activity=lift] .animal-happy{opacity:1;animation:happy-pop .55s ease-out both}
 .animal[data-activity=lift] .animal-worried{opacity:1;animation:worry-pop .55s ease-out both}
 .animal[data-activity=lift] .animal-pose{animation:pickup-sway 1.6s ease-in-out infinite}
-.animal[data-activity=lift] .animal-foreleg{animation:legs-dangle .75s ease-in-out infinite alternate}
+.animal[data-activity=lift] .animal-foreleg{animation:none}
 .animal[data-activity=land] .animal-pose{animation:soft-land .5s ease-out both}
 .animal[data-activity=greet] .animal-pose{animation:greet-bounce .7s ease-out both}
 .animal[data-activity=greet] .animal-tail{animation:tail-greeting .7s ease-out both}
@@ -95,7 +95,7 @@
 .critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom));}
 @keyframes animal-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(.8px) scale(1.012,.992)}}
 @keyframes animal-shadow{0%,100%{transform:scaleX(1);opacity:.15}50%{transform:scaleX(.86);opacity:.09}}
-@keyframes animal-look{0%,70%,100%{transform:translateX(0)}76%{transform:translateX(2px)}82%{transform:translateX(-1px)}}
+@keyframes animal-look-safe{0%,70%,100%{transform:translateX(0)}76%{transform:translateX(1px)}82%{transform:translateX(-.5px)}}
 @keyframes animal-blink{0%,44%,48%,100%{transform:scaleY(1)}46%{transform:scaleY(.08)}}
 @keyframes cat-tail-natural{0%,70%,100%{transform:rotate(0)}80%{transform:rotate(7deg)}90%{transform:rotate(-5deg)}}
 @keyframes dog-tail-natural{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(8deg)}}
