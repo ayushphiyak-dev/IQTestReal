@@ -117,3 +117,32 @@
 @media(max-width:760px){.critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom));}}
 @media(prefers-reduced-motion:reduce){.animal,.animal *{animation:none!important;transition:none!important}.animal[data-activity=sleep] .animal-zzz{opacity:1}.animal[data-activity=lift] .animal-happy,.animal[data-activity=lift] .animal-worried{opacity:1}}
 
+/* Stability guard: the illustration is one locked rig. Earlier joint-level
+   transforms could move SVG fragments using different coordinate boxes, which
+   made ears, mouths, legs, and frog haunches appear to detach during pickup.
+   Reactions now animate the connected pose as a whole; facial changes are
+   opacity-only and the fly is the only independent prop. */
+.animal-pose{transform-box:view-box!important;transform-origin:80px 145px!important;animation:animal-breathe-locked 5.2s ease-in-out infinite!important}
+.animal-head,.animal-tail,.animal-ear,.animal-foreleg,.animal-haunches,.animal-eye,.animal-happy,.animal-worried,.animal-smile,.animal-toy,.animal-tongue{animation:none!important;transform:none!important;transform-origin:center!important}
+.animal-eye{transform-box:fill-box!important}
+.animal[data-activity=call] .animal-pose{animation:activity-call-locked 3.2s ease-in-out both!important}
+.animal[data-activity=play] .animal-pose{animation:activity-play-locked 3.4s ease-in-out both!important}
+.animal[data-activity=stretch] .animal-pose{animation:activity-stretch-locked 3.4s ease-in-out both!important}
+.animal[data-activity=catch] .animal-pose{animation:activity-catch-locked 2.8s ease-in-out both!important}
+.animal[data-activity=lift] .animal-pose{animation:pickup-locked 1.6s ease-in-out infinite!important}
+.animal[data-activity=land] .animal-pose{animation:soft-land-locked .5s ease-out both!important}
+.animal[data-activity=greet] .animal-pose{animation:greet-locked .7s ease-out both!important}
+.animal[data-activity=call] .animal-smile{transform:none!important}
+.animal[data-activity=lift] .animal-happy,.animal[data-activity=lift] .animal-worried{opacity:1;transform:none!important}
+.animal[data-activity=catch] .animal-fly{opacity:1;animation:fly-bob-locked 1.2s ease-in-out infinite!important;transform-box:fill-box!important;transform-origin:center!important}
+.animal[data-activity=catch] .animal-tongue{display:none!important;opacity:0!important}
+@keyframes animal-breathe-locked{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(.7px) scale(1.01,.995)}}
+@keyframes activity-call-locked{0%,100%{transform:translateY(0) scale(1)}22%{transform:translateY(-1px) scale(1.015)}48%{transform:translateY(0) scale(1)}}
+@keyframes activity-play-locked{0%,100%{transform:translateY(0) rotate(0)}32%{transform:translateY(-2px) rotate(-1deg)}65%{transform:translateY(1px) rotate(1deg)}}
+@keyframes activity-stretch-locked{0%,100%{transform:scale(1)}35%{transform:scale(1.025,.975)}68%{transform:scale(.99,1.01)}}
+@keyframes activity-catch-locked{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-2px) scale(1.015)}62%{transform:translateY(0) scale(1)}}
+@keyframes pickup-locked{0%,100%{transform:translateY(-2px) rotate(-.8deg)}50%{transform:translateY(-4px) rotate(.8deg)}}
+@keyframes soft-land-locked{0%{transform:translateY(-4px) scale(1.01)}58%{transform:translateY(1px) scale(.99,1.01)}100%{transform:translateY(0) scale(1)}}
+@keyframes greet-locked{0%,100%{transform:translateY(0)}35%{transform:translateY(-3px)}65%{transform:translateY(1px)}}
+@keyframes fly-bob-locked{0%,100%{transform:translate(0,0)}50%{transform:translate(-2px,2px)}}
+
