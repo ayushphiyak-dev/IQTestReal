@@ -80,4 +80,183 @@ export default function Home() {
               <span>?</span>
             </div>
 
-            <div
+            <div className="choice-grid">
+              <Link href="/test">15</Link>
+              <Link href="/test">20</Link>
+              <Link className="active" href="/test">
+                30
+              </Link>
+              <Link href="/test">35</Link>
+            </div>
+          </div>
+
+          <div className="preview-bottom">
+            <span>Try the full assessment</span>
+            <div>
+              <i />
+              <i />
+              <i />
+              <i className="active" />
+              <i />
+              <i />
+              <i />
+              <i />
+            </div>
+            <Link href="/test" aria-label="Continue to IQ test">
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="signal-strip">
+        <div className="shell">
+          <span>
+            <BrainCircuit size={16} /> Five reasoning categories
+          </span>
+          <span>
+            <CheckCircle2 size={16} /> 15 unique questions
+          </span>
+          <span>Randomized every test</span>
+          <span>Transparent score guide</span>
+        </div>
+      </section>
+
+      <section className="path-section shell" aria-labelledby="path-title">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">A useful loop</span>
+            <h2 id="path-title">Turn one test into a better next step.</h2>
+          </div>
+          <p>
+            Start with a calm attempt, then use your result as a map for
+            learning—not a label.
+          </p>
+        </div>
+
+        <div className="path-grid">
+          <Link className="path-card" href="/test">
+            <span className="path-number">01</span>
+            <h3>Take the test</h3>
+            <p>
+              Work through fresh logic, pattern, numerical, spatial, and
+              analogy questions at your own pace.
+            </p>
+            <span className="text-link">
+              Start now <ArrowRight size={15} />
+            </span>
+          </Link>
+
+          <Link className="path-card" href="/score-guide">
+            <span className="path-number">02</span>
+            <h3>Read the result</h3>
+            <p>
+              See Estimated IQ, percentile, accuracy, category strengths, and
+              explanations in one clear view.
+            </p>
+            <span className="text-link">
+              Understand your score <ArrowRight size={15} />
+            </span>
+          </Link>
+
+          <Link className="path-card" href="/articles">
+            <span className="path-number">03</span>
+            <h3>Keep learning</h3>
+            <p>
+              Explore original guides about reasoning habits, preparation, and
+              responsible score interpretation.
+            </p>
+            <span className="text-link">
+              Browse the guides <ArrowRight size={15} />
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      <section className="learning-section shell">
+        <div className="learning-intro">
+          <span className="eyebrow">A better way to practise reasoning</span>
+          <h2>What this free IQ test can—and cannot—tell you</h2>
+          <p>
+            IQTestReal is an online reasoning practice tool for people who want
+            a thoughtful, understandable experience. It is not a clinical IQ
+            examination, a school placement test, or a verdict about
+            intelligence. The result is labelled Estimated IQ because it is a
+            transparent conversion of performance in this question set, not a
+            professionally normed diagnosis.
+          </p>
+        </div>
+
+        <div className="learning-grid">
+          <article>
+            <h3>Five kinds of thinking</h3>
+            <p>
+              The test combines logic, pattern, numerical, spatial, and analogy
+              questions. Logic items ask you to compare conditions and identify
+              what must follow. Pattern questions reward attention to sequences,
+              transformations, and relationships. Numerical questions explore
+              proportions, arithmetic reasoning, and number structure. Spatial
+              questions use rotation and visual organisation. Analogy questions
+              ask you to transfer a relationship from one pair to another. A
+              varied set gives you more useful feedback than a single type of
+              puzzle.
+            </p>
+          </article>
+
+          <article>
+            <h3>Results with context</h3>
+            <p>
+              After you submit, the score page shows your Estimated IQ,
+              percentile, classification, accuracy, time taken, and category
+              strengths. Each answer includes an explanation so you can learn
+              from the reasoning rather than only seeing right or wrong.
+              Percentiles describe the position implied by this model; they do
+              not prove how you compare with a representative population.
+            </p>
+          </article>
+
+          <article>
+            <h3>Practice responsibly</h3>
+            <p>
+              For a fairer attempt, choose a quiet setting, avoid calculators
+              and search engines, and answer without help. Treat the timer as
+              information rather than pressure. You can move backward, restart,
+              or take a new randomized test.
+            </p>
+          </article>
+
+          <article>
+            <h3>Privacy by default</h3>
+            <p>
+              No account is required. Completed attempts are stored in local
+              browser storage so your dashboard can show your own history on
+              that device. Read the{' '}
+              <Link href="/privacy-policy">Privacy Policy</Link> and{' '}
+              <Link href="/cookie-policy">Cookie Policy</Link>, or send a
+              question through <Link href="/contact">Contact</Link>.
+            </p>
+          </article>
+
+          <article>
+            <h3>Make the score useful</h3>
+            <p>
+              A good practice result gives you a next step. If a category feels
+              unfamiliar, read its explanation, try a similar puzzle, and
+              return later without pressure. This turns an online IQ test into
+              a learning loop: attempt, review, practise, and reflect.
+            </p>
+          </article>
+        </div>
+
+        <div className="learning-links">
+          <Link className="button primary" href="/score-guide">
+            Read the score guide <ArrowRight size={16} />
+          </Link>
+          <Link className="button" href="/articles">
+            Explore reasoning articles
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}
