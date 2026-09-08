@@ -275,3 +275,11 @@ html,body{overflow-x:hidden}img,svg,video{max-width:100%}.page-header{padding-in
   .live-question{padding-inline:15px}
   .test-actions{padding-inline:12px}
 }
+
+
+/* Quiet visual polish: keep the interface human and editorial rather than overly
+   glossy, while preserving the existing palette and hierarchy. */
+.home-hero{background:var(--bg)}
+.assessment-preview,.assessment-card{box-shadow:0 18px 48px color-mix(in srgb,var(--ink) 12%,transparent)}
+.intro-card::before,.result-card::before,.path-card::after{opacity:.35}
+.preview-top,.preview-bottom{background:color-mix(in srgb,var(--surface) 96%,var(--bg))}
