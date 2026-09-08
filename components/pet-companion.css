@@ -123,8 +123,8 @@
    Reactions now animate the connected pose as a whole; facial changes are
    opacity-only and the fly is the only independent prop. */
 .animal-pose{transform-box:view-box!important;transform-origin:80px 145px!important;animation:animal-breathe-locked 5.2s ease-in-out infinite!important}
-.animal-head,.animal-tail,.animal-ear,.animal-foreleg,.animal-haunches,.animal-eye,.animal-happy,.animal-worried,.animal-smile,.animal-toy,.animal-tongue{animation:none!important;transform:none!important;transform-origin:center!important}
-.animal-eye{transform-box:fill-box!important}
+.animal-head,.animal-tail,.animal-ear,.animal-foreleg,.animal-haunches,.animal-happy,.animal-worried,.animal-smile,.animal-toy,.animal-tongue{animation:none!important;transform:none!important;transform-origin:center!important}
+.animal-eye{transform-box:fill-box!important;transform-origin:center!important;animation:none!important;transition:transform .16s cubic-bezier(.2,.8,.2,1)!important}
 .animal[data-activity=call] .animal-pose{animation:activity-call-locked 3.2s ease-in-out both!important}
 .animal[data-activity=play] .animal-pose{animation:activity-play-locked 3.4s ease-in-out both!important}
 .animal[data-activity=stretch] .animal-pose{animation:activity-stretch-locked 3.4s ease-in-out both!important}
@@ -159,5 +159,9 @@
 
 /* Softer blended rendering keeps highlights readable without a flat sticker edge. */
 .animal{filter:drop-shadow(0 3px 4px color-mix(in srgb,var(--ink) 18%,transparent)) saturate(.96) contrast(1.02)}
+.animal-frog-neutral{opacity:1;transition:opacity .2s ease}
+.animal[data-activity=greet] .animal-frog-neutral,.animal[data-activity=catch] .animal-frog-neutral,.animal[data-activity=play] .animal-frog-neutral,.animal[data-activity=lift] .animal-frog-neutral{opacity:0}
+.animal[data-activity=lift] .animal-frog-smile{opacity:0}
+.animal[data-activity=lift] .animal-worried{opacity:1;transition:opacity .2s ease}
 @media(prefers-reduced-motion:reduce){.animal-pose,.animal-fly,.animal-foreleg,.animal-zzz{animation:none!important}.animal-frog-smile{transition:none}.animal[data-activity=sleep] .animal-zzz{opacity:1}}
 
