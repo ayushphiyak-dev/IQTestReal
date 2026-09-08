@@ -146,10 +146,18 @@
 @keyframes greet-locked{0%,100%{transform:translateY(0)}35%{transform:translateY(-3px)}65%{transform:translateY(1px)}}
 @keyframes fly-bob-locked{0%,100%{transform:translate(0,0)}50%{transform:translate(-2px,2px)}}
 
+/* Expressions stay neutral until the frog actually reacts. */
+.animal-frog-smile{opacity:0;transition:opacity .18s ease}
+.animal[data-activity=greet] .animal-frog-smile,.animal[data-activity=catch] .animal-frog-smile,.animal[data-activity=play] .animal-frog-smile{opacity:1}
 
+/* A tiny attached paw gesture adds life without translating a limb away from
+   its shoulder. The rotation is around the filled foreleg group itself. */
+.animal-foreleg{transform-box:fill-box!important;transform-origin:50% 6%!important}
+.animal[data-activity=greet] .animal-foreleg-left{animation:paw-wave-safe .7s ease-out both!important}
+.animal[data-activity=greet] .animal-foreleg-right{animation:paw-wave-safe .7s .08s ease-out both!important}
+@keyframes paw-wave-safe{0%,100%{transform:rotate(0)}45%{transform:rotate(-2deg) translateY(-.5px)}75%{transform:rotate(1deg)}}
 
-@media(prefers-reduced-motion:reduce){
-  .animal-pose,.animal-fly,.animal-zzz{animation:none!important}
-  .animal[data-activity=sleep] .animal-zzz{opacity:1}
-  .animal[data-activity=lift] .animal-happy,.animal[data-activity=lift] .animal-worried{opacity:1}
-}
+/* Softer blended rendering keeps highlights readable without a flat sticker edge. */
+.animal{filter:drop-shadow(0 3px 4px color-mix(in srgb,var(--ink) 18%,transparent)) saturate(.96) contrast(1.02)}
+@media(prefers-reduced-motion:reduce){.animal-pose,.animal-fly,.animal-foreleg,.animal-zzz{animation:none!important}.animal-frog-smile{transition:none}.animal[data-activity=sleep] .animal-zzz{opacity:1}}
+
