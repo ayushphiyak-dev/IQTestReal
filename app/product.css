@@ -76,3 +76,12 @@
 .test-page{min-height:auto;display:block;padding:clamp(42px,6vw,76px) 20px 84px}
 .test-shell{margin-inline:auto}
 @media(max-width:760px){.test-page{padding:24px 8px 48px}}
+
+
+/* On phones the question stage should wrap its actual answers. The old fixed
+   520px stage left a conspicuous empty panel beneath short questions. */
+@media(max-width:760px){
+  .test-page{min-height:auto!important;padding-top:16px;padding-bottom:32px}
+  .live-question{min-height:0!important;padding-top:28px;padding-bottom:22px}
+  .test-actions{margin-top:0}
+}
