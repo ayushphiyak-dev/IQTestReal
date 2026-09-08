@@ -55,6 +55,7 @@ export function PetCompanion() {
   const [sleeping, setSleeping] = useState(false);
   const [activity, setActivity] = useState<PetActivity>('idle');
   const [interaction, setInteraction] = useState(0);
+  const [gaze, setGaze] = useState({ x: 0, y: 0 });
   function wake() { setSleeping(false); setActivity('idle'); setInteraction(n => n + 1); }
   const [reacting, setReacting] = useState(false);
   const [fact, setFact] = useState<Fact | null>(null);
@@ -168,7 +169,14 @@ export function PetCompanion() {
     dragRef.current = { pointerId: e.pointerId, startX: e.clientX, startY: e.clientY, originX: p.x, originY: p.y, moved: false };
     e.currentTarget.setPointerCapture(e.pointerId);
   }
+  function trackGaze(e: ReactPointerEvent<HTMLButtonElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = Math.max(-1, Math.min(1, (e.clientX - (rect.left + rect.width / 2)) / Math.max(1, rect.width / 2)));
+    const y = Math.max(-1, Math.min(1, (e.clientY - (rect.top + rect.height / 2)) / Math.max(1, rect.height / 2)));
+    setGaze({ x, y });
+  }
   function move(e: ReactPointerEvent<HTMLButtonElement>) {
+    trackGaze(e);
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== e.pointerId) return;
     const dx = e.clientX - drag.startX, dy = e.clientY - drag.startY;
@@ -194,10 +202,10 @@ export function PetCompanion() {
   if (hidden) return <button className="command-hint critter-restore" onClick={() => { place(floorPosition(positionRef.current)); setHidden(false); wake(); save('iqtestreal-pet-hidden', 'false'); }}><PawPrint size={15}/> Show pet</button>;
   return <aside ref={root} className="critter-companion" data-mode={mode} style={{ left: position.x, top: position.y }} aria-label="Animal companion">
     <button ref={petButton} type="button" className="critter-stage" aria-label={`Interact with ${selected.species} ${selected.name}`} aria-expanded={open}
-      onPointerDown={begin} onPointerMove={move} onPointerUp={release} onPointerCancel={e => release(e, true)} onLostPointerCapture={e => release(e, true)}
+      onPointerDown={begin} onPointerEnter={trackGaze} onPointerMove={move} onPointerLeave={() => setGaze({ x: 0, y: 0 })} onPointerUp={release} onPointerCancel={e => release(e, true)} onLostPointerCapture={e => release(e, true)}
       onClick={e => { if (e.detail === 0) react(); }}
       onKeyDown={e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); place(floorPosition({ x: positionRef.current.x + (e.key === 'ArrowLeft' ? -24 : 24), y: 0 })); save('iqtestreal-pet-position', JSON.stringify(positionRef.current)); } }}>
-      <PetArt pet={selected} dragging={mode === 'drag'} landing={mode === 'land'} reacting={reacting} sleeping={sleeping} activity={activity}/>
+      <PetArt pet={selected} dragging={mode === 'drag'} landing={mode === 'land'} reacting={reacting} sleeping={sleeping} activity={activity} gaze={gaze}/>
     </button>
     {open && <div ref={panel} className="critter-chat" role="dialog" aria-label="Pet companion menu" style={bubble}>
       <div className="critter-chat-head"><span>{selected.name}</span><button aria-label="Close pet menu" onClick={() => { setOpen(false); petButton.current?.focus(); }}><X size={16}/></button></div>

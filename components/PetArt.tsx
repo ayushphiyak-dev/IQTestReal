@@ -6,23 +6,27 @@ export type PetActivity = 'idle' | 'call' | 'play' | 'stretch' | 'catch';
 type Props = {
   pet: { id: 'cat' | 'dog' | 'frog'; species: string };
   dragging: boolean; reacting: boolean; landing: boolean; sleeping: boolean;
-  activity?: PetActivity; size?: 'large' | 'small';
+  activity?: PetActivity; size?: 'large' | 'small'; gaze?: { x: number; y: number };
 };
 
 // Every moving feature lives under its anatomical parent. Joint origins are
 // expressed in the shared viewBox; no independent translating body fragments.
-export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 'idle', size = 'large' }: Props) {
+export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 'idle', size = 'large', gaze = { x: 0, y: 0 } }: Props) {
   const id = useId();
   const frog = pet.id === 'frog';
   const cat = pet.id === 'cat';
   const state = dragging ? 'lift' : landing ? 'land' : sleeping ? 'sleep' : reacting ? 'greet' : activity;
   const coat = `url(#${id}-coat)`;
   const cream = `url(#${id}-cream)`;
-  const eye = (x: number, y: number) => <g className="animal-eye" style={{ transformOrigin: `${x}px ${y}px` }}>
-    <ellipse cx={x} cy={y} rx={frog ? 9 : 6} ry={frog ? 10 : 8} fill={frog ? '#e7cc68' : '#514333'}/>
-    <ellipse cx={x + 1} cy={y + 1} rx={frog ? 4 : 4.5} ry={frog ? 7 : 6} fill="#202a2c"/>
-    <circle cx={x - 1} cy={y - 3} r="2" fill="#fff"/>
-  </g>;
+  const eye = (x: number, y: number) => {
+    const shiftX = gaze.x * (frog ? 2.6 : 2.1);
+    const shiftY = gaze.y * (frog ? 1.9 : 1.5);
+    return <g className="animal-eye" style={{ transformOrigin: `${x}px ${y}px` }}>
+      <ellipse cx={x + shiftX} cy={y + shiftY} rx={frog ? 9 : 6} ry={frog ? 10 : 8} fill={frog ? '#e7cc68' : '#514333'}/>
+      <ellipse cx={x + 1 + shiftX} cy={y + 1 + shiftY} rx={frog ? 4 : 4.5} ry={frog ? 7 : 6} fill="#202a2c"/>
+      <circle cx={x - 1 + shiftX} cy={y - 3 + shiftY} r="2" fill="#fff"/>
+    </g>;
+  };
   return <svg className={`animal animal-${pet.id} animal-${size}`} data-activity={state} viewBox="0 0 160 160" role="img" aria-label={`${pet.species} companion${state === 'sleep' ? ', sleeping' : state === 'lift' ? ', picked up' : ''}`} focusable="false">
     <defs>
       <radialGradient id={`${id}-coat`} cx="32%" cy="20%" r="85%"><stop stopColor={frog ? '#c3df68' : '#ffe4b9'}/><stop offset=".5" stopColor={frog ? '#80b746' : cat ? '#edac69' : '#d9a461'}/><stop offset="1" stopColor={frog ? '#3b824f' : '#aa6742'}/></radialGradient>
@@ -41,7 +45,7 @@ export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 
             <path d="M35 74 C29 49 50 38 63 53 Q80 44 97 53 C111 38 133 50 126 74 Q139 100 81 105 Q22 100 35 74Z" fill={coat}/>
             <path d="M40 88 Q81 108 123 88 Q115 110 80 113 Q45 108 40 88Z" fill={cream}/>
             {eye(51, 68)}{eye(111, 68)}
-            <path className="animal-smile" d="M53 91 Q80 102 108 91" fill="none" stroke="#35583e" strokeWidth="2.5" strokeLinecap="round"/>
+            <path className="animal-smile animal-frog-smile" d="M53 91 Q80 102 108 91" fill="none" stroke="#35583e" strokeWidth="2.5" strokeLinecap="round"/>
             <path className="animal-worried" d="M56 96 Q80 86 105 96 M43 54 l13-4 M106 50 l13 4" fill="none" stroke="#35583e" strokeWidth="3" strokeLinecap="round"/>
             <path className="animal-tongue" d="M85 95 L139 47" stroke="#e59196" strokeWidth="5" strokeLinecap="round"/>
           </g>
