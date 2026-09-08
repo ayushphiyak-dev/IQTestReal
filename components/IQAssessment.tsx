@@ -62,11 +62,12 @@ export function IQAssessment() {
   }
 
   async function shareResult() {
-    const text = `My estimated IQ on IQTestReal is ${result.iq} (${result.classification}), at the ${result.percentile}th percentile.`;
+    const text = `🧠 My IQTestReal practice result\n\nEstimated IQ: ${result.iq}\nPercentile: ${result.percentile}th\nClassification: ${result.classification}\nAccuracy: ${result.accuracy}%\nTime: ${formatTime(seconds)}\n\nTry the free practice test: ${window.location.origin}/test\n\nThis is an educational estimate, not a clinical diagnosis.`;
+    const canShare = 'share' in navigator;
     try {
-      if (navigator.share) await navigator.share({ title: 'My IQTestReal result', text, url: window.location.origin });
+      if (canShare) await navigator.share({ title: `My Estimated IQ is ${result.iq}`, text, url: `${window.location.origin}/test` });
       else await navigator.clipboard.writeText(text);
-      setShared(true); setShareMessage('Result copied');
+      setShared(true); setShareMessage(canShare ? 'Share sheet opened' : 'Share text copied');
     } catch { setShared(false); setShareMessage('Sharing was cancelled'); }
   }
 
