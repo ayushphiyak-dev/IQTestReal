@@ -201,3 +201,77 @@ html,body{overflow-x:hidden}img,svg,video{max-width:100%}.page-header{padding-in
   .pet-restore.button{left:8px;bottom:max(8px,env(safe-area-inset-bottom));min-height:38px;padding-inline:11px;font-size:12px}
 }
 
+/* Mobile comfort pass: preserve the desktop rhythm while giving small screens
+   breathing room, shorter vertical stacks, and controls that remain easy to tap. */
+@media(max-width:760px){
+  .site-header{height:60px;padding-inline:12px}
+  .site-header .wordmark{gap:8px;font-size:15px}
+  .site-header .mark{width:28px;height:28px}
+  .header-actions{gap:6px}
+  .mobile-menu summary{width:36px;height:36px}
+  .hero-copy{min-height:auto;padding:44px 16px 42px;justify-content:flex-start}
+  .hero-copy h1{font-size:clamp(42px,12.5vw,58px);line-height:.92;margin:26px 0 22px}
+  .hero-copy>p{font-size:15px;line-height:1.58}
+  .hero-actions{gap:8px;margin-top:26px}
+  .hero-actions .button{min-height:46px}
+  .trust-line{gap:10px;margin-top:24px}
+  .assessment-preview{width:calc(100% - 24px);margin:28px auto 32px;border-radius:14px}
+  .preview-top,.preview-bottom{padding:13px 14px;font-size:9px}
+  .question-stage{padding:34px 16px 28px}
+  .question-stage h2{margin:16px 0 28px;font-size:clamp(24px,7.3vw,32px);line-height:1.1}
+  .sequence{gap:6px;margin-bottom:28px}
+  .sequence span{width:46px;height:46px;font-size:15px}
+  .choice-grid{gap:7px}
+  .choice-grid a{min-height:44px}
+  .signal-strip span{padding:15px 16px;font-size:9px}
+
+  .test-page{display:block;min-height:auto;padding:20px 10px 32px}
+  .test-shell{width:100%;border-radius:14px}
+  .intro-card,.result-card{padding:28px 20px 30px}
+  .intro-card h1,.result-card h1{margin:16px 0 18px;font-size:clamp(32px,9vw,44px);line-height:1;letter-spacing:-.045em}
+  .intro-card>p,.result-card p{font-size:15px;line-height:1.58}
+  .instruction-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin:24px 0}
+  .instruction-grid div{gap:6px;padding:13px 8px}
+  .instruction-grid b{font-size:18px}
+  .instruction-grid span,.result-summary span{font-size:10px;line-height:1.25}
+  .category-chips{gap:6px;margin:20px 0 4px}
+  .category-chips span{padding:7px 8px;font-size:9px}
+  .notice{margin:20px 0;padding:13px 14px;font-size:12px;line-height:1.5}
+  .start-test-button{width:100%;min-width:0;min-height:46px}
+  .test-top{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:14px 16px}
+  .test-progress-label{order:0;display:grid;gap:4px;align-items:start;flex:none;min-width:0}
+  .timer,.test-restart{order:0;white-space:nowrap}
+  .test-restart{width:auto;padding:0 7px;min-height:34px}
+  .live-question{min-height:auto;padding:32px 18px 28px}
+  .live-question h1{margin:16px 0 26px;font-size:clamp(26px,7.5vw,34px);line-height:1.14}
+  .answer-options{grid-template-columns:1fr;gap:8px}
+  .answer-options button{min-height:54px;padding:10px 12px;font-size:15px;border-radius:9px}
+  .test-actions{display:grid;grid-template-columns:1fr 1.2fr;align-items:stretch;gap:8px;padding:14px 16px}
+  .test-actions .button{width:auto;min-width:0!important;min-height:46px;padding-inline:8px;font-size:13px}
+  .result-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+  .score-ring{flex-basis:104px;width:104px;height:104px}
+  .score-ring strong{font-size:32px}
+  .result-summary{grid-template-columns:repeat(2,minmax(0,1fr));margin:25px 0}
+  .result-summary span{padding:13px 11px;border-bottom:1px solid var(--border)}
+  .result-summary span:nth-child(2n){border-right:0}
+  .domain-results{gap:16px;margin:25px 0}
+  .answer-review{margin-top:26px}
+  .answer-review>div{gap:10px;padding:14px 0}
+  .answer-review p{font-size:13px;line-height:1.5}
+}
+@media(max-width:420px){
+  .hero-copy{padding-inline:14px}
+  .hero-copy h1{font-size:clamp(40px,12vw,50px);margin-top:22px}
+  .assessment-preview{width:calc(100% - 12px);margin-top:22px}
+  .sequence span{width:42px;height:42px;font-size:14px}
+  .test-page{padding-inline:6px}
+  .intro-card,.result-card{padding-inline:16px}
+  .instruction-grid div{padding-inline:6px}
+  .instruction-grid b{font-size:16px}
+  .test-top{grid-template-columns:minmax(0,1fr) auto;gap:7px}
+  .test-progress-label{grid-column:1}
+  .timer{grid-column:2;grid-row:1}
+  .test-restart{grid-column:1/-1;grid-row:2;justify-self:start;padding-inline:0}
+  .live-question{padding-inline:15px}
+  .test-actions{padding-inline:12px}
+}
