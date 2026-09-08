@@ -2,7 +2,8 @@
 
 import { ExternalLink, PawPrint, X } from 'lucide-react';
 import './pet-companion.css';
-import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
+import { PetArt, type PetActivity } from './PetArt';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 
 type PetId = 'cat' | 'dog' | 'frog';
 type Position = { x: number; y: number };
@@ -43,28 +44,6 @@ function floorPosition(p: Position): Position {
   return clampPosition({ x: p.x, y: v.y + v.height - petSize() - 4 });
 }
 function save(key: string, value: string) { try { localStorage.setItem(key, value); } catch { /* Preferences are optional when storage is unavailable. */ } }
-function PetArt({ pet, dragging, reacting, landing, sleeping, size = 'large' }: { pet: Pet; dragging: boolean; reacting: boolean; landing: boolean; sleeping: boolean; size?: 'large' | 'small' }) {
-  const classes = `critter-art critter-art-${pet.id} critter-art-${size}${dragging ? ' is-dragging' : ''}${reacting ? ' is-reacting' : ''}${landing ? ' is-landing' : ''}${sleeping ? ' is-sleeping' : ''}`;
-  const shades: Record<PetId, { body: string; dark: string; light: string }> = {
-    cat: { body: '#e7a05f', dark: '#a94f3d', light: '#ffd4a1' },
-    dog: { body: '#e5ad67', dark: '#ad693d', light: '#ffe1ad' },
-    frog: { body: '#83bf45', dark: '#367a45', light: '#d4eb92' },
-  };
-  const palette = shades[pet.id];
-  const gradientId = useId();
-  return <svg className={classes} viewBox="0 20 140 120" role="img" aria-label={`${pet.species} companion`} focusable="false">
-    <defs><linearGradient id={gradientId} x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor={palette.light}/><stop offset=".48" stopColor={palette.body}/><stop offset="1" stopColor={palette.dark}/></linearGradient></defs>
-    <ellipse className="critter-ground-shadow" cx="70" cy="137" rx="34" ry="5" fill="currentColor" opacity=".12"/>
-    <g className="critter-rig">
-    {pet.id === 'cat' && <><g className="critter-tail"><path d="M42 112 C13 110 11 73 37 66" fill="none" stroke={palette.dark} strokeWidth="13" strokeLinecap="round"/><path d="M42 112 C13 110 11 73 37 66" fill="none" stroke={palette.body} strokeWidth="8" strokeLinecap="round"/></g><g className="critter-body"><ellipse cx="70" cy="103" rx="36" ry="32" fill={`url(#${gradientId})`}/><ellipse cx="70" cy="108" rx="18" ry="22" fill="#fff5e6"/><path d="M37 95 Q42 73 58 78 L54 96Z" fill="#503c32"/><path d="M52 124 Q70 133 88 124" fill="none" stroke={palette.dark} strokeOpacity=".55" strokeWidth="3" strokeLinecap="round"/></g><g className="critter-limbs"><ellipse cx="51" cy="127" rx="10" ry="7" fill={palette.dark}/><ellipse cx="89" cy="127" rx="10" ry="7" fill={palette.dark}/></g><g className="critter-head"><path d="M41 62 L43 27 L61 43 Q70 39 79 43 L98 27 L99 64" fill={`url(#${gradientId})`}/><path d="M48 42 L47 34 L56 45Z M92 42 L95 34 L84 45Z" fill={palette.light}/><ellipse cx="70" cy="61" rx="32" ry="27" fill="#fff5e6"/><path d="M40 51 Q44 33 63 35 L66 63 Q50 77 40 61Z" fill="#503c32"/><path d="M73 36 Q93 34 100 54 L85 65Z" fill="#e7a05f"/><ellipse className="critter-eye" cx="59" cy="61" rx="4" ry="5" fill="#172326"/><ellipse className="critter-eye" cx="82" cy="61" rx="4" ry="5" fill="#172326"/><circle cx="58" cy="59" r="1.4" fill="#fff"/><circle cx="81" cy="59" r="1.4" fill="#fff"/><path className="critter-mouth-normal" d="M66 70 Q70 74 74 70" fill="none" stroke="#172326" strokeWidth="2" strokeLinecap="round"/><path className="critter-mouth-drag" d="M64 69 Q70 78 76 69" fill="none" stroke="#172326" strokeWidth="2.5" strokeLinecap="round"/><path d="M40 68 L20 63M40 75 L19 77M100 68 L120 63M100 75 L121 77" stroke={palette.light} strokeWidth="2" strokeLinecap="round"/></g></>}
-    {pet.id === 'dog' && <><g className="critter-tail"><path d="M100 106 C128 112 128 78 108 76" fill="none" stroke={palette.dark} strokeWidth="14" strokeLinecap="round"/><path d="M100 106 C128 112 128 78 108 76" fill="none" stroke={palette.body} strokeWidth="8" strokeLinecap="round"/></g><g className="critter-body"><ellipse cx="70" cy="104" rx="38" ry="32" fill={`url(#${gradientId})`}/><ellipse cx="70" cy="108" rx="17" ry="15" fill={palette.light} opacity=".7"/><path d="M53 121 Q70 130 88 121" fill="none" stroke={palette.dark} strokeOpacity=".45" strokeWidth="3" strokeLinecap="round"/></g><g className="critter-limbs"><ellipse cx="51" cy="127" rx="11" ry="7" fill={palette.dark}/><ellipse cx="90" cy="127" rx="11" ry="7" fill={palette.dark}/></g><g className="critter-head"><ellipse cx="70" cy="60" rx="34" ry="30" fill={`url(#${gradientId})`}/><path d="M45 45 Q25 25 32 70 Q39 84 53 66Z" fill={palette.dark}/><path d="M95 45 Q115 25 108 70 Q101 84 87 66Z" fill={palette.dark}/><ellipse cx="70" cy="71" rx="20" ry="14" fill={palette.light}/><ellipse className="critter-eye" cx="58" cy="59" rx="4" ry="5" fill="#172326"/><ellipse className="critter-eye" cx="82" cy="59" rx="4" ry="5" fill="#172326"/><ellipse cx="70" cy="68" rx="6" ry="4" fill="#172326"/><path className="critter-mouth-normal" d="M65 78 Q70 84 75 78" fill="none" stroke="#d75c63" strokeWidth="3" strokeLinecap="round"/><path className="critter-mouth-drag" d="M62 77 Q70 90 78 77" fill="#d75c63" stroke="#9f3d4b" strokeWidth="2" strokeLinecap="round"/></g></>}
-    {pet.id === 'frog' && <><g className="critter-limbs"><ellipse cx="38" cy="112" rx="24" ry="14" fill={palette.dark}/><ellipse cx="102" cy="112" rx="24" ry="14" fill={palette.dark}/></g><g className="critter-body"><ellipse cx="70" cy="100" rx="39" ry="33" fill={`url(#${gradientId})`}/><ellipse cx="70" cy="109" rx="23" ry="17" fill={palette.light}/><circle cx="48" cy="98" r="5" fill={palette.dark} opacity=".55"/><circle cx="94" cy="105" r="5" fill={palette.dark} opacity=".55"/></g><g className="critter-head"><ellipse cx="53" cy="50" rx="17" ry="18" fill={palette.body}/><ellipse cx="87" cy="50" rx="17" ry="18" fill={palette.body}/><circle className="critter-eye" cx="53" cy="48" r="6" fill="#172326"/><circle className="critter-eye" cx="87" cy="48" r="6" fill="#172326"/><circle cx="51" cy="46" r="1.8" fill="#fff"/><circle cx="85" cy="46" r="1.8" fill="#fff"/><path className="critter-mouth-normal" d="M54 76 Q70 87 86 76" fill="none" stroke={palette.dark} strokeWidth="3" strokeLinecap="round"/><path className="critter-mouth-drag" d="M54 83 Q70 73 86 83" fill="none" stroke={palette.dark} strokeWidth="3" strokeLinecap="round"/><path className="critter-worry" d="M45 38 Q53 33 60 38 M80 38 Q87 33 95 38" fill="none" stroke={palette.dark} strokeWidth="2.5" strokeLinecap="round"/></g></>}
-    </g>
-    {sleeping && <text className="critter-sleep" x="105" y="28">z</text>}
-  </svg>;
-}
-
-
 export function PetCompanion() {
   const [ready, setReady] = useState(false);
   const [selectedId, setSelectedId] = useState<PetId>('cat');
@@ -74,6 +53,9 @@ export function PetCompanion() {
   const [open, setOpen] = useState(false);
   const [selector, setSelector] = useState(false);
   const [sleeping, setSleeping] = useState(false);
+  const [activity, setActivity] = useState<PetActivity>('idle');
+  const [interaction, setInteraction] = useState(0);
+  function wake() { setSleeping(false); setActivity('idle'); setInteraction(n => n + 1); }
   const [reacting, setReacting] = useState(false);
   const [fact, setFact] = useState<Fact | null>(null);
   const [bubble, setBubble] = useState<CSSProperties>({});
@@ -128,10 +110,37 @@ export function PetCompanion() {
     return () => { clearTimeout(timer); stopMotion(); clearTimeout(reactionTimer.current); window.removeEventListener('resize', resize); window.visualViewport?.removeEventListener('resize', resize); window.visualViewport?.removeEventListener('scroll', resize); };
   }, []);
   useEffect(() => {
-    if (open || mode !== 'rest' || hidden) return;
-    const timer = window.setTimeout(() => setSleeping(true), 18000);
-    return () => clearTimeout(timer);
-  }, [open, mode, selectedId, hidden, reacting]);
+    if (!ready || open || mode !== 'rest' || hidden) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let next = 0, finish = 0;
+    let previous: PetActivity = 'idle';
+    const schedule = () => {
+      next = window.setTimeout(() => {
+        if (document.hidden || reduced.matches) return;
+        const choices: PetActivity[] = selectedId === 'frog' ? ['catch', 'play', 'stretch'] : ['call', 'play', 'stretch'];
+        const pool = choices.filter(value => value !== previous);
+        previous = pool[Math.floor(Math.random() * pool.length)];
+        setActivity(previous);
+        finish = window.setTimeout(() => { setActivity('idle'); schedule(); }, 3600);
+      }, 6500 + Math.random() * 6000);
+    };
+    const sleep = window.setTimeout(() => {
+      clearTimeout(next); clearTimeout(finish);
+      setActivity('idle'); setSleeping(true);
+    }, 45000);
+    const pause = () => {
+      clearTimeout(next); clearTimeout(finish); setActivity('idle');
+      if (!document.hidden && !reduced.matches) schedule();
+    };
+    if (!reduced.matches && !document.hidden) schedule();
+    document.addEventListener('visibilitychange', pause);
+    reduced.addEventListener('change', pause);
+    return () => {
+      clearTimeout(next); clearTimeout(finish); clearTimeout(sleep);
+      document.removeEventListener('visibilitychange', pause);
+      reduced.removeEventListener('change', pause);
+    };
+  }, [ready, open, mode, selectedId, hidden, interaction]);
   useEffect(() => {
     if (!open || !panel.current) return;
     const update = () => {
@@ -149,12 +158,12 @@ export function PetCompanion() {
     return () => { observer.disconnect(); window.removeEventListener('keydown', escape); window.removeEventListener('pointerdown', outside); window.visualViewport?.removeEventListener('resize', update); };
   }, [open, fact, selector, position]);
   function react() {
-    setSleeping(false); setReacting(true); setOpen(value => !value);
+    wake(); setReacting(true); setOpen(value => !value);
     clearTimeout(reactionTimer.current); reactionTimer.current = window.setTimeout(() => setReacting(false), 700);
   }
   function begin(e: ReactPointerEvent<HTMLButtonElement>) {
     if (dragRef.current || (e.pointerType === 'mouse' && e.button !== 0)) return;
-    stopMotion(); setSleeping(false);
+    stopMotion(); wake();
     const p = positionRef.current;
     dragRef.current = { pointerId: e.pointerId, startX: e.clientX, startY: e.clientY, originX: p.x, originY: p.y, moved: false };
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -179,22 +188,22 @@ export function PetCompanion() {
   function chooseFact() {
     const available = facts.filter(item => !recent.current.includes(item.title));
     const picked = pickFact(available.length ? available : facts);
-    recent.current = [...recent.current, picked.title].slice(-3); setFact(picked); setSelector(false); setSleeping(false);
+    recent.current = [...recent.current, picked.title].slice(-3); setFact(picked); setSelector(false); wake();
   }
   if (!ready) return null;
-  if (hidden) return <button className="command-hint critter-restore" onClick={() => { place(floorPosition(positionRef.current)); setHidden(false); save('iqtestreal-pet-hidden', 'false'); }}><PawPrint size={15}/> Show pet</button>;
+  if (hidden) return <button className="command-hint critter-restore" onClick={() => { place(floorPosition(positionRef.current)); setHidden(false); wake(); save('iqtestreal-pet-hidden', 'false'); }}><PawPrint size={15}/> Show pet</button>;
   return <aside ref={root} className="critter-companion" data-mode={mode} style={{ left: position.x, top: position.y }} aria-label="Animal companion">
     <button ref={petButton} type="button" className="critter-stage" aria-label={`Interact with ${selected.species} ${selected.name}`} aria-expanded={open}
       onPointerDown={begin} onPointerMove={move} onPointerUp={release} onPointerCancel={e => release(e, true)} onLostPointerCapture={e => release(e, true)}
       onClick={e => { if (e.detail === 0) react(); }}
       onKeyDown={e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); place(floorPosition({ x: positionRef.current.x + (e.key === 'ArrowLeft' ? -24 : 24), y: 0 })); save('iqtestreal-pet-position', JSON.stringify(positionRef.current)); } }}>
-      <PetArt pet={selected} dragging={mode === 'drag'} landing={mode === 'land'} reacting={reacting} sleeping={sleeping}/>
+      <PetArt pet={selected} dragging={mode === 'drag'} landing={mode === 'land'} reacting={reacting} sleeping={sleeping} activity={activity}/>
     </button>
     {open && <div ref={panel} className="critter-chat" role="dialog" aria-label="Pet companion menu" style={bubble}>
       <div className="critter-chat-head"><span>{selected.name}</span><button aria-label="Close pet menu" onClick={() => { setOpen(false); petButton.current?.focus(); }}><X size={16}/></button></div>
       {fact ? <div aria-live="polite"><h2>{fact.title}</h2><p>{fact.body}</p><a href={fact.source} target="_blank" rel="noopener noreferrer">{fact.sourceLabel} <ExternalLink size={12}/></a></div> : <p>Hi, I’m {selected.name}. Curious about something new?</p>}
       <div className="critter-actions"><button onClick={chooseFact}>{fact ? 'Another fact' : 'Get a fact'}</button><button onClick={() => setSelector(v => !v)} aria-expanded={selector}>Change pet</button><button onClick={() => { stopMotion(); setHidden(true); setOpen(false); save('iqtestreal-pet-hidden', 'true'); }}>Hide pet</button></div>
-      {selector && <div className="critter-selector">{pets.map(p => <button key={p.id} aria-label={p.species} aria-pressed={p.id === selectedId} onClick={() => { setSelectedId(p.id); save('iqtestreal-pet', p.id); setSelector(false); setSleeping(false); }}>
+      {selector && <div className="critter-selector">{pets.map(p => <button key={p.id} aria-label={p.species} aria-pressed={p.id === selectedId} onClick={() => { setSelectedId(p.id); save('iqtestreal-pet', p.id); setSelector(false); wake(); }}>
         <PetArt pet={p} dragging={false} reacting={false} landing={false} sleeping={false} size="small"/><span>{p.species}</span>
       </button>)}</div>}
     </div>}
