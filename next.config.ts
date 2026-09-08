@@ -3,11 +3,11 @@ import type { NextConfig } from 'next';
 const isDev = process.env.NODE_ENV !== 'production';
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://pagead2.googlesyndication.com https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://pagead2.googlesyndication.com https://www.googletagmanager.com https://va.vercel-scripts.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://*.googleusercontent.com https://*.googlesyndication.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.google-analytics.com https://*.googlesyndication.com",
+  "connect-src 'self' https://*.google-analytics.com https://*.googlesyndication.com https://va.vercel-scripts.com",
   "frame-src https://*.googlesyndication.com https://googleads.g.doubleclick.net",
   "object-src 'none'",
   "base-uri 'self'",

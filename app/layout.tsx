@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import { AdSenseScript } from '@/components/adsense/AdSenseScript';
 import { ConsentProvider } from '@/components/consent/ConsentProvider';
 import { ConsentBanner } from '@/components/consent/ConsentBanner';
@@ -36,6 +37,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.siteName, url: siteConfig.siteUrl, description: siteConfig.siteDescription };
   const organizationSchema = { '@context': 'https://schema.org', '@type': 'Organization', name: siteConfig.siteName, url: siteConfig.siteUrl, email: siteConfig.contactEmail, logo: `${siteConfig.siteUrl}/iqtestreal-brain.png` };
-  return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><AnalyticsScript /><SiteHeader />{children}<SiteFooter /><CommandMenu /><ConsentBanner /></ConsentProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteSchema, organizationSchema]).replace(/</g, '\\u003c') }} /></body></html>;
+  return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><AnalyticsScript /><SiteHeader />{children}<SiteFooter /><CommandMenu /><ConsentBanner /></ConsentProvider><Analytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteSchema, organizationSchema]).replace(/</g, '\\u003c') }} /></body></html>;
 }
 
