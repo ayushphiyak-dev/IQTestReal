@@ -8,6 +8,7 @@ export function ContactForm() {
   const [success, setSuccess] = useState(false);
   const startedAt = useRef(0);
   useEffect(() => { startedAt.current = Date.now(); }, []);
+
   async function submit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -22,6 +23,7 @@ export function ContactForm() {
       console.error('Error:', error); setResponse('Failed to send message. Please try again.'); setSuccess(false);
     } finally { setSending(false); }
   }
-  return <><form id="contactForm" className="contact-form" onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '600px', margin: 'auto' }}><div className="form-row" style={{ display: 'flex', gap: '10px' }}><input type="text" id="nameInput" name="name" placeholder="Name" autoComplete="name" required style={{ flex: 1, padding: '10px' }} /><input type="email" id="emailInput" name="email" placeholder="Email" autoComplete="email" required style={{ flex: 1, padding: '10px' }} /></div><input type="text" id="subjectInput" name="subject" placeholder="Subject" required style={{ padding: '10px' }} /><textarea id="messageInput" name="message" placeholder="Message" rows={5} required style={{ padding: '10px' }} /><input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} /><button type="submit" disabled={sending} style={{ padding: '12px', background: '#000', color: '#fff', border: 'none', cursor: sending ? 'wait' : 'pointer' }}>{sending ? 'Sending...' : 'Send message'}</button></form><p id="responseMessage" className={`form-status ${success ? 'success' : ''}`} aria-live="polite" style={{ textAlign: 'center', marginTop: '10px', fontWeight: 'bold' }}>{response}</p></>;
+
+  return <div className="contact-form-wrap"><form id="contactForm" className="contact-form" onSubmit={submit}><div className="form-row"><label><span>Name</span><input type="text" id="nameInput" name="name" placeholder="Your name" autoComplete="name" required /></label><label><span>Email</span><input type="email" id="emailInput" name="email" placeholder="you@example.com" autoComplete="email" required /></label></div><label><span>Subject</span><input type="text" id="subjectInput" name="subject" placeholder="What can we help with?" required /></label><label><span>Message</span><textarea id="messageInput" name="message" placeholder="Write your message" rows={6} required /></label><input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="honeypot" /><button type="submit" className="button primary contact-submit" disabled={sending}>{sending ? 'Sending...' : 'Send message'}</button></form><p id="responseMessage" className={`form-status ${success ? 'success' : ''}`} aria-live="polite">{response}</p></div>;
 }
 
