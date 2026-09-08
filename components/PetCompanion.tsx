@@ -111,6 +111,25 @@ export function PetCompanion() {
     return () => { clearTimeout(timer); stopMotion(); clearTimeout(reactionTimer.current); window.removeEventListener('resize', resize); window.visualViewport?.removeEventListener('resize', resize); window.visualViewport?.removeEventListener('scroll', resize); };
   }, []);
   useEffect(() => {
+    if (!ready) return;
+    let frame = 0;
+    let latest: PointerEvent | null = null;
+    const followCursor = (event: PointerEvent) => {
+      latest = event;
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const rect = petButton.current?.getBoundingClientRect();
+        if (!rect || !latest) return;
+        const x = Math.max(-1, Math.min(1, (latest.clientX - (rect.left + rect.width / 2)) / Math.max(1, rect.width * 2)));
+        const y = Math.max(-1, Math.min(1, (latest.clientY - (rect.top + rect.height / 2)) / Math.max(1, rect.height * 2)));
+        setGaze({ x, y });
+      });
+    };
+    window.addEventListener('pointermove', followCursor, { passive: true });
+    return () => { window.removeEventListener('pointermove', followCursor); if (frame) window.cancelAnimationFrame(frame); };
+  }, [ready]);
+  useEffect(() => {
     if (!ready || open || mode !== 'rest' || hidden) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let next = 0, finish = 0;
