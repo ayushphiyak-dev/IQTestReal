@@ -19,9 +19,9 @@ export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 
   const coat = `url(#${id}-coat)`;
   const cream = `url(#${id}-cream)`;
   const eye = (x: number, y: number) => {
-    const shiftX = gaze.x * (frog ? 2.6 : 2.1);
-    const shiftY = gaze.y * (frog ? 1.9 : 1.5);
-    return <g className="animal-eye" style={{ transformOrigin: `${x}px ${y}px` }}>
+    const shiftX = gaze.x * (frog ? 4 : 3.2);
+    const shiftY = gaze.y * (frog ? 2.8 : 2.2);
+    return <g className="animal-eye" style={{ transformOrigin: `${x}px ${y}px`, transform: `translate(${shiftX}px, ${shiftY}px)` }}>
       <ellipse cx={x + shiftX} cy={y + shiftY} rx={frog ? 9 : 6} ry={frog ? 10 : 8} fill={frog ? '#e7cc68' : '#514333'}/>
       <ellipse cx={x + 1 + shiftX} cy={y + 1 + shiftY} rx={frog ? 4 : 4.5} ry={frog ? 7 : 6} fill="#202a2c"/>
       <circle cx={x - 1 + shiftX} cy={y - 3 + shiftY} r="2" fill="#fff"/>
@@ -45,6 +45,7 @@ export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 
             <path d="M35 74 C29 49 50 38 63 53 Q80 44 97 53 C111 38 133 50 126 74 Q139 100 81 105 Q22 100 35 74Z" fill={coat}/>
             <path d="M40 88 Q81 108 123 88 Q115 110 80 113 Q45 108 40 88Z" fill={cream}/>
             {eye(51, 68)}{eye(111, 68)}
+            <path className="animal-frog-neutral" d="M57 96 Q80 99 103 96" fill="none" stroke="#35583e" strokeWidth="2.5" strokeLinecap="round"/>
             <path className="animal-smile animal-frog-smile" d="M53 91 Q80 102 108 91" fill="none" stroke="#35583e" strokeWidth="2.5" strokeLinecap="round"/>
             <path className="animal-worried" d="M56 96 Q80 86 105 96 M43 54 l13-4 M106 50 l13 4" fill="none" stroke="#35583e" strokeWidth="3" strokeLinecap="round"/>
             <path className="animal-tongue" d="M85 95 L139 47" stroke="#e59196" strokeWidth="5" strokeLinecap="round"/>
