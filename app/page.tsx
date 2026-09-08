@@ -1,10 +1,83 @@
 import type { Metadata } from 'next';
 import { SafeLink as Link } from '@/components/SafeLink';
-import { ArrowRight, BrainCircuit, ChartNoAxesCombined, CheckCircle2, Clock3, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  BrainCircuit,
+  ChartNoAxesCombined,
+  CheckCircle2,
+  Clock3,
+  ShieldCheck,
+} from 'lucide-react';
 
-export const metadata: Metadata = { title: 'Free IQ Test Online', description: 'Take a free IQ-style test online with logic, pattern, numerical, spatial, and analogy questions. Get an Estimated IQ with clear explanations.', alternates: { canonical: '/' } };
+export const metadata: Metadata = {
+  title: 'Free IQ Test Online',
+  description:
+    'Take a free IQ-style test online with logic, pattern, numerical, spatial, and analogy questions. Get an Estimated IQ with clear explanations.',
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
-  return <main id="main-content"><section className="home-hero shell"><div className="hero-copy"><span className="kicker"><i/> IQTestReal / Free assessment</span><h1>Find your<br/><em>reasoning signal.</em></h1><p>Find your reasoning signal with a carefully authored, free IQ-style test across logic, pattern, numerical, spatial, and analogy questions. Receive an Estimated IQ, percentile, and category strengths in minutes.</p><div className="hero-actions"><Link className="button primary" href="/test">Start free IQ test <ArrowRight size={17}/></Link><Link className="button" href="/how-it-works">How it works</Link></div><div className="trust-line"><span><Clock3/> 10–12 minutes</span><span><ShieldCheck/> No account required</span><span><ChartNoAxesCombined/> Results explained</span></div></div><div className="assessment-preview" aria-label="Interactive assessment preview"><div className="preview-top"><span>QUESTION 07 / 15</span><span className="status"><i/> ESTIMATING</span></div><div className="question-stage"><span className="domain">NUMERICAL REASONING</span><h2>If 15% of 200 is x, what is x?</h2><div className="sequence"><span>15%</span><b>×</b><span>200</span><b>=</b><span>?</span></div><div className="choice-grid"><Link href="/test">15</Link><Link href="/test">20</Link><Link className="active" href="/test">30</Link><Link href="/test">35</Link></div></div><div className="preview-bottom"><span>Try the full assessment</span><div><i/><i/><i/><i className="active"/><i/><i/><i/><i/></div><Link href="/test" aria-label="Continue to IQ test"><ArrowRight size={16}/></Link></div></div></section><section className="signal-strip"><div className="shell"><span><BrainCircuit size={16}/> Five reasoning categories</span><span><CheckCircle2 size={16}/> 15 unique questions</span><span>Randomized every test</span><span>Transparent score guide</span></div></section><section className="learning-section shell"><div className="learning-intro"><span className="eyebrow">A better way to practise reasoning</span><h2>What this free IQ test can—and cannot—tell you</h2><p>IQTestReal is an online reasoning practice tool for people who want a thoughtful, understandable experience. It is not a clinical IQ examination, a school placement test, or a verdict about intelligence. The result is labelled Estimated IQ because it is a transparent conversion of performance in this question set, not a professionally normed diagnosis.</p></div><div className="learning-grid"><article><h3>Five kinds of thinking</h3><p>The test combines logic, pattern, numerical, spatial, and analogy questions. Logic items ask you to compare conditions and identify what must follow. Pattern questions reward attention to sequences, transformations, and relationships. Numerical questions explore proportions, arithmetic reasoning, and number structure. Spatial questions use rotation and visual organisation. Analogy questions ask you to transfer a relationship from one pair to another. A varied set gives you more useful feedback than a single type of puzzle.</p></article><article><h3>Results with context</h3><p>After you submit, the score page shows your Estimated IQ, percentile, classification, accuracy, time taken, and category strengths. Each answer includes an explanation so you can learn from the reasoning rather than only seeing right or wrong. Percentiles describe the position implied by this model; they do not prove how you compare with a representative population. Sleep, language, familiarity, attention, and accessibility can all affect a short online attempt.</p></article><article><h3>Practice responsibly</h3><p>For a fairer attempt, choose a quiet setting, avoid calculators and search engines, and answer without help. Treat the timer as information rather than pressure. You can move backward, restart, or take a new randomized test. Retakes are useful for learning, but scores from repeated practice should not be compared as if they were independent clinical measurements. Notice which explanations change your approach and use those observations to guide study.</p></article><article><h3>Privacy by default</h3><p>No account is required. Completed attempts are stored in local browser storage so your dashboard can show your own history on that device. IQTestReal does not sell test answers or claim access to private psychological data. Advertising and analytics remain disabled until they are configured, disclosed, and reviewed. Read the <Link href="/privacy-policy">Privacy Policy</Link> and <Link href="/cookie-policy">Cookie Policy</Link> for the current details, or send a question through <Link href="/contact">Contact</Link>.</p></article><article><h3>Make the score useful</h3><p>A good practice result gives you a next step. If a category feels unfamiliar, read its explanation, try a similar puzzle, and return later without pressure. Keep notes about the rule you missed, the clue you overlooked, and the method that eventually worked. This turns an online IQ test into a small learning loop: attempt, review, practise, and reflect. It also keeps the score in its proper place—as feedback about one session, not a definition of your potential. Clear explanations make the exercise useful for learners at different levels.</p></article></div><div className="learning-links"><Link className="button primary" href="/score-guide">Read the score guide <ArrowRight size={16}/></Link><Link className="button" href="/articles">Explore reasoning articles</Link></div></section></main>;
-}
+  return (
+    <main id="main-content">
+      <section className="home-hero shell">
+        <div className="hero-copy">
+          <span className="kicker">
+            <i /> IQTestReal / Free assessment
+          </span>
 
+          <h1>
+            Find your
+            <br />
+            <em>reasoning signal.</em>
+          </h1>
+
+          <p>
+            Find your reasoning signal with a carefully authored, free IQ-style
+            test across logic, pattern, numerical, spatial, and analogy
+            questions. Receive an Estimated IQ, percentile, and category
+            strengths in minutes.
+          </p>
+
+          <div className="hero-actions">
+            <Link className="button primary" href="/test">
+              Start free IQ test <ArrowRight size={17} />
+            </Link>
+            <Link className="button" href="/how-it-works">
+              How it works
+            </Link>
+          </div>
+
+          <div className="trust-line">
+            <span>
+              <Clock3 /> 10–12 minutes
+            </span>
+            <span>
+              <ShieldCheck /> No account required
+            </span>
+            <span>
+              <ChartNoAxesCombined /> Results explained
+            </span>
+          </div>
+        </div>
+
+        <div className="assessment-preview" aria-label="Interactive assessment preview">
+          <div className="preview-top">
+            <span>QUESTION 07 / 15</span>
+            <span className="status">
+              <i /> ESTIMATING
+            </span>
+          </div>
+
+          <div className="question-stage">
+            <span className="domain">NUMERICAL REASONING</span>
+            <h2>If 15% of 200 is x, what is x?</h2>
+
+            <div className="sequence">
+              <span>15%</span>
+              <b>×</b>
+              <span>200</span>
+              <b>=</b>
+              <span>?</span>
+            </div>
+
+            <div
