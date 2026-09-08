@@ -69,3 +69,10 @@
 .result-summary small{display:block;margin-top:5px}
 .hero-actions .button:nth-child(2){border-color:color-mix(in srgb,var(--accent) 42%,var(--border));box-shadow:0 7px 20px color-mix(in srgb,var(--accent) 12%,transparent)}
 @media(max-width:760px){.result-summary{grid-template-columns:1fr 1fr}.result-summary::before{grid-column:1/-1}.result-summary span:nth-of-type(2){border-right:0}.result-summary span:nth-of-type(3),.result-summary span:nth-of-type(4){border-top:1px solid color-mix(in srgb,var(--accent) 18%,var(--border))}.result-summary span:nth-of-type(4){border-right:0}}
+
+
+/* Keep the assessment close to the content instead of centering it in a tall
+   viewport-sized stage. This removes the empty band above/below the test. */
+.test-page{min-height:auto;display:block;padding:clamp(42px,6vw,76px) 20px 84px}
+.test-shell{margin-inline:auto}
+@media(max-width:760px){.test-page{padding:24px 8px 48px}}
