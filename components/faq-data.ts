@@ -1,0 +1,8 @@
+export const faqs = [
+  ['Is IQTestReal a clinical IQ test?', 'No. It is an educational practice assessment. Its Estimated IQ is not normed, clinically validated, or suitable for diagnosis or high-stakes decisions.'],
+  ['How is Estimated IQ calculated?', 'We convert your accuracy on this test into an IQ-style estimate centered around 100. The model is shown on the Score Guide page and is intentionally presented as an estimate.'],
+  ['Why does my score change on a retake?', 'Each test selects a different set and shuffles answer choices. Familiarity, attention, language, and practice can all affect performance.'],
+  ['Where are results stored?', 'Your result history is stored in your browser on this device. We do not require an account for the free test.'],
+  ['Can I use the result for school or work?', 'No. Do not use this practice result for admissions, employment, medical, legal, or other high-stakes decisions.'],
+] as const;
+
