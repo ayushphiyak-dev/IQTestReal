@@ -29,10 +29,11 @@ export const metadata: Metadata = {
   publisher: siteConfig.ownerName,
   category: 'education',
   alternates: { canonical: '/' },
-  openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: '/' },
+  openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: siteConfig.siteUrl },
   twitter: { card: 'summary', title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription },
   icons: { icon: '/iqtestreal-brain.png?v=3', shortcut: '/iqtestreal-brain.png?v=3', apple: '/iqtestreal-brain.png?v=3' },
   verification: { google: 'Cn5T0YkVtbMC5CvNIYIszEbK7ATrrM_wjMxVbphm8xc' },
+  other: { 'google-adsense-account': 'ca-pub-3817850058008403' },
   robots: { index: true, follow: true },
 };
 
@@ -41,4 +42,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const organizationSchema = { '@context': 'https://schema.org', '@type': 'Organization', name: siteConfig.siteName, url: siteConfig.siteUrl, email: siteConfig.contactEmail, logo: `${siteConfig.siteUrl}/iqtestreal-brain.png` };
   return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><AnalyticsScript /><SiteHeader />{children}<SiteFooter /><PetCompanion /><CommandMenu /><ConsentBanner /></ConsentProvider><Analytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteSchema, organizationSchema]).replace(/</g, '\\u003c') }} /></body></html>;
 }
+
 
