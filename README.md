@@ -34,8 +34,19 @@ npm run typecheck
 npm run build
 ```
 
+## Production domain and AdSense
+
+The canonical production origin is `https://iqtestreal.com`. Metadata, structured data,
+the generated sitemap, robots file, and manifest all use this origin. `public/ads.txt`
+contains the publisher record for `ca-pub-3817850058008403`, and the AdSense ownership
+meta tag is emitted by the root layout. Ad serving stays disabled by default; after
+AdSense review, set `NEXT_PUBLIC_ADSENSE_ENABLED=true` and
+`NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-3817850058008403` in the Vercel production
+environment, then redeploy. Approval is determined by Google and is not guaranteed.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
 
 The assessment randomizes 15 questions across five reasoning categories and stores completed attempts locally in the browser. Results are labelled Estimated IQ. Advertising, analytics, and contact delivery remain disabled until explicitly configured.
+
