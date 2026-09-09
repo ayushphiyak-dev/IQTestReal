@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: '/' },
   twitter: { card: 'summary', title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription },
   icons: { icon: '/iqtestreal-brain.png?v=3', shortcut: '/iqtestreal-brain.png?v=3', apple: '/iqtestreal-brain.png?v=3' },
+  verification: { google: 'Cn5T0YkVtbMC5CvNIYIszEbK7ATrrM_wjMxVbphm8xc' },
   robots: { index: true, follow: true },
 };
 
