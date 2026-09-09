@@ -1,33 +1,9 @@
-/* One rig moves the animal; joints rotate only around their attachment point. */
+/* Single animation rig: all joints use the same SVG coordinate system.
+   Eyes blink in place; only clipped pupils track the pointer. */
 .critter-companion{position:fixed;z-index:65;width:78px;height:78px;user-select:none}
 .critter-companion[data-mode=drag]{z-index:90}
 .critter-stage{display:block;width:100%;height:100%;padding:0;border:0;background:transparent;color:var(--ink);cursor:grab;touch-action:none;-webkit-tap-highlight-color:transparent}
 .critter-companion[data-mode=drag] .critter-stage{cursor:grabbing}
-.critter-art{display:block;width:100%;height:100%;overflow:visible;transform-origin:50% 96%;filter:drop-shadow(0 2px 1px #0002)}
-.critter-rig{transform-box:view-box;transform-origin:70px 134px;animation:critter-breathe 4s ease-in-out infinite}
-.critter-eye{transform-box:fill-box;transform-origin:center;animation:critter-blink 6s infinite}
-.critter-tail{transform-box:view-box}
-.critter-art-cat .critter-tail{transform-origin:42px 112px;animation:critter-tail 7s ease-in-out infinite}
-.critter-art-dog .critter-tail{transform-origin:100px 106px;animation:critter-wag 1.8s ease-in-out infinite}
-.critter-art-frog.is-reacting .critter-rig{animation:critter-hop .65s ease-in-out}
-.critter-art-cat.is-reacting .critter-rig{animation:critter-stretch .7s ease-in-out}
-.critter-art-dog.is-reacting .critter-rig{animation:critter-dog-greet .7s ease-in-out}
-.critter-art-frog .critter-limbs{transform-box:view-box;transform-origin:70px 112px;animation:critter-frog-rest 4.5s ease-in-out infinite}
-.critter-mouth-drag{display:none}
-.critter-art.is-dragging .critter-mouth-normal{display:none}
-.critter-art.is-dragging .critter-mouth-drag{display:block}
-.critter-worry{display:none}
-.critter-art-frog.is-dragging .critter-worry{display:block}
-.critter-art-frog.is-dragging .critter-rig{animation:critter-lift-worry .6s ease-in-out infinite alternate}
-.critter-art.is-dragging{animation:critter-sway 1.6s ease-in-out infinite;transform-origin:50% 28%}
-.critter-art.is-dragging .critter-rig{transform:scaleY(1.025)}
-.critter-art.is-dragging .critter-eye{animation:none;transform:scale(1.12)}
-.critter-art.is-landing{animation:critter-land .26s ease-out}
-.critter-art.is-sleeping .critter-eye{animation:none;transform:scaleY(.12)}
-.critter-art.is-sleeping .critter-tail{animation:none}
-.critter-sleep{font:700 12px var(--font-geist-sans),sans-serif;fill:var(--muted)}
-.critter-art-small{width:36px;height:36px}
-.critter-art-small *{animation:none!important}
 .critter-chat{position:fixed;box-sizing:border-box;padding:12px;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 22px #0002;font:14px/1.5 var(--font-geist-sans),sans-serif;overflow:auto;overscroll-behavior:contain;user-select:text;touch-action:pan-y}
 .critter-chat-head{display:flex;align-items:center;justify-content:space-between;font-weight:600;color:var(--accent)}
 .critter-chat-head button{display:grid;place-items:center;width:32px;height:32px;padding:0;border:1px solid var(--border);border-radius:7px;background:transparent;color:var(--muted);cursor:pointer}
@@ -42,126 +18,64 @@
 .critter-selector button[aria-pressed=true]{border-color:var(--accent);background:var(--soft)}
 .critter-restore.command-hint{left:12px;right:auto;bottom:max(8px,env(safe-area-inset-bottom));z-index:65;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:8px 10px;background:var(--surface);color:var(--muted);border:1px solid var(--border);border-radius:0;box-shadow:none;font:500 12px/1 var(--font-geist-mono);cursor:pointer}
 .critter-restore.command-hint:hover{border-color:var(--accent);color:var(--ink);background:var(--soft);box-shadow:0 8px 22px color-mix(in srgb,var(--accent) 12%,transparent)}
-@keyframes critter-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(.7px) scale(1.012,.992)}}
-@keyframes critter-blink{0%,45%,49%,100%{transform:scaleY(1)}47%{transform:scaleY(.1)}}
-@keyframes critter-tail{0%,72%,100%{transform:rotate(0)}82%{transform:rotate(5deg)}90%{transform:rotate(-3deg)}}
-@keyframes critter-wag{0%,100%{transform:rotate(-4deg)}25%{transform:rotate(5deg)}55%{transform:rotate(9deg)}80%{transform:rotate(-1deg)}}
-@keyframes critter-hop{0%,100%{transform:translateY(0)}20%{transform:scaleY(.96)}50%{transform:translateY(-10px)}82%{transform:scaleY(.97)}}
-@keyframes critter-stretch{0%,100%{transform:scale(1)}50%{transform:scale(1.04,.96)}}
-@keyframes critter-dog-greet{0%,100%{transform:rotate(0)}30%{transform:rotate(-2deg) translateY(-1px)}65%{transform:rotate(2deg) translateY(0)}}
-@keyframes critter-frog-rest{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.975)}}
-@keyframes critter-lift-worry{0%{transform:translateY(0) rotate(-1deg)}100%{transform:translateY(-2px) rotate(1deg)}}
-@keyframes critter-sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
-@keyframes critter-land{0%{transform:scale(1)}40%{transform:scale(1.04,.94)}100%{transform:scale(1)}}
-@media(max-width:760px){.critter-companion{width:58px;height:58px}.critter-actions button{min-height:40px}.critter-chat-head button{width:36px;height:36px}.critter-restore.command-hint{left:10px;bottom:max(10px,env(safe-area-inset-bottom));min-height:36px;padding-inline:10px;font-size:11px}}
-@media(prefers-reduced-motion:reduce){.critter-art,.critter-art *{animation:none!important;transition:none!important}}
 
-/* Shared animal motion: the pose is one connected rig; only attached joints move. */
-.animal{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 3px #0003)}
-.animal-pose{transform-box:view-box;transform-origin:80px 145px;animation:animal-breathe 4.8s ease-in-out infinite}
-.animal-breath{transform-box:view-box;transform-origin:80px 130px}
-.animal-head{transform-box:fill-box;transform-origin:center;animation:animal-look-safe 9s ease-in-out infinite}
-.animal-eye{transform-box:view-box;animation:animal-blink 6.5s ease-in-out infinite}
+.animal{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 2px 2px #0002)}
+.animal-pose{transform-box:view-box;transform-origin:80px 145px;animation:pet-breathe 5s ease-in-out infinite}
+.animal-head{transform-box:view-box;transform-origin:80px 95px}
 .animal-tail,.animal-ear,.animal-foreleg{transform-box:view-box}
-.animal-cat .animal-tail{animation:cat-tail-natural 5s ease-in-out infinite}
-.animal-dog .animal-tail{animation:dog-tail-natural 1.9s ease-in-out infinite}
-.animal-dog .animal-ear{animation:dog-ear-soft 4.8s ease-in-out infinite}
-.animal-frog .animal-haunches{animation:none}
-.animal-shadow{transform-box:fill-box;transform-origin:center;animation:animal-shadow 4.8s ease-in-out infinite}
-.animal-call,.animal-zzz,.animal-fly,.animal-tongue,.animal-happy,.animal-worried{opacity:0;pointer-events:none}
-.animal-call{font:600 12px var(--font-geist-mono);transform-origin:80px 15px}
+.animal-cat .animal-tail{animation:pet-tail 6s ease-in-out infinite}
+.animal-dog .animal-tail{animation:pet-wag 1.8s ease-in-out infinite}
+.animal-dog .animal-ear{animation:pet-ear 5s ease-in-out infinite}
+.animal-eye{transform-box:view-box;animation:pet-blink 6.4s ease-in-out infinite}
+.animal-pupil{transition:transform .14s ease-out}
+.animal-shadow{transition:opacity .3s}
+.animal-call,.animal-zzz,.animal-fly,.animal-tongue,.animal-happy,.animal-worried,.animal-frog-smile,.animal-sleep-eye,.animal-toy{opacity:0;pointer-events:none}
+.animal-smile,.animal-frog-neutral,.animal-frog-smile,.animal-happy,.animal-worried,.animal-sleep-eye{transition:opacity .24s ease}
+.animal-call{font:600 12px var(--font-geist-mono)}
 .animal-zzz{font:700 17px var(--font-geist-mono);fill:var(--muted)}
-.animal-fly{transform-box:view-box;transform-origin:140px 45px}
-.animal-smile{transition:opacity .2s ease,transform .2s ease}
-.animal[data-activity=call] .animal-call{opacity:1;animation:activity-call 3.6s ease both}
-.animal[data-activity=play] .animal-toy{animation:toy-play 3.6s ease-in-out both}
-.animal[data-activity=stretch] .animal-pose{animation:activity-stretch 3.6s ease-in-out both}
-.animal[data-activity=catch] .animal-fly{opacity:1;animation:fly-catch 3.6s ease-in-out both}
-.animal[data-activity=catch] .animal-tongue{opacity:1;animation:tongue-catch 3.6s ease-in-out both}
-.animal[data-activity=sleep] .animal-zzz{opacity:1;animation:zzz-float 3.4s ease-in-out infinite}
-.animal[data-activity=sleep] .animal-eye{animation:none;transform:scaleY(.12)}
-.animal[data-activity=lift] .animal-happy{opacity:1;animation:happy-pop .55s ease-out both}
-.animal[data-activity=lift] .animal-worried{opacity:1;animation:worry-pop .55s ease-out both}
-.animal[data-activity=lift] .animal-pose{animation:pickup-sway 1.6s ease-in-out infinite}
-.animal[data-activity=lift] .animal-foreleg{animation:none}
-.animal[data-activity=land] .animal-pose{animation:soft-land .5s ease-out both}
-.animal[data-activity=greet] .animal-pose{animation:greet-bounce .7s ease-out both}
-.animal[data-activity=greet] .animal-tail{animation:tail-greeting .7s ease-out both}
-.animal[data-activity=call] .animal-smile{transform:scale(1.1)}
-.animal[data-activity=call] .animal-happy{opacity:1}
-.animal[data-activity=catch] .animal-worried{opacity:1}
+.animal[data-activity=greet] .animal-head{animation:pet-nod .8s ease-in-out}
+.animal[data-activity=greet] .animal-foreleg-left{animation:pet-paw .8s ease-in-out}
+.animal[data-activity=greet] .animal-pose{animation:pet-greet .8s ease-in-out}
+.animal[data-activity=stretch] .animal-pose{animation:pet-stretch 3.6s ease-in-out}
+.animal[data-activity=play] .animal-pose{animation:pet-play 3.6s ease-in-out}
+.animal[data-activity=play] .animal-toy{opacity:1;transform-box:view-box;transform-origin:131px 140px;animation:pet-ball 3.6s ease-in-out}
+.animal[data-activity=call] .animal-call{animation:pet-call 3.6s ease-in-out}
+.animal[data-activity=lift] .animal-pose{transform-origin:80px 65px;animation:pet-lift 1.8s ease-in-out infinite}
+.animal[data-activity=lift] .animal-foreleg{animation:pet-dangle 1.8s ease-in-out infinite}
+.animal[data-activity=land] .animal-pose{animation:pet-land .5s ease-out}
+.animal[data-activity=lift] .animal-shadow{opacity:0}
+.animal:not(.animal-frog)[data-activity=lift] .animal-happy,.animal:not(.animal-frog)[data-activity=call] .animal-happy{opacity:1}
+.animal:not(.animal-frog)[data-activity=lift] .animal-smile,.animal:not(.animal-frog)[data-activity=call] .animal-smile{opacity:0}
+.animal-frog[data-activity=greet] .animal-frog-smile,.animal-frog[data-activity=play] .animal-frog-smile{opacity:1}
+.animal-frog[data-activity=greet] .animal-frog-neutral,.animal-frog[data-activity=play] .animal-frog-neutral,.animal-frog[data-activity=lift] .animal-frog-neutral,.animal-frog[data-activity=catch] .animal-frog-neutral{opacity:0}
+.animal-frog[data-activity=lift] .animal-worried{opacity:1}
+.animal[data-activity=catch] .animal-fly{animation:pet-fly 3.6s linear}
+.animal[data-activity=catch] .animal-tongue{transform-box:view-box;transform-origin:85px 95px;animation:pet-tongue 3.6s linear}
+.animal[data-activity=sleep] .animal-eye{animation:none;opacity:0}
+.animal[data-activity=sleep] .animal-sleep-eye{opacity:1}
+.animal[data-activity=sleep] .animal-tail,.animal[data-activity=sleep] .animal-ear{animation:none}
+.animal[data-activity=sleep] .animal-zzz{animation:pet-sleep 4s ease-in-out infinite}
+.animal-small *{animation:none!important;transition:none!important}
 .animal-small{filter:none}
-.animal-small .animal-call,.animal-small .animal-zzz,.animal-small .animal-toy{display:none}
-.critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom));}
-@keyframes animal-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(.8px) scale(1.012,.992)}}
-@keyframes animal-shadow{0%,100%{transform:scaleX(1);opacity:.15}50%{transform:scaleX(.86);opacity:.09}}
-@keyframes animal-look-safe{0%,70%,100%{transform:translateX(0)}76%{transform:translateX(1px)}82%{transform:translateX(-.5px)}}
-@keyframes animal-blink{0%,44%,48%,100%{transform:scaleY(1)}46%{transform:scaleY(.08)}}
-@keyframes cat-tail-natural{0%,70%,100%{transform:rotate(0)}80%{transform:rotate(7deg)}90%{transform:rotate(-5deg)}}
-@keyframes dog-tail-natural{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(8deg)}}
-@keyframes dog-ear-soft{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
-@keyframes frog-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.015,.985)}}
-@keyframes activity-call{0%{opacity:0;transform:scale(.8) translateY(5px)}18%,80%{opacity:1;transform:scale(1) translateY(0)}100%{opacity:0;transform:scale(.96) translateY(-3px)}}
-@keyframes toy-play{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-6px) rotate(12deg)}70%{transform:translateY(2px) rotate(-10deg)}}
-@keyframes activity-stretch{0%,100%{transform:scale(1)}35%{transform:scale(1.045,.965)}70%{transform:scale(.98,1.02)}}
-@keyframes fly-catch{0%{transform:translate(0,0) rotate(-8deg);opacity:0}20%{opacity:1}55%{transform:translate(-44px,34px) rotate(18deg);opacity:1}72%{transform:translate(-70px,48px) scale(.7);opacity:.2}100%{transform:translate(-70px,48px) scale(.2);opacity:0}}
-@keyframes tongue-catch{0%,38%{stroke-dasharray:0 100;opacity:0}55%{stroke-dasharray:70 100;opacity:1}76%,100%{stroke-dasharray:100 100;opacity:0}}
-@keyframes zzz-float{0%,100%{transform:translate(0,2px);opacity:.2}50%{transform:translate(3px,-5px);opacity:1}}
-@keyframes pickup-sway{0%,100%{transform:translateY(-2px) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
-@keyframes legs-dangle{0%{transform:rotate(-2deg)}100%{transform:rotate(3deg)}}
-@keyframes soft-land{0%{transform:translateY(-5px) scale(1.02)}60%{transform:translateY(2px) scale(.97,1.03)}100%{transform:translateY(0) scale(1)}}
-@keyframes greet-bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-5px)}65%{transform:translateY(1px)}}
-@keyframes tail-greeting{0%,100%{transform:rotate(0)}50%{transform:rotate(14deg)}}
-@keyframes happy-pop{0%{transform:scale(.8)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
-@keyframes worry-pop{0%{transform:translateY(3px)}50%{transform:translateY(-1px)}100%{transform:translateY(0)}}
-@media(max-width:760px){.critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom));}}
-@media(prefers-reduced-motion:reduce){.animal,.animal *{animation:none!important;transition:none!important}.animal[data-activity=sleep] .animal-zzz{opacity:1}.animal[data-activity=lift] .animal-happy,.animal[data-activity=lift] .animal-worried{opacity:1}}
-
-/* Stability guard: the illustration is one locked rig. Earlier joint-level
-   transforms could move SVG fragments using different coordinate boxes, which
-   made ears, mouths, legs, and frog haunches appear to detach during pickup.
-   Reactions now animate the connected pose as a whole; facial changes are
-   opacity-only and the fly is the only independent prop. */
-.animal-pose{transform-box:view-box!important;transform-origin:80px 145px!important;animation:animal-breathe-locked 5.2s ease-in-out infinite!important}
-.animal-head,.animal-tail,.animal-ear,.animal-foreleg,.animal-haunches,.animal-happy,.animal-worried,.animal-smile,.animal-toy,.animal-tongue{animation:none!important;transform:none!important;transform-origin:center!important}
-.animal-eye{transform-box:fill-box!important;transform-origin:center!important;animation:none!important;transition:transform .16s cubic-bezier(.2,.8,.2,1)!important}
-.animal[data-activity=call] .animal-pose{animation:activity-call-locked 3.2s ease-in-out both!important}
-.animal[data-activity=play] .animal-pose{animation:activity-play-locked 3.4s ease-in-out both!important}
-.animal[data-activity=stretch] .animal-pose{animation:activity-stretch-locked 3.4s ease-in-out both!important}
-.animal[data-activity=catch] .animal-pose{animation:activity-catch-locked 2.8s ease-in-out both!important}
-.animal[data-activity=lift] .animal-pose{animation:pickup-locked 1.6s ease-in-out infinite!important}
-.animal[data-activity=land] .animal-pose{animation:soft-land-locked .5s ease-out both!important}
-.animal[data-activity=greet] .animal-pose{animation:greet-locked .7s ease-out both!important}
-.animal[data-activity=call] .animal-smile{transform:none!important}
-.animal[data-activity=lift] .animal-happy,.animal[data-activity=lift] .animal-worried{opacity:1;transform:none!important}
-.animal[data-activity=catch] .animal-fly{opacity:1;animation:fly-bob-locked 1.2s ease-in-out infinite!important;transform-box:fill-box!important;transform-origin:center!important}
-.animal[data-activity=catch] .animal-tongue{display:none!important;opacity:0!important}
-@keyframes animal-breathe-locked{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(.7px) scale(1.01,.995)}}
-@keyframes activity-call-locked{0%,100%{transform:translateY(0) scale(1)}22%{transform:translateY(-1px) scale(1.015)}48%{transform:translateY(0) scale(1)}}
-@keyframes activity-play-locked{0%,100%{transform:translateY(0) rotate(0)}32%{transform:translateY(-2px) rotate(-1deg)}65%{transform:translateY(1px) rotate(1deg)}}
-@keyframes activity-stretch-locked{0%,100%{transform:scale(1)}35%{transform:scale(1.025,.975)}68%{transform:scale(.99,1.01)}}
-@keyframes activity-catch-locked{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-2px) scale(1.015)}62%{transform:translateY(0) scale(1)}}
-@keyframes pickup-locked{0%,100%{transform:translateY(-2px) rotate(-.8deg)}50%{transform:translateY(-4px) rotate(.8deg)}}
-@keyframes soft-land-locked{0%{transform:translateY(-4px) scale(1.01)}58%{transform:translateY(1px) scale(.99,1.01)}100%{transform:translateY(0) scale(1)}}
-@keyframes greet-locked{0%,100%{transform:translateY(0)}35%{transform:translateY(-3px)}65%{transform:translateY(1px)}}
-@keyframes fly-bob-locked{0%,100%{transform:translate(0,0)}50%{transform:translate(-2px,2px)}}
-
-/* Expressions stay neutral until the frog actually reacts. */
-.animal-frog-smile{opacity:0;transition:opacity .18s ease}
-.animal[data-activity=greet] .animal-frog-smile,.animal[data-activity=catch] .animal-frog-smile,.animal[data-activity=play] .animal-frog-smile{opacity:1}
-
-/* A tiny attached paw gesture adds life without translating a limb away from
-   its shoulder. The rotation is around the filled foreleg group itself. */
-.animal-foreleg{transform-box:fill-box!important;transform-origin:50% 6%!important}
-.animal[data-activity=greet] .animal-foreleg-left{animation:paw-wave-safe .7s ease-out both!important}
-.animal[data-activity=greet] .animal-foreleg-right{animation:paw-wave-safe .7s .08s ease-out both!important}
-@keyframes paw-wave-safe{0%,100%{transform:rotate(0)}45%{transform:rotate(-2deg) translateY(-.5px)}75%{transform:rotate(1deg)}}
-
-/* Softer blended rendering keeps highlights readable without a flat sticker edge. */
-.animal{filter:drop-shadow(0 3px 4px color-mix(in srgb,var(--ink) 18%,transparent)) saturate(.96) contrast(1.02)}
-.animal-frog-neutral{opacity:1;transition:opacity .2s ease}
-.animal[data-activity=greet] .animal-frog-neutral,.animal[data-activity=catch] .animal-frog-neutral,.animal[data-activity=play] .animal-frog-neutral,.animal[data-activity=lift] .animal-frog-neutral{opacity:0}
-.animal[data-activity=lift] .animal-frog-smile{opacity:0}
-.animal[data-activity=lift] .animal-worried{opacity:1;transition:opacity .2s ease}
-@media(prefers-reduced-motion:reduce){.animal-pose,.animal-fly,.animal-foreleg,.animal-zzz{animation:none!important}.animal-frog-smile{transition:none}.animal[data-activity=sleep] .animal-zzz{opacity:1}}
-
+.critter-restore.command-hint{bottom:max(18px,env(safe-area-inset-bottom))}
+@keyframes pet-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.008,1.012)}}
+@keyframes pet-blink{0%,42%,47%,100%{transform:scaleY(1)}44.5%{transform:scaleY(.08)}}
+@keyframes pet-tail{0%,65%,100%{transform:rotate(0)}78%{transform:rotate(6deg)}90%{transform:rotate(-3deg)}}
+@keyframes pet-wag{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(7deg)}}
+@keyframes pet-ear{0%,80%,100%{transform:rotate(0)}90%{transform:rotate(2deg)}}
+@keyframes pet-nod{0%,100%{transform:rotate(0)}40%{transform:rotate(-3deg)}70%{transform:rotate(1deg)}}
+@keyframes pet-paw{0%,100%{transform:rotate(0)}45%{transform:rotate(5deg)}}
+@keyframes pet-greet{0%,100%{transform:translateY(0)}40%{transform:translateY(-3px)}}
+@keyframes pet-stretch{0%,100%{transform:scale(1)}40%,60%{transform:scale(1.035,.965)}}
+@keyframes pet-play{0%,100%{transform:rotate(0)}30%{transform:rotate(-2deg)}65%{transform:rotate(2deg)}}
+@keyframes pet-ball{0%,100%{transform:translateX(0) rotate(0)}45%{transform:translateX(-12px) rotate(-60deg)}}
+@keyframes pet-lift{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+@keyframes pet-dangle{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes pet-land{0%{transform:scale(1)}35%{transform:scale(1.035,.96)}70%{transform:scale(.99,1.015)}100%{transform:scale(1)}}
+@keyframes pet-call{0%,100%{opacity:0;transform:translateY(2px)}15%,80%{opacity:1;transform:translateY(0)}}
+@keyframes pet-sleep{0%,100%{opacity:.2;transform:translateY(0)}50%{opacity:.8;transform:translateY(-4px)}}
+/* Fly reaches the tongue tip at 50%; both retract toward the same mouth point. */
+@keyframes pet-fly{0%{opacity:0;transform:translate(8px,-6px)}15%{opacity:1}45%,50%{opacity:1;transform:translate(-1px,0)}62%{opacity:0;transform:translate(-55px,48px)}100%{opacity:0}}
+@keyframes pet-tongue{0%,44%{opacity:0;transform:scale(.01)}46%{opacity:1;transform:scale(.01)}50%{opacity:1;transform:scale(1)}62%{opacity:1;transform:scale(.01)}64%,100%{opacity:0;transform:scale(.01)}}
+@media(max-width:760px){.critter-companion{width:58px;height:58px}.critter-actions button{min-height:40px}.critter-chat-head button{width:36px;height:36px}.critter-restore.command-hint{left:10px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.animal,.animal *{animation:none!important;transition:none!important}.animal[data-activity=sleep] .animal-zzz,.animal[data-activity=call] .animal-call{opacity:1}}
