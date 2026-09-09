@@ -19,12 +19,21 @@ export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 
   const coat = `url(#${id}-coat)`;
   const cream = `url(#${id}-cream)`;
   const eye = (x: number, y: number) => {
-    const shiftX = gaze.x * (frog ? 4 : 3.2);
-    const shiftY = gaze.y * (frog ? 2.8 : 2.2);
-    return <g className="animal-eye" style={{ transformOrigin: `${x}px ${y}px`, transform: `translate(${shiftX}px, ${shiftY}px)` }}>
-      <ellipse cx={x + shiftX} cy={y + shiftY} rx={frog ? 9 : 6} ry={frog ? 10 : 8} fill={frog ? '#e7cc68' : '#514333'}/>
-      <ellipse cx={x + 1 + shiftX} cy={y + 1 + shiftY} rx={frog ? 4 : 4.5} ry={frog ? 7 : 6} fill="#202a2c"/>
-      <circle cx={x - 1 + shiftX} cy={y - 3 + shiftY} r="2" fill="#fff"/>
+    const shiftX = Math.max(-1, Math.min(1, gaze.x)) * 2;
+    const shiftY = Math.max(-1, Math.min(1, gaze.y)) * 1.5;
+    return <g>
+      <defs><clipPath id={`${id}-eye-${x}`}><ellipse cx={x} cy={y} rx={frog ? 9 : 6} ry={frog ? 10 : 8}/></clipPath></defs>
+      <g className="animal-eye" style={{ transformOrigin: `${x}px ${y}px` }}>
+        <ellipse cx={x} cy={y} rx={frog ? 9 : 6} ry={frog ? 10 : 8} fill={frog ? '#e7cc68' : '#98734e'}/>
+        <g clipPath={`url(#${id}-eye-${x})`}>
+          <g className="animal-pupil" style={{ transform: `translate(${shiftX}px, ${shiftY}px)` }}>
+            <ellipse cx={x + 1} cy={y + 1} rx={frog ? 4 : 4.5} ry={frog ? 7 : 6} fill="#202a2c"/>
+            <circle cx={x - 1} cy={y - 3} r="2" fill="#fff"/>
+            <circle cx={x + 2} cy={y + 3} r=".8" fill="#fff" opacity=".45"/>
+          </g>
+        </g>
+      </g>
+      <path className="animal-sleep-eye" d={`M${x - 5} ${y} q5 4 10 0`} fill="none" stroke="#514333" strokeWidth="2" strokeLinecap="round"/>
     </g>;
   };
   return <svg className={`animal animal-${pet.id} animal-${size}`} data-activity={state} viewBox="0 0 160 160" role="img" aria-label={`${pet.species} companion${state === 'sleep' ? ', sleeping' : state === 'lift' ? ', picked up' : ''}`} focusable="false">
@@ -38,13 +47,13 @@ export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 
         {frog ? <>
           <g className="animal-haunches" fill={coat}><path d="M48 101 C16 96 13 135 37 143 L66 140Z"/><path d="M111 101 C143 96 148 136 121 144 L95 140Z"/></g>
           <path d="M43 88 C49 68 111 67 119 92 L123 121 Q117 145 80 146 Q43 145 36 124Z" fill={coat}/>
-          <ellipse cx="80" cy="120" rx="29" ry="23" fill={cream}/>
+          <ellipse cx="80" cy="120" rx="29" ry="23" fill={cream}/><path d="M63 116 Q80 108 97 116" fill="none" stroke="#fffbe1" strokeWidth="3" opacity=".35" strokeLinecap="round"/>
           <path d="M46 104 Q38 120 47 138 M113 104 Q125 122 114 138" fill="none" stroke="#86b946" strokeWidth="13" strokeLinecap="round"/>
           <path d="M47 136 l-12 8 m12-8 -1 11 m1-11 10 9 M114 136 l-10 9 m10-9 2 11 m-2-11 12 8" fill="none" stroke="#d1b653" strokeWidth="5" strokeLinecap="round"/>
           <g className="animal-head">
             <path d="M35 74 C29 49 50 38 63 53 Q80 44 97 53 C111 38 133 50 126 74 Q139 100 81 105 Q22 100 35 74Z" fill={coat}/>
             <path d="M40 88 Q81 108 123 88 Q115 110 80 113 Q45 108 40 88Z" fill={cream}/>
-            {eye(51, 68)}{eye(111, 68)}
+            <path d="M40 61 Q48 47 60 58 M102 58 Q113 47 122 61" fill="none" stroke="#eff6bf" strokeWidth="3" opacity=".45" strokeLinecap="round"/>{eye(51, 68)}{eye(111, 68)}<ellipse cx="46" cy="87" rx="7" ry="3" fill="#e5bd7e" opacity=".32"/><ellipse cx="116" cy="87" rx="7" ry="3" fill="#e5bd7e" opacity=".32"/>
             <path className="animal-frog-neutral" d="M57 96 Q80 99 103 96" fill="none" stroke="#35583e" strokeWidth="2.5" strokeLinecap="round"/>
             <path className="animal-smile animal-frog-smile" d="M53 91 Q80 102 108 91" fill="none" stroke="#35583e" strokeWidth="2.5" strokeLinecap="round"/>
             <path className="animal-worried" d="M56 96 Q80 86 105 96 M43 54 l13-4 M106 50 l13 4" fill="none" stroke="#35583e" strokeWidth="3" strokeLinecap="round"/>
@@ -65,7 +74,7 @@ export function PetArt({ pet, dragging, reacting, landing, sleeping, activity = 
             {cat && <><path d="M43 64 L42 25 Q57 28 65 48 M95 47 Q104 29 118 26 L116 67" fill={coat}/><path d="M47 36 L50 58 L60 48 M102 49 L110 37 L111 59" fill="#d89490"/></>}
             <path d="M44 56 Q55 39 80 43 Q110 39 121 62 L124 80 Q118 103 80 105 Q42 101 37 79Z" fill={cat ? cream : coat}/>
             {cat ? <><path d="M43 55 Q52 42 70 44 L72 73 Q59 86 41 75Z" fill="#51453e"/><path d="M87 43 Q113 43 121 64 L105 75 L89 61Z" fill="#d99654"/></> : <><g className="animal-ear animal-ear-left" style={{ transformOrigin: '46px 55px' }}><path d="M48 51 Q27 41 28 69 Q29 100 44 88 L55 57Z" fill="#a5744a"/><path d="M40 57 Q33 76 40 83" fill="none" stroke="#d3a477" strokeWidth="5" strokeLinecap="round"/></g><g className="animal-ear animal-ear-right" style={{ transformOrigin: '113px 55px' }}><path d="M111 51 Q132 41 132 70 Q131 100 117 88 L105 57Z" fill="#a5744a"/><path d="M122 57 Q129 76 122 83" fill="none" stroke="#d3a477" strokeWidth="5" strokeLinecap="round"/></g></>}
-            {eye(63, 73)}{eye(99, 73)}
+            <path d="M54 60 Q62 54 69 59 M92 59 Q101 55 108 62" fill="none" stroke="#fff4dc" strokeWidth="3" opacity=".45" strokeLinecap="round"/>{eye(63, 73)}{eye(99, 73)}
             <ellipse cx="73" cy="88" rx="13" ry="9" fill={cream}/><ellipse cx="88" cy="88" rx="13" ry="9" fill={cream}/>
             <path d="M74 83 Q80 80 86 83 Q83 91 80 89 Q76 88 74 83Z" fill={cat ? '#b77778' : '#343033'}/>
             <path className="animal-smile" d="M80 89 v4 m0-1 q-6 7-12 1 m12-1 q6 7 12 1" fill="none" stroke="#665244" strokeWidth="1.7" strokeLinecap="round"/>
