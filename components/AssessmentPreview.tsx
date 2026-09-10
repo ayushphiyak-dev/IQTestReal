@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ArrowRight, Check, RotateCcw, X } from 'lucide-react';
 import { SafeLink as Link } from '@/components/SafeLink';
+import { HomeEducation } from '@/components/HomeEducation';
 
 const samples = [
   {
@@ -52,7 +53,8 @@ export function AssessmentPreview() {
   }
 
   return (
-    <div className="assessment-preview sample-preview" aria-label="Try a sample question">
+    <>
+      <div className="assessment-preview sample-preview" aria-label="Try a sample question">
       <div className="preview-top">
         <span>SAMPLE {String(current + 1).padStart(2, '0')} / 03</span>
         <span className={`status ${answered ? (correct ? 'is-correct' : 'is-wrong') : ''}`}>
@@ -86,7 +88,8 @@ export function AssessmentPreview() {
         {answered && (correct ? <Check size={18} aria-label="Correct answer" /> : <X size={18} aria-label="Incorrect answer" />)}
         {current === samples.length - 1 && answered && <Link className="text-link" href="/test">Start full test <ArrowRight size={15} /></Link>}
       </div>
-    </div>
+      <HomeEducation />
+    </>
   );
 }
 
