@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: siteConfig.siteUrl },
   twitter: { card: 'summary', title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription },
-  icons: { icon: '/iqtestreal-brain.png?v=3', shortcut: '/iqtestreal-brain.png?v=3', apple: '/iqtestreal-brain.png?v=3' },
+  icons: { icon: '/icon.svg', shortcut: '/icon.svg', apple: '/iqtestreal-brain.png' },
   verification: { google: ['Cn5T0YkVtbMC5CvNIYIszEbK7ATrrM_wjMxVbphm8xc', 'eHW1ZAlIsRhoz7ypo50z245TnJf88x1BiVJgCOCNkxE'] },
   other: { 'google-adsense-account': 'ca-pub-3817850058008403' },
   robots: { index: true, follow: true },
