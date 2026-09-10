@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: { default: 'IQTestReal — Free IQ Test', template: '%s — IQTestReal' },
   description: siteConfig.siteDescription,
-  keywords: ['free IQ test', 'IQ test online', 'IQ-style test', 'reasoning test', 'logic test', 'pattern recognition test', 'numerical reasoning', 'spatial reasoning', 'analogy questions', 'Estimated IQ', 'percentile score'],
+  keywords: ['free IQ test', 'IQ test online', 'IQ-style test', 'reasoning test', 'logic test', 'pattern recognition test', 'numerical reasoning', 'spatial reasoning', 'analogy questions', 'Estimated IQ', 'percentile score', 'iq test real', 'iq test real free', 'free iq test real', 'online iq test real', 'iq test real iq', 'iq test real free results', 'iq test real online', 'iq test real life', 'are iq test real', 'is iq test real', 'how to take a real iq test', 'where can i take a real iq test', 'where can you take a real iq test', 'how to take a real iq test free', 'how to get a real iq test', 'where to take a real iq test', 'how do you take a real iq test', 'how can i take a real iq test', 'how do i take a real iq test', 'how to get a real iq test done'],
   authors: [{ name: siteConfig.defaultAuthor }],
   creator: siteConfig.ownerName,
   publisher: siteConfig.ownerName,
