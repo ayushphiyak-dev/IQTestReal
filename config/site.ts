@@ -6,7 +6,11 @@ export const siteConfig = {
   siteUrl: 'https://iqtestreal.com',
   ownerName: 'IQTestReal',
   contactEmail: process.env.CONTACT_EMAIL || 'ayushphiyakgdg@gmail.com',
-  socialLinks: {} as Record<string, string>,
+  socialLinks: {
+    x: 'https://x.com/Placementdo/status/2097791441212932427?s=20',
+    linkedin: 'https://lnkd.in/p/gdq-sWMb',
+    instagram: 'https://www.instagram.com/iqtestreal/',
+  },
   defaultAuthor: 'IQTestReal editorial team',
   adsenseEnabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
   analyticsEnabled: Boolean(process.env.NEXT_PUBLIC_GA_ID),
