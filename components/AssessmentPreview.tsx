@@ -88,6 +88,7 @@ export function AssessmentPreview() {
         {answered && (correct ? <Check size={18} aria-label="Correct answer" /> : <X size={18} aria-label="Incorrect answer" />)}
         {current === samples.length - 1 && answered && <Link className="text-link" href="/test">Start full test <ArrowRight size={15} /></Link>}
       </div>
+      </div>
       <HomeEducation />
     </>
   );

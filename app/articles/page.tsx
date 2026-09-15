@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { SafeLink as Link } from '@/components/SafeLink';
 export const metadata: Metadata = {
-  title: 'Articles',
+  title: 'Blog',
   description:
-    'Original educational articles about reasoning, practice, and responsible test interpretation.',
+    'Original IQTestReal blog articles about logic, patterns, numerical reasoning, practice, and responsible score interpretation.',
   alternates: { canonical: '/articles' },
 };
 const articles = [
@@ -37,12 +37,23 @@ const articles = [
     intro:
       'Practical ways to improve focus and familiarity without memorising answers.',
   },
-];
-export default function ArticlesPage() {
+  {
+    href: '/articles/logic-puzzles-for-beginners',
+    title: 'Logic puzzles for beginners: a step-by-step method',
+    intro:
+      'Learn how to sort facts, test conditions, and identify conclusions that must follow.',
+  },
+  {
+    href: '/articles/number-sequences-explained',
+    title: 'Number sequences: find the rule without guessing',
+    intro:
+      'Use differences, ratios, alternating rules, and simple checks to solve sequence questions.',
+  },
+];\nexport default function ArticlesPage() {
   return (
     <main id="main-content">
       <header className="page-header shell">
-        <span className="eyebrow">Articles / Learning centre</span>
+        <span className="eyebrow">Blog / Learning centre</span>
         <h1>Better questions about thinking.</h1>
         <p>
           Original, practical reading to help you understand reasoning tests and
