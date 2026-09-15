@@ -49,7 +49,8 @@ const articles = [
     intro:
       'Use differences, ratios, alternating rules, and simple checks to solve sequence questions.',
   },
-];\nexport default function ArticlesPage() {
+];
+export default function ArticlesPage() {
   return (
     <main id="main-content">
       <header className="page-header shell">
@@ -73,3 +74,4 @@ const articles = [
     </main>
   );
 }
+
