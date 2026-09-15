@@ -158,7 +158,7 @@ html,body{overflow-x:hidden}img,svg,video{max-width:100%}.page-header{padding-in
   .site-header{min-width:0}
   .site-header .wordmark{min-width:0}.site-header .wordmark span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hero-copy,.question-stage,.live-question,.intro-card,.result-card,.auth-card,.empty-dashboard,.policy-prose{min-width:0}
-  .hero-copy h1,.page-header h1,.intro-card h1,.result-card h1,.live-question h1{overflow-wrap:anywhere}
+  .hero-copy h1,.page-header h1,.intro-card h1,.result-card h2,.live-question h2{overflow-wrap:anywhere}
   .hero-actions,.learning-links,.test-actions,.header-actions{flex-wrap:wrap}
   .hero-actions .button,.test-actions .button{min-width:0}
   .signal-strip span{min-width:0;line-height:1.35}
@@ -228,7 +228,7 @@ html,body{overflow-x:hidden}img,svg,video{max-width:100%}.page-header{padding-in
   .test-page{display:block;min-height:auto;padding:20px 10px 32px}
   .test-shell{width:100%;border-radius:14px}
   .intro-card,.result-card{padding:28px 20px 30px}
-  .intro-card h1,.result-card h1{margin:16px 0 18px;font-size:clamp(32px,9vw,44px);line-height:1;letter-spacing:-.045em}
+  .intro-card h1,.result-card h2{margin:16px 0 18px;font-size:clamp(32px,9vw,44px);line-height:1;letter-spacing:-.045em}
   .intro-card>p,.result-card p{font-size:15px;line-height:1.58}
   .instruction-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin:24px 0}
   .instruction-grid div{gap:6px;padding:13px 8px}
@@ -243,7 +243,7 @@ html,body{overflow-x:hidden}img,svg,video{max-width:100%}.page-header{padding-in
   .timer,.test-restart{order:0;white-space:nowrap}
   .test-restart{width:auto;padding:0 7px;min-height:34px}
   .live-question{min-height:auto;padding:32px 18px 28px}
-  .live-question h1{margin:16px 0 26px;font-size:clamp(26px,7.5vw,34px);line-height:1.14}
+  .live-question h2{margin:16px 0 26px;font-size:clamp(26px,7.5vw,34px);line-height:1.14}
   .answer-options{grid-template-columns:1fr;gap:8px}
   .answer-options button{min-height:54px;padding:10px 12px;font-size:15px;border-radius:9px}
   .test-actions{display:grid;grid-template-columns:1fr 1.2fr;align-items:stretch;gap:8px;padding:14px 16px}
@@ -283,3 +283,4 @@ html,body{overflow-x:hidden}img,svg,video{max-width:100%}.page-header{padding-in
 .assessment-preview,.assessment-card{box-shadow:0 18px 48px color-mix(in srgb,var(--ink) 12%,transparent)}
 .intro-card::before,.result-card::before,.path-card::after{opacity:.35}
 .preview-top,.preview-bottom{background:color-mix(in srgb,var(--surface) 96%,var(--bg))}
+
