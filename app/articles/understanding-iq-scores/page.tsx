@@ -70,8 +70,8 @@ export default function ArticlePage() {
         contain most of your missed answers. Do not jump to a conclusion about
         ability. Read one explanation, identify the step you missed—such as a
         rotation direction or a counted corner—and write a practice question
-        about that step. The useful outcome is a specific habit to try next,
-        not a label attached to a single session.
+        about that step. The useful outcome is a specific habit to try next, not
+        a label attached to a single session.
       </p>
       <h2>How to use a result responsibly</h2>
       <p>
