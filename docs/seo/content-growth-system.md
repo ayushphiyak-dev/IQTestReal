@@ -71,17 +71,17 @@ For every future article, include a direct answer near the top, one worked examp
 
 ## Internal-link map
 
-| Reader need | Verified destination | Natural anchor examples |
-| --- | --- | --- |
-| Try the assessment | `/test` | free reasoning practice, start a fresh practice test |
-| Understand the product | `/how-it-works` | how the assessment works |
-| Interpret a result | `/score-guide` | score guide, how the estimate is calculated |
-| Read related learning | `/articles` | reasoning articles, learning guides |
-| Find answers quickly | `/faq` | common questions |
-| Prepare fairly | `/docs` | quick-start guide |
-| Review local history | `/dashboard` | results saved on this device |
-| Send feedback | `/contact` | contact the IQTestReal team |
-| Understand privacy | `/privacy-policy` and `/cookie-policy` | privacy policy, cookie policy |
+| Reader need            | Verified destination                   | Natural anchor examples                              |
+| ---------------------- | -------------------------------------- | ---------------------------------------------------- |
+| Try the assessment     | `/test`                                | free reasoning practice, start a fresh practice test |
+| Understand the product | `/how-it-works`                        | how the assessment works                             |
+| Interpret a result     | `/score-guide`                         | score guide, how the estimate is calculated          |
+| Read related learning  | `/articles`                            | reasoning articles, learning guides                  |
+| Find answers quickly   | `/faq`                                 | common questions                                     |
+| Prepare fairly         | `/docs`                                | quick-start guide                                    |
+| Review local history   | `/dashboard`                           | results saved on this device                         |
+| Send feedback          | `/contact`                             | contact the IQTestReal team                          |
+| Understand privacy     | `/privacy-policy` and `/cookie-policy` | privacy policy, cookie policy                        |
 
 Use the destination that answers the reader's current question. Do not link every page to every other page.
 
@@ -118,5 +118,3 @@ Track helpful signals rather than vanity targets: impressions and clicks by inte
 - [ ] Metadata, canonical URL, Open Graph copy, and alt text are specific to the page.
 - [ ] The page works with keyboard navigation and at narrow mobile widths.
 - [ ] The article is useful even if the reader never starts the test.
-
-

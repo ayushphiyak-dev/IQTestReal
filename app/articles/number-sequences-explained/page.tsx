@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import { SafeLink as Link } from '@/components/SafeLink';
 import { ProsePage } from '@/components/ProsePage';
+import { pageMetadata } from '@/config/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Number Sequences: How to Find the Rule Without Guessing',
   description:
     'Learn a practical way to solve number-sequence questions using differences, ratios, alternating rules, cycles, and simple checks.',
-  alternates: { canonical: '/articles/number-sequences-explained' },
-};
+  path: '/articles/number-sequences-explained',
+  type: 'article',
+});
 
 export default function NumberSequencesArticle() {
   return (
@@ -15,6 +17,8 @@ export default function NumberSequencesArticle() {
       kicker="Blog / Numerical reasoning"
       title="Number sequences: find the rule without guessing"
       intro="A good sequence rule explains every visible step. Start with the simplest change, then test it before reaching for a complicated formula."
+      path="/articles/number-sequences-explained"
+      schemaType="article"
     >
       <p>
         Number-sequence questions ask you to predict what comes next or fill a
@@ -140,4 +144,3 @@ export default function NumberSequencesArticle() {
     </ProsePage>
   );
 }
-

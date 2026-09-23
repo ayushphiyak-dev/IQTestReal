@@ -11,7 +11,12 @@ export default function manifest(): MetadataRoute.Manifest {
     display: 'standalone',
     background_color: '#fbf8f3',
     theme_color: '#d95d45',
-    icons: [{ src: `${siteConfig.siteUrl}/iqtestreal-brain.png`, sizes: '512x512', type: 'image/png' }],
+    icons: [
+      {
+        src: `${siteConfig.siteUrl}/iqtestreal-brain.svg`,
+        sizes: 'any',
+        type: 'image/svg+xml',
+      },
+    ],
   };
 }
-

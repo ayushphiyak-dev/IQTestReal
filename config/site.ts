@@ -1,6 +1,7 @@
 export const siteConfig = {
   siteName: 'IQTestReal',
-  siteDescription: 'Take a free IQ-style test online with logic, pattern, numerical, spatial, and analogy questions. Get an Estimated IQ with clear explanations.',
+  siteDescription:
+    'Take a free IQ-style test online with logic, pattern, numerical, spatial, and analogy questions. Get an Estimated IQ with clear explanations for practice.',
   // Keep one canonical origin for metadata, structured data, sitemap and robots.
   // The Vercel deployment remains an implementation detail and must not be indexed.
   siteUrl: 'https://iqtestreal.com',
@@ -15,5 +16,3 @@ export const siteConfig = {
   adsenseEnabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
   analyticsEnabled: Boolean(process.env.NEXT_PUBLIC_GA_ID),
 };
-
-

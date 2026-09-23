@@ -58,6 +58,3 @@ FINAL QA
 - Confirm that there is no unsupported medical, educational, financial, or psychological claim.
 - Confirm the article remains useful if the reader never starts the test.
 ```
-
-
-
