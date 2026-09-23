@@ -1,23 +1,18 @@
 import type { Metadata } from 'next';
 import { ProsePage } from '@/components/ProsePage';
 import { SafeLink as Link } from '@/components/SafeLink';
+import { pageMetadata } from '@/config/seo';
 
 const title = 'Reasoning Categories Explained: 10 Practice Puzzles';
 const description =
   'Learn how logic, pattern, numerical, spatial, and analogy questions work with ten original practice puzzles and clear answer explanations.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description,
-  alternates: { canonical: '/articles/reasoning-categories-explained' },
-  openGraph: {
-    type: 'article',
-    title,
-    description,
-    url: '/articles/reasoning-categories-explained',
-  },
-  twitter: { card: 'summary', title, description },
-};
+  path: '/articles/reasoning-categories-explained',
+  type: 'article',
+});
 
 export default function ArticlePage() {
   return (
@@ -25,6 +20,8 @@ export default function ArticlePage() {
       kicker="Article / Reasoning practice"
       title={title}
       intro="Different question types invite different kinds of attention. Use these examples to practise explaining a rule, not to chase a label."
+      path="/articles/reasoning-categories-explained"
+      schemaType="article"
     >
       <p>
         IQTestReal groups its practice questions into five familiar categories.

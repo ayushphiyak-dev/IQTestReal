@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { SafeLink as Link } from '@/components/SafeLink';
-export const metadata: Metadata = {
+import { pageMetadata } from '@/config/seo';
+export const metadata: Metadata = pageMetadata({
   title: 'Blog',
   description:
     'Original IQTestReal blog articles about logic, patterns, numerical reasoning, practice, and responsible score interpretation.',
-  alternates: { canonical: '/articles' },
-};
+  path: '/articles',
+});
 const articles = [
   {
     href: '/articles/understanding-iq-scores',
@@ -74,4 +75,3 @@ export default function ArticlesPage() {
     </main>
   );
 }
-

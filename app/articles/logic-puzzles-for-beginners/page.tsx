@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import { SafeLink as Link } from '@/components/SafeLink';
 import { ProsePage } from '@/components/ProsePage';
+import { pageMetadata } from '@/config/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Logic Puzzles for Beginners: A Step-by-Step Method',
   description:
     'Learn a calm, repeatable method for solving beginner logic puzzles by sorting facts, conditions, possibilities, and necessary conclusions.',
-  alternates: { canonical: '/articles/logic-puzzles-for-beginners' },
-};
+  path: '/articles/logic-puzzles-for-beginners',
+  type: 'article',
+});
 
 export default function LogicPuzzlesForBeginnersArticle() {
   return (
@@ -15,6 +17,8 @@ export default function LogicPuzzlesForBeginnersArticle() {
       kicker="Blog / Logical reasoning"
       title="Logic puzzles for beginners: a step-by-step method"
       intro="The fastest way to improve at a logic puzzle is usually to make the rules visible before you choose an answer."
+      path="/articles/logic-puzzles-for-beginners"
+      schemaType="article"
     >
       <p>
         Beginner logic puzzles can feel difficult because several small facts
@@ -134,4 +138,3 @@ export default function LogicPuzzlesForBeginnersArticle() {
     </ProsePage>
   );
 }
-
