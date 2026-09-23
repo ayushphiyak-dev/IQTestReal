@@ -17,30 +17,104 @@ import './iqtest.css';
 import './theme.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
-const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: { default: 'IQTestReal — Free IQ Test', template: '%s — IQTestReal' },
   description: siteConfig.siteDescription,
-  keywords: ['free IQ test', 'IQ test online', 'IQ-style test', 'reasoning test', 'logic test', 'pattern recognition test', 'numerical reasoning', 'spatial reasoning', 'analogy questions', 'Estimated IQ', 'percentile score', 'iq test real', 'iq test real free', 'free iq test real', 'online iq test real', 'iq test real iq', 'iq test real free results', 'iq test real online', 'iq test real life', 'are iq test real', 'is iq test real', 'how to take a real iq test', 'where can i take a real iq test', 'where can you take a real iq test', 'how to take a real iq test free', 'how to get a real iq test', 'where to take a real iq test', 'how do you take a real iq test', 'how can i take a real iq test', 'how do i take a real iq test', 'how to get a real iq test done'],
+  keywords: [
+    'free IQ test',
+    'online IQ test',
+    'reasoning practice',
+    'IQ score guide',
+    'logic puzzles',
+    'pattern reasoning',
+  ],
   authors: [{ name: siteConfig.defaultAuthor }],
   creator: siteConfig.ownerName,
   publisher: siteConfig.ownerName,
   category: 'education',
   alternates: { canonical: '/' },
-  openGraph: { type: 'website', siteName: siteConfig.siteName, title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription, url: siteConfig.siteUrl },
-  twitter: { card: 'summary', title: 'IQTestReal — Free IQ Test', description: siteConfig.siteDescription },
-  icons: { icon: '/iqtestreal-brain.png', shortcut: '/iqtestreal-brain.png', apple: '/iqtestreal-brain.png' },
-  verification: { google: ['Cn5T0YkVtbMC5CvNIYIszEbK7ATrrM_wjMxVbphm8xc', 'eHW1ZAlIsRhoz7ypo50z245TnJf88x1BiVJgCOCNkxE'] },
+  openGraph: {
+    type: 'website',
+    siteName: siteConfig.siteName,
+    title: 'IQTestReal — Free IQ Test',
+    description: siteConfig.siteDescription,
+    url: siteConfig.siteUrl,
+    images: [{ url: '/iqtestreal-brain.svg', alt: 'IQTestReal brain logo' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'IQTestReal — Free IQ Test',
+    description: siteConfig.siteDescription,
+    images: ['/iqtestreal-brain.svg'],
+  },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/iqtestreal-brain.svg',
+  },
+  verification: {
+    google: [
+      'Cn5T0YkVtbMC5CvNIYIszEbK7ATrrM_wjMxVbphm8xc',
+      'eHW1ZAlIsRhoz7ypo50z245TnJf88x1BiVJgCOCNkxE',
+    ],
+  },
   other: { 'google-adsense-account': 'ca-pub-3817850058008403' },
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteConfig.siteName, url: siteConfig.siteUrl, description: siteConfig.siteDescription };
-  const organizationSchema = { '@context': 'https://schema.org', '@type': 'Organization', name: siteConfig.siteName, url: siteConfig.siteUrl, email: siteConfig.contactEmail, logo: `${siteConfig.siteUrl}/iqtestreal-brain.png` };
-  return <html lang="en" className="dark"><body className={`${geistSans.variable} ${geistMono.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><ConsentProvider><AdSenseScript /><AnalyticsScript /><SiteHeader />{children}<SiteFooter /><PetCompanion /><CommandMenu /><ConsentBanner /></ConsentProvider><Analytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteSchema, organizationSchema]).replace(/</g, '\\u003c') }} /></body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    description: siteConfig.siteDescription,
+    inLanguage: 'en',
+  };
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    email: siteConfig.contactEmail,
+    logo: `${siteConfig.siteUrl}/iqtestreal-brain.svg`,
+    sameAs: Object.values(siteConfig.socialLinks),
+  };
+  return (
+    <html lang="en" className="dark">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <ConsentProvider>
+          <AdSenseScript />
+          <AnalyticsScript />
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+          <PetCompanion />
+          <CommandMenu />
+          <ConsentBanner />
+        </ConsentProvider>
+        <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([websiteSchema, organizationSchema]).replace(
+              /</g,
+              '\\u003c',
+            ),
+          }}
+        />
+      </body>
+    </html>
+  );
 }
-
-

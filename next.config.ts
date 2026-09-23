@@ -8,7 +8,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https://*.googleusercontent.com https://*.googlesyndication.com",
   "font-src 'self' data:",
   "connect-src 'self' https://*.google-analytics.com https://*.googlesyndication.com https://va.vercel-scripts.com",
-  "frame-src https://*.googlesyndication.com https://googleads.g.doubleclick.net",
+  'frame-src https://*.googlesyndication.com https://googleads.g.doubleclick.net',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -19,6 +19,18 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      {
+        source: '/(.*)',
+        destination: 'https://iqtestreal.com/$1',
+        permanent: true,
+        has: [{ type: 'host', value: 'www.iqtestreal.com' }],
+      },
+      {
+        source: '/(.*)',
+        destination: 'https://iqtestreal.com/$1',
+        permanent: true,
+        has: [{ type: 'host', value: 'iq-test-real-dvw5-sage.vercel.app' }],
+      },
       { source: '/index.html', destination: '/', permanent: true },
       { source: '/home', destination: '/', permanent: true },
       { source: '/iq-test', destination: '/test', permanent: true },
@@ -27,17 +39,30 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      { source: '/iqtestreal-brain.png', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
-      { source: '/(.*)', headers: [
-        { key: 'Content-Security-Policy', value: contentSecurityPolicy },
-        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-        { key: 'X-Content-Type-Options', value: 'nosniff' },
-        { key: 'X-Frame-Options', value: 'DENY' },
-        { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-      ] },
+      {
+        source: '/iqtestreal-brain.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Content-Security-Policy', value: contentSecurityPolicy },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
     ];
   },
 };
 
 export default nextConfig;
-
