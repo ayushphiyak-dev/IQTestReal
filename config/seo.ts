@@ -3,8 +3,8 @@ import { siteConfig } from '@/config/site';
 
 const socialImage = {
   url: '/iqtestreal-brain.png',
-  width: 512,
-  height: 512,
+  width: 1254,
+  height: 1254,
   alt: 'IQTestReal brain logo',
 };
 
