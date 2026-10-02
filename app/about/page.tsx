@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SafeLink as Link } from '@/components/SafeLink';
 import { ProsePage } from '@/components/ProsePage';
 import { pageMetadata } from '@/config/seo';
 export const metadata: Metadata = pageMetadata({
@@ -30,6 +31,22 @@ export default function AboutPage() {
         IQTestReal is a free practice platform. Its Estimated IQ is not a
         psychometric instrument and should never be used for high-stakes
         decisions.
+      </p>
+      <h2>How the project is maintained</h2>
+      <p>
+        The IQTestReal editorial team writes the question prompts, answer keys,
+        explanations, guides, and interface copy for this project. Each item is
+        checked for a clear intended rule and a single defensible answer before
+        it is included in the practice bank. We review the public methodology,
+        privacy details, and explanations when the product changes.
+      </p>
+      <p>
+        This is an independent educational project, not a university, clinic,
+        professional testing service, or research study. Read the{' '}
+        <Link href="/methodology">methodology</Link> for the scoring model and
+        the <Link href="/editorial-policy">editorial policy</Link> for
+        corrections and content standards. Questions or accessibility feedback
+        are welcome via <Link href="/contact">Contact</Link>.
       </p>
       <h2>Project updates</h2>
       <p>
