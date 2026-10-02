@@ -1,4 +1,5 @@
 import { siteConfig } from '@/config/site';
+import { SafeLink as Link } from '@/components/SafeLink';
 
 export function ProsePage({
   kicker,
@@ -50,6 +51,12 @@ export function ProsePage({
         <span className="eyebrow">{kicker}</span>
         <h1>{title}</h1>
         <p>{intro}</p>
+        {schemaType === 'article' && (
+          <p className="article-meta">
+            Written and reviewed by the IQTestReal editorial team.{' '}
+            <Link href="/editorial-policy">Read our editorial policy</Link>.
+          </p>
+        )}
       </header>
       <article className="policy-prose shell">{children}</article>
       {schemaType === 'article' && (
