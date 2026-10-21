@@ -48,6 +48,9 @@ export default function Home() {
             <Link className="button" href="/how-it-works">
               How it works
             </Link>
+            <Link className="button" href="/practice">
+              Practise by skill
+            </Link>
           </div>
           <div className="trust-line">
             <span>

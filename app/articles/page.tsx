@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { SafeLink as Link } from '@/components/SafeLink';
 import { pageMetadata } from '@/config/seo';
 export const metadata: Metadata = pageMetadata({
-  title: 'Blog',
+  title: 'Reasoning Guides, Logic Puzzles & Score Explanations',
   description:
     'Original IQTestReal blog articles about logic, patterns, numerical reasoning, practice, and responsible score interpretation.',
   path: '/articles',
@@ -12,7 +12,7 @@ const articles = [
     href: '/articles/understanding-iq-scores',
     title: 'Understanding IQ-style scores without overreading them',
     intro:
-      'What a normalized estimate can communicate—and why context matters more than a single number.',
+      'What a practice-score conversion can communicate—and why it is not a professionally normed IQ score.',
   },
   {
     href: '/articles/practice-and-cognitive-performance',
@@ -56,10 +56,16 @@ export default function ArticlesPage() {
     <main id="main-content">
       <header className="page-header shell">
         <span className="eyebrow">Blog / Learning centre</span>
-        <h1>Better questions about thinking.</h1>
+        <h1>Reasoning guides and worked puzzles</h1>
         <p>
           Original, practical reading to help you understand reasoning tests and
           use their results responsibly.
+        </p>
+        <p>
+          <Link href="/practice">
+            Try focused practice with answers and printable worksheets
+          </Link>
+          , or choose a guide below to learn a method before starting.
         </p>
       </header>
       <section className="article-list shell">

@@ -1,0 +1,88 @@
+.practice-resource nav {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.practice-question {
+  scroll-margin-top: 6rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.practice-diagram {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  font: 1.5rem/1.6 monospace;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+.practice-question figure {
+  margin-inline: 0;
+}
+.practice-question figcaption {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.practice-solution {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+.practice-solution summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: 2rem;
+}
+.practice-solution summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.practice-print-key {
+  display: none;
+}
+@media print {
+  body:has(.practice-resource) {
+    background: white !important;
+    color: black !important;
+  }
+  body:has(.practice-resource) .site-header,
+  body:has(.practice-resource) .site-footer,
+  body:has(.practice-resource) .consent-banner,
+  body:has(.practice-resource) .command-hint,
+  body:has(.practice-resource) .critter-companion,
+  .practice-resource nav,
+  .practice-resource .practice-next,
+  .practice-resource .practice-solution {
+    display: none !important;
+  }
+  .practice-resource .page-header,
+  .practice-resource .policy-prose {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .practice-resource h1 {
+    font-size: 24pt;
+  }
+  .practice-resource h2 {
+    font-size: 16pt;
+  }
+  .practice-resource p,
+  .practice-resource li,
+  .practice-resource figcaption {
+    color: black;
+  }
+  .practice-resource .practice-question {
+    break-inside: avoid;
+  }
+  .practice-print-key {
+    display: block;
+    break-before: page;
+  }
+  .practice-diagram {
+    background: white;
+    color: black;
+  }
+}

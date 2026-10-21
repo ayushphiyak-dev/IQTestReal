@@ -1,5 +1,6 @@
 import { siteConfig } from '@/config/site';
 import { SafeLink as Link } from '@/components/SafeLink';
+import { practiceResources } from '@/config/practice';
 
 export function ProsePage({
   kicker,
@@ -58,7 +59,33 @@ export function ProsePage({
           </p>
         )}
       </header>
-      <article className="policy-prose shell">{children}</article>
+      <article className="policy-prose shell">
+        {children}
+        {schemaType === 'article' && (
+          <nav aria-label="Continue learning">
+            <h2>Put the explanation into practice</h2>
+            <p>
+              Choose an untimed set with worked solutions, or return to the
+              learning centre for another guide.
+            </p>
+            <ul>
+              {practiceResources.map((resource) => (
+                <li key={resource.slug}>
+                  <Link href={`/practice/${resource.slug}`}>
+                    {resource.skill} questions with explained answers
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p>
+              <Link href="/articles">All reasoning guides</Link> ·{' '}
+              <Link href="/practice">
+                Practice collections and printable worksheets
+              </Link>
+            </p>
+          </nav>
+        )}
+      </article>
       {schemaType === 'article' && (
         <script
           type="application/ld+json"

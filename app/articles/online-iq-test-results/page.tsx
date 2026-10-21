@@ -40,7 +40,8 @@ export default function OnlineResultsArticle() {
       </p>
       <h2>Estimated IQ and percentile are different</h2>
       <p>
-        An Estimated IQ is a normalized score on the test&apos;s chosen scale. A
+        IQTestReal&apos;s Estimated IQ is a conversion of practice accuracy onto
+        the site&apos;s chosen scale, not a population-normed IQ measurement. A
         percentile describes the position implied by that model. Neither should
         be read as a permanent label. A percentile is especially sensitive to
         the reference population and the quality of the questions, so

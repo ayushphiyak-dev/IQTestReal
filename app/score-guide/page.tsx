@@ -1,17 +1,18 @@
 import type { Metadata } from 'next';
 import { ProsePage } from '@/components/ProsePage';
 import { pageMetadata } from '@/config/seo';
+import { SafeLink as Link } from '@/components/SafeLink';
 export const metadata: Metadata = pageMetadata({
-  title: 'Score Guide',
+  title: 'Score Guide: Practice Accuracy, Estimates & Limitations',
   description:
-    'Understand Estimated IQ, percentile, classification, accuracy, and category strengths on IQTestReal.',
+    'See how IQTestReal converts practice accuracy into an estimate, why its percentile is not a population ranking, and how to use answer explanations to practise.',
   path: '/score-guide',
 });
 export default function ScoreGuidePage() {
   return (
     <ProsePage
       kicker="Score guide / Transparent model"
-      title="Read the number in context."
+      title="Understand your IQTestReal practice results"
       intro="IQTestReal uses a simple, visible conversion so you can understand what your result represents."
     >
       <h2>Estimated IQ</h2>
@@ -45,6 +46,39 @@ export default function ScoreGuidePage() {
         The test does not measure creativity, judgment, knowledge, personality,
         learning potential, or medical conditions. Never use it for employment,
         admissions, diagnosis, treatment, or legal decisions.
+      </p>
+      <h2>A worked score example</h2>
+      <p>
+        With 12 correct answers out of 15, accuracy is 80%. The conversion gives
+        100 + (80 − 50) × 0.6 = 118. That number describes this model; it does
+        not establish a professional IQ of 118 or your rank among people of the
+        same age. A different question set or a familiar question can change the
+        result.
+      </p>
+      <h2>Choose a useful next step</h2>
+      <p>
+        Start with the explanation for one missed question and identify the step
+        you would change. Try{' '}
+        <Link href="/practice/spatial-reasoning">
+          spatial reasoning practice
+        </Link>{' '}
+        for rotations and reflections, or{' '}
+        <Link href="/practice/pattern-recognition">
+          pattern recognition practice
+        </Link>{' '}
+        for sequences and repeated rules. These sets focus on solutions rather
+        than an IQ label.
+      </p>
+      <p>
+        Read the{' '}
+        <Link href="/methodology">
+          complete scoring methodology and limitations
+        </Link>
+        , or{' '}
+        <Link href="/articles/online-iq-test-results">
+          how to review an online practice result
+        </Link>{' '}
+        for a step-by-step review routine.
       </p>
     </ProsePage>
   );
