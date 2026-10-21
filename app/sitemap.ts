@@ -1,11 +1,14 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
+import { practiceResources } from '@/config/practice';
 export default function sitemap(): MetadataRoute.Sitemap {
   // Search results are intentionally excluded: query URLs are non-canonical and
   // should not compete with the site's editorial pages in search results.
   const paths = [
     '',
     '/test',
+    '/practice',
+    ...practiceResources.map(({ slug }) => `/practice/${slug}`),
     '/how-it-works',
     '/score-guide',
     '/articles',
@@ -30,7 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return paths.map((path) => ({
     url: `${siteConfig.siteUrl}${path}`,
-    lastModified: new Date('2026-09-10'),
+    // Omit lastModified until per-page substantive modification dates are tracked.
+    // A shared build date would misrepresent when the content actually changed.
     changeFrequency: path === '' ? ('weekly' as const) : ('monthly' as const),
     priority: path === '' ? 1 : path === '/test' ? 0.95 : 0.7,
   }));

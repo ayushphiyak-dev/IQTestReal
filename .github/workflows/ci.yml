@@ -17,4 +17,5 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - run: node scripts/check-seo.mjs
+      - run: node scripts/check-practice.mjs
       - run: node scripts/check-adsense-readiness.mjs
