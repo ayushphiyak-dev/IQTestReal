@@ -14,41 +14,46 @@ export default function EditorialPolicyPage() {
     <ProsePage
       kicker="Policy / Editorial"
       title="How IQTestReal earns trust."
-      intro="Our educational content and question bank follow a small set of public standards."
+      intro="IQTestReal is a small, independently maintained educational project. This page describes who maintains it, how practice material is checked, and what kind of review is not claimed."
     >
       <h2>Editorial ownership</h2>
       <p>
         IQTestReal is maintained as an independent educational project. The
-        creator and editorial team decide which reasoning topics are useful,
-        write the examples, and keep the question bank aligned with the free
-        practice experience. We do not publish anonymous advertorials or accept
-        payment in exchange for a score, ranking, or recommendation. A clear
-        separation between learning guidance and commercial messages helps
+        project maintainer decides which reasoning topics are useful, writes the
+        examples, and keeps the question bank aligned with the free practice
+        experience. IQTestReal is not staffed by an editorial team and does not
+        claim review by a licensed psychologist, psychometrician, university, or
+        independent research group. We do not publish anonymous advertorials or
+        accept payment in exchange for a score, ranking, or recommendation. A
+        clear separation between learning guidance and commercial messages helps
         readers understand what they are reading.
       </p>
 
       <h2>Original question writing</h2>
       <p>
-        Every question, explanation, guide, and interface message is prepared
-        for IQTestReal. Authors begin with a learning goal, such as comparing
-        conditions, spotting a sequence, estimating a quantity, rotating a
-        shape, or transferring a relationship. They then write an answer key and
-        a short explanation before an item is added to the bank. This process
-        keeps the wording, difficulty, and explanation connected instead of
-        treating a quiz as a collection of disconnected prompts.
+        Questions, explanations, guides, and interface messages are prepared for
+        IQTestReal. The maintainer begins with a learning goal, such as
+        comparing conditions, spotting a sequence, estimating a quantity,
+        rotating a shape, or transferring a relationship. The maintainer then
+        writes an answer key and a short explanation before an item is added to
+        the bank. This process keeps the wording, difficulty, and explanation
+        connected instead of treating a quiz as a collection of disconnected
+        prompts.
       </p>
 
       <h2>Accuracy and review</h2>
       <p>
         Answers are checked against their stated reasoning and tested in the
-        assessment flow. A reviewer looks for ambiguous wording, more than one
-        defensible answer, arithmetic mistakes, and clues that rely on cultural
-        knowledge rather than reasoning. Published pages are also reviewed for
-        readable language, accessible headings, useful links, and responsible
-        claims. We describe the result as an Estimated IQ because this is an
-        online practice model, not a professionally normed or diagnostic
-        instrument. It should never be used for admissions, employment, health,
-        legal, or other high-stakes decisions.
+        assessment flow. The maintainer checks for ambiguous wording, more than
+        one defensible answer, arithmetic mistakes, and clues that rely on
+        specialist cultural knowledge rather than the stated reasoning task.
+        This is an internal editorial check, not validated psychometric review.
+        Published pages are also checked for readable language, accessible
+        headings, useful links, and responsible claims. We describe the result
+        as an Estimated IQ because this is an online practice model, not a
+        professionally normed or diagnostic instrument. It should never be used
+        for admissions, employment, health, legal, or other high-stakes
+        decisions.
       </p>
 
       <h2>Research and references</h2>
@@ -64,14 +69,16 @@ export default function EditorialPolicyPage() {
 
       <h2>Safe, useful publishing</h2>
       <p>
-        IQTestReal follows publisher safety standards and keeps the learning
-        environment suitable for a broad audience. We do not host prohibited or
-        unlawful material, sensational claims, fabricated testimonials, or
-        promises that a short online result can change a person’s life. We focus
-        on curiosity, practice, accessibility, and honest limits. Advertising
-        remains disabled until it is configured, disclosed, and reviewed. If
-        advertising is enabled later, it must never sit beside answer choices,
-        navigation controls, or submission controls.
+        IQTestReal aims to keep the learning environment suitable for a broad
+        audience. We do not publish adult, hateful, violent, dangerous, or
+        pirated material; promote illegal drugs or weapons; or use excessive
+        profanity. We also avoid fabricated testimonials, medical or financial
+        promises, and claims that a short online result can change a person’s
+        life. We focus on curiosity, practice, accessibility, and honest limits.
+        If advertising is enabled in a deployment, the publisher must disclose
+        active vendors and configure the appropriate consent controls. Ads must
+        never sit beside answer choices, navigation controls, or submission
+        controls.
       </p>
 
       <h2>Corrections and feedback</h2>

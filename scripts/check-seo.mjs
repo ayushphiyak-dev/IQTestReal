@@ -26,6 +26,8 @@ const urls = [...(await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g)].map(
 );
 assert.ok(urls.length > 0, 'Sitemap must contain pages');
 assert.equal(new Set(urls).size, urls.length, 'Duplicate sitemap entries');
+const descriptions = new Map();
+let internalLinksChecked = 0;
 
 for (const url of urls) {
   assert.equal(new URL(url).origin, canonicalOrigin);
@@ -39,6 +41,20 @@ for (const url of urls) {
   const html = await response.text();
   const head = html.split('</head>')[0];
   assert.doesNotMatch(head, /<meta[^>]+content="[^"]*noindex/i, url);
+  const pageDescriptions = [
+    ...head.matchAll(/<meta name="description" content="([^"]*)"/g),
+  ].map((match) => match[1]);
+  assert.equal(pageDescriptions.length, 1, `${url} must have one description`);
+  assert.ok(
+    pageDescriptions[0].length <= 160,
+    `${url} description is ${pageDescriptions[0].length} characters`,
+  );
+  const normalizedDescription = pageDescriptions[0].toLowerCase();
+  assert.ok(
+    !descriptions.has(normalizedDescription),
+    `${url} repeats the description from ${descriptions.get(normalizedDescription)}`,
+  );
+  descriptions.set(normalizedDescription, url);
   const canonicals = [
     ...head.matchAll(/<link rel="canonical" href="([^"]+)"/g),
   ];
@@ -46,6 +62,25 @@ for (const url of urls) {
   assert.equal(new URL(canonicals[0][1]).href, new URL(url).href, url);
   assert.doesNotMatch(head, /vercel\.app/, url);
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, url);
+  for (const anchor of html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)) {
+    const target = new URL(anchor[1], canonicalOrigin);
+    if (
+      target.origin !== canonicalOrigin ||
+      target.pathname.startsWith('/api/')
+    ) {
+      continue;
+    }
+    const linkedPage = await request(`${target.pathname}${target.search}`);
+    assert.equal(
+      linkedPage.status,
+      200,
+      `${url} has a broken internal link to ${target.pathname}`,
+    );
+    internalLinksChecked += 1;
+    if (anchor[0].includes('target="_blank"')) {
+      assert.match(anchor[0], /rel="[^"]*noopener/i, `${url} ${target.href}`);
+    }
+  }
   const verification = [
     ...head.matchAll(
       /<meta name="google-site-verification" content="([^"]+)"/g,
@@ -57,6 +92,16 @@ for (const url of urls) {
     url,
   );
   if (new URL(url).pathname === '/') {
+    assert.match(
+      html,
+      /src="\/favicon\.svg"/,
+      'Header should use the lightweight SVG mark',
+    );
+    assert.doesNotMatch(
+      html,
+      /src="\/iqtestreal-brain\.png"/,
+      'Large logo PNG should not load in site chrome',
+    );
     assert.match(
       head,
       /<title>IQTestReal — Free IQ Test &amp; Reasoning Practice<\/title>/,
@@ -85,5 +130,5 @@ assert.equal(missing.status, 404);
 const search = await request('/search');
 assert.match(await search.text(), /name="robots" content="noindex, follow"/);
 console.log(
-  `SEO response checks passed: ${urls.length} indexable pages, verification, brand schema, 404 and search exclusions.`,
+  `SEO response checks passed: ${urls.length} indexable pages, unique meta descriptions, ${internalLinksChecked} internal links, verification, brand schema, 404 and search exclusions.`,
 );

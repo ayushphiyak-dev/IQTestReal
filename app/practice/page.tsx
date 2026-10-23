@@ -38,6 +38,25 @@ export default function PracticeHub() {
         ))}
       </section>
       <section className="policy-prose shell">
+        <h2>What these collections are for</h2>
+        <p>
+          These focused collections are different from the 15-question mixed
+          assessment. They isolate one kind of problem at a time, let you reveal
+          a worked explanation, and keep the answer key separate from the print
+          view. That format is useful when you want to study a method without a
+          timer or an IQ-style estimate. The spatial set focuses on tracking
+          position and orientation; the pattern set asks you to test a rule
+          against every step of a sequence.
+        </p>
+        <p>
+          Use the first attempt to notice your own approach. Before opening a
+          solution, write what you think changes, what remains fixed, and which
+          clue supports your answer. Then compare your reasoning with the
+          explanation. If the explanation uses an operation you did not see, try
+          a fresh question of the same type before returning to the mixed
+          assessment. The printable pages include attribution so a teacher,
+          tutor, or study group can share them with the source intact.
+        </p>
         <h2>Choose the right starting point</h2>
         <p>
           Use spatial practice when tracking a corner through a turn or

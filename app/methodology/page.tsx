@@ -71,6 +71,16 @@ export default function MethodologyPage() {
         is small. Review the answer explanation and the conditions of the
         attempt before deciding what to practise next.
       </p>
+      <p>
+        The small item count also makes the estimate coarse. Moving from 10 to
+        11 correct answers out of 15 changes accuracy from about 66.7% to 73.3%,
+        which moves the formula by roughly four points before rounding. That
+        change is a mechanical property of this short quiz, not evidence that a
+        person’s ability shifted by four standardized IQ points. The estimate
+        does not use a bell curve fit, age norms, or a local sample of visitors.
+        This is why the score guide calls its percentile an approximate band,
+        not a rank among test takers.
+      </p>
 
       <h2>Why the estimate has limits</h2>
       <p>

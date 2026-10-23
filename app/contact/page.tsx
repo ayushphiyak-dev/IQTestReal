@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+import { SafeLink as Link } from '@/components/SafeLink';
 import { siteConfig } from '@/config/site';
 import { pageMetadata } from '@/config/seo';
 export const metadata: Metadata = pageMetadata({
   title: 'Contact',
-  description: 'Contact the IQTestReal editorial team.',
+  description:
+    'Contact the IQTestReal project maintainer with questions or feedback.',
   path: '/contact',
 });
 export default function ContactPage() {
@@ -33,8 +35,21 @@ export default function ContactPage() {
             Please do not send passwords, payment details, or other sensitive
             material.
           </p>
+          <p>
+            IQTestReal is an independently maintained online project and does
+            not have a public walk-in office. Messages are generally reviewed
+            within three business days; complex reports may take longer. Do not
+            include assessment answers or other sensitive personal information
+            in your message.
+          </p>
         </div>
         <ContactForm />
+        <p className="contact-privacy-note">
+          Submitting the form sends the details you provide through the contact
+          delivery workflow. See the{' '}
+          <Link href="/privacy-policy">Privacy Policy</Link> for the data
+          handled and how to make a privacy request.
+        </p>
       </section>
     </main>
   );

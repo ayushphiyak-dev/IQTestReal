@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next';
+import { ConsentGatedVercelAnalytics } from '@/components/analytics/ConsentGatedVercelAnalytics';
 import { AdSenseScript } from '@/components/adsense/AdSenseScript';
 import { ConsentProvider } from '@/components/consent/ConsentProvider';
 import { ConsentBanner } from '@/components/consent/ConsentBanner';
@@ -114,8 +114,8 @@ export default function RootLayout({
           <PetCompanion />
           <CommandMenu />
           <ConsentBanner />
+          <ConsentGatedVercelAnalytics />
         </ConsentProvider>
-        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

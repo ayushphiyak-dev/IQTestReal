@@ -34,11 +34,15 @@ export default function AboutPage() {
       </p>
       <h2>How the project is maintained</h2>
       <p>
-        The IQTestReal editorial team writes the question prompts, answer keys,
-        explanations, guides, and interface copy for this project. Each item is
-        checked for a clear intended rule and a single defensible answer before
-        it is included in the practice bank. We review the public methodology,
-        privacy details, and explanations when the product changes.
+        IQTestReal is an independently maintained project. The maintainer writes
+        and updates its practice questions, answer explanations, guides, and
+        interface copy. Items are checked against their stated rule for
+        arithmetic errors, ambiguous wording, and more than one defensible
+        answer. This is an editorial quality check, not independent validation
+        by a psychologist, psychometrician, university, or research team.
+        Published pages are revisited when the product, sources, or policies
+        change, and readers can report a suspected problem through the contact
+        page.
       </p>
       <p>
         This is an independent educational project, not a university, clinic,
@@ -47,6 +51,25 @@ export default function AboutPage() {
         the <Link href="/editorial-policy">editorial policy</Link> for
         corrections and content standards. Questions or accessibility feedback
         are welcome via <Link href="/contact">Contact</Link>.
+      </p>
+      <h2>What the test is—and is not</h2>
+      <p>
+        The assessment is a short, randomized set of logic, pattern, numerical,
+        spatial, and analogy exercises. Its Estimated IQ is a transparent
+        practice conversion, not a score calibrated on a representative sample.
+        It does not measure every cognitive ability, and it is not a substitute
+        for a standardized evaluation administered and interpreted by a
+        qualified professional. The <Link href="/methodology">methodology</Link>
+        explains the item mix, calculation, storage, and limitations in detail.
+      </p>
+      <h2>Privacy and the project’s online presence</h2>
+      <p>
+        Test history is kept in local browser storage on the device used. If
+        optional analytics or advertising are enabled, they are disclosed in the{' '}
+        <Link href="/privacy-policy">Privacy Policy</Link> and governed by the
+        on-site privacy choices. The project does not have a public office;
+        support is handled online through the{' '}
+        <Link href="/contact">contact form</Link> and the email listed there.
       </p>
       <h2>Project updates</h2>
       <p>

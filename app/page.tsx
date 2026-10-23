@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   ...pageMetadata({
     title: homeTitle,
     description:
-      'IQTestReal offers free online reasoning practice with logic, pattern, numerical, spatial and analogy questions. Get estimated results and answer explanations—not a clinical IQ assessment.',
+      'Free IQ-style reasoning practice with logic, pattern, numerical, spatial and analogy questions. Get estimates and explanations. Not a clinical IQ test.',
     path: '/',
   }),
   title: { absolute: homeTitle },

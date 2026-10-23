@@ -135,7 +135,7 @@ export const practiceResources: PracticeResource[] = [
     slug: 'pattern-recognition',
     title: 'Pattern Recognition Practice With Explained Answers',
     description:
-      'Try six pattern recognition questions covering sequences, alternating rules, rotations and grids. Compare your reasoning with worked answers. Free, untimed practice.',
+      'Try six free pattern-recognition questions on sequences, alternating rules, rotations and grids, with clear worked answers. Untimed practice; no account.',
     skill: 'Pattern recognition',
     introduction:
       'A convincing pattern rule explains every step, not just the last pair. These six exercises help you separate changing features, test a proposed rule and notice when a short sequence admits other interpretations. Try each problem before opening its answer; no timer, account or score label is needed.',

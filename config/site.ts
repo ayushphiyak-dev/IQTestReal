@@ -12,7 +12,7 @@ export const siteConfig = {
     linkedin: 'https://lnkd.in/p/gdq-sWMb',
     instagram: 'https://www.instagram.com/iqtestreal/',
   },
-  defaultAuthor: 'IQTestReal editorial team',
+  defaultAuthor: 'IQTestReal project maintainer',
   adsenseEnabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
   analyticsEnabled: Boolean(process.env.NEXT_PUBLIC_GA_ID),
 };
