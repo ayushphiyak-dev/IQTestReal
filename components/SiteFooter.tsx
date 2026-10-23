@@ -49,6 +49,7 @@ export function SiteFooter() {
           <Link href="/how-it-works">How It Works</Link>
           <Link href="/score-guide">Score Guide</Link>
           <Link href="/articles">Blog</Link>
+          <Link href="/site-map">Site map</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/search">Search</Link>
         </div>
@@ -60,7 +61,7 @@ export function SiteFooter() {
           <Link href="/privacy-policy">Privacy Policy</Link>
           <Link href="/cookie-policy">Cookie Policy</Link>
           <ConsentSettingsButton />
-          <Link href="/terms">Terms</Link>
+          <Link href="/terms">Terms of Service</Link>
           <Link href="/disclaimer">Disclaimer</Link>
           <Link href="/editorial-policy">Editorial Policy</Link>
         </div>

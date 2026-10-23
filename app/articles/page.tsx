@@ -50,6 +50,24 @@ const articles = [
     intro:
       'Use differences, ratios, alternating rules, and simple checks to solve sequence questions.',
   },
+  {
+    href: '/articles/pattern-recognition-spatial-reasoning',
+    title: 'The science behind pattern recognition and spatial reasoning',
+    intro:
+      'A practical guide to noticing visual relationships, testing a rule, and thinking carefully about what a puzzle can measure.',
+  },
+  {
+    href: '/articles/memory-processing-speed',
+    title: 'How memory and processing speed influence test performance',
+    intro:
+      'See how holding information in mind, pace, attention, and test conditions can affect a short reasoning task.',
+  },
+  {
+    href: '/articles/online-vs-clinical-iq-tests',
+    title: 'Online IQ tests vs. clinical evaluations: what is different?',
+    intro:
+      'Compare informal practice quizzes with standardized assessments, including what each can and cannot tell you.',
+  },
 ];
 export default function ArticlesPage() {
   return (
@@ -68,6 +86,42 @@ export default function ArticlesPage() {
           , or choose a guide below to learn a method before starting.
         </p>
       </header>
+      <section className="policy-prose shell">
+        <h2>Choose a guide for the question you have</h2>
+        <p>
+          If you want to solve a puzzle more carefully, begin with the{' '}
+          <Link href="/articles/logic-puzzles-for-beginners">
+            logic puzzle guide
+          </Link>
+          ,{' '}
+          <Link href="/articles/number-sequences-explained">
+            number sequence walkthrough
+          </Link>
+          , or{' '}
+          <Link href="/articles/pattern-recognition-spatial-reasoning">
+            visual reasoning guide
+          </Link>
+          . Each focuses on observable steps—write down a condition, compare
+          transitions, or test a rotation—instead of asking you to accept a
+          score label. To understand a result, read{' '}
+          <Link href="/articles/understanding-iq-scores">
+            the score interpretation article
+          </Link>{' '}
+          and the <Link href="/methodology">published scoring method</Link>.
+        </p>
+        <p>
+          If you are deciding whether to take a quick online quiz or seek a
+          formal evaluation, start with{' '}
+          <Link href="/articles/online-vs-clinical-iq-tests">
+            the online-versus-clinical comparison
+          </Link>
+          . For practical exercise sheets, use the separate{' '}
+          <Link href="/practice">untimed reasoning practice hub</Link>. These
+          resources are written for low-stakes learning; none presents
+          IQTestReal results as diagnosis, professional testing, or a
+          population-based ranking.
+        </p>
+      </section>
       <section className="article-list shell">
         {articles.map((article) => (
           <Link className="article-card" href={article.href} key={article.href}>

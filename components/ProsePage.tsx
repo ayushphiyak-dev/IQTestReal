@@ -54,7 +54,8 @@ export function ProsePage({
         <p>{intro}</p>
         {schemaType === 'article' && (
           <p className="article-meta">
-            Written and reviewed by the IQTestReal editorial team.{' '}
+            Written by the IQTestReal project maintainer. No clinical or
+            psychometric expert review is claimed.{' '}
             <Link href="/editorial-policy">Read our editorial policy</Link>.
           </p>
         )}

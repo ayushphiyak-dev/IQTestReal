@@ -21,65 +21,57 @@ export default function ArticlePage() {
     >
       <h2>A score is a model, not a measurement of a whole person</h2>
       <p>
-        IQ-style scores translate performance on a defined set of questions into
-        a familiar scale. That translation can make feedback easier to discuss,
-        but it does not turn a short quiz into a complete assessment of
-        intelligence. The result depends on the wording of items, the categories
-        selected, the number of questions, the reference model, and the
-        conditions in which someone answered. It says something about
-        performance on this task at this time.
+        An IQ-style score puts your answers on a scale. This can make a result
+        easier to discuss, but a short quiz cannot measure all of a
+        person&apos;s thinking. The result depends on the questions, the skills
+        they cover, how many there are, and how you felt while taking the test.
+        It tells you about one set of tasks at one point in time.
       </p>
       <p>
-        A responsible score page explains the model in plain language.
-        IQTestReal labels its result <em>Estimated IQ</em> because it is a
-        practice conversion rather than a professionally normed diagnosis. The
-        word estimated is important: it reminds readers that a number has
-        uncertainty and that a different question set could produce a different
+        A responsible site explains how it makes a score. IQTestReal calls its
+        result <em>Estimated IQ</em>. It is a practice score, not a clinical
+        diagnosis or a score tested against a large group of people. The word
+        “estimated” matters. Another set of questions may give you a different
         result.
       </p>
       <h2>Why the middle is not a verdict</h2>
       <p>
-        Two people can receive different results because of sleep, focus, test
-        familiarity, language, accessibility needs, or one difficult item. Even
-        the same person can perform differently on another day. A high score
-        does not prove that someone will excel in every academic or practical
-        situation, and a lower score does not reveal a fixed limit. Reasoning is
-        influenced by knowledge, strategies, environment, motivation, and
-        opportunities to practise.
+        People can get different results because of sleep, focus, language, or
+        how well they know the test. One hard question can also make a
+        difference. The same person may do better or worse on another day. A
+        high score does not promise success in every setting. A lower score does
+        not set a limit on what someone can learn. Practice, knowledge, support,
+        and the test conditions all matter.
       </p>
       <p>
-        Percentiles also need context. A percentile describes the position
-        implied by a chosen comparison model; it is not a promise about a
-        representative population. Small samples and repeated attempts can make
-        a percentile look more precise than the evidence supports. Treat ranges
-        and explanations as useful context, not as a ranking of human worth.
+        Percentiles need context too. A percentile places a score on a chosen
+        comparison scale. It does not always show how you compare with the wider
+        public. A small sample or many practice tries can make a result look
+        more exact than it is. Use the explanation as a guide, not as a ranking
+        of people.
       </p>
       <h2>Read the details alongside the headline</h2>
       <p>
-        Start with accuracy and the number of questions attempted. Then look at
-        category strengths. If pattern questions were easier than spatial
-        questions, that difference can suggest a practice direction, but it may
-        also reflect a single ambiguous item or temporary distraction. Read the
-        answer explanations and ask whether your method was deliberate or lucky.
-        A useful review identifies a rule, clue, or checking step that you can
-        apply next time.
+        Start with how many questions you answered and got right. Then review
+        each category. If patterns felt easier than shape problems, you could
+        practise shapes next. But one unclear question or a brief distraction
+        may explain the gap. Read the answer notes. Ask if you used a clear
+        method or made a lucky guess. Choose one rule or check to use next time.
       </p>
       <h2>Worked review: turn a result into a question</h2>
       <p>
-        Imagine that your overall estimate looks steady, but spatial questions
-        contain most of your missed answers. Do not jump to a conclusion about
-        ability. Read one explanation, identify the step you missed—such as a
-        rotation direction or a counted corner—and write a practice question
-        about that step. The useful outcome is a specific habit to try next, not
-        a label attached to a single session.
+        Say your overall estimate stays the same, but you miss more shape
+        questions. Do not treat this as a fixed ability. Read an explanation.
+        Maybe you turned the shape the wrong way or missed a corner. Write down
+        that step and practise it. The goal is to learn a useful habit, not to
+        give yourself a label based on one try.
       </p>
       <h2>How to use a result responsibly</h2>
       <p>
-        Use a result as a learning prompt: Which category felt most natural?
-        Which explanation changed your approach? What would you like to
-        practise? Write a short note after the attempt and return later with a
-        fresh randomized set. Compare strategies and habits rather than treating
-        adjacent scores as precise measurements.
+        Use your result to choose what to practise. Which questions felt easy?
+        Which answer note gave you a new idea? Write a short note after the
+        test. Come back later and try a fresh set. Compare what you learned, not
+        small changes in your score.
       </p>
       <p>
         Do not use an online practice result for admissions, employment,

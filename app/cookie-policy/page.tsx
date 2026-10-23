@@ -12,7 +12,7 @@ export default function CookiePage() {
     <ProsePage
       kicker="Policy / Cookies"
       title="Browser storage, explained."
-      intro="IQTestReal works with advertising and analytics disabled. This policy will be updated before any non-essential service is enabled."
+      intro="Last reviewed 23 October 2026. Essential browser storage supports site preferences and local test history. Optional services are controlled by your privacy choice and deployment settings."
     >
       <h2>Assessment history</h2>
       <p>
@@ -27,15 +27,23 @@ export default function CookiePage() {
       </p>
       <h2>Analytics and advertising</h2>
       <p>
-        Advertising remains disabled until configured. If analytics or
-        advertising is enabled later, this notice and the consent flow will be
-        updated first.
+        If enabled for this deployment, Google Analytics, Vercel Web Analytics,
+        and Google AdSense are loaded only after you choose “Allow optional” in
+        the privacy banner. Analytics may process page-view and technical device
+        information. AdSense and participating advertising providers may use
+        cookies or similar identifiers for ad delivery, measurement, and
+        personalization. Provider settings and identifiers can change; see the
+        Privacy Policy for Google’s current disclosures and opt-out links. The
+        site’s simple choice banner is not a Google-certified consent management
+        platform. Ads serving to visitors in regions requiring an IAB TCF signal
+        must be configured through an appropriate certified CMP in AdSense.
       </p>
       <h2>Change your choice</h2>
       <p>
-        <ConsentSettingsButton /> reopens the connected consent platform when
-        one is configured. You can remove assessment history at any time by
-        clearing this site’s browser data.
+        <ConsentSettingsButton /> reopens this site’s privacy-choice banner. You
+        may also clear the site’s browser storage to remove assessment history
+        and the saved choice; on the next visit, optional services stay off
+        until a new choice is made.
       </p>
     </ProsePage>
   );

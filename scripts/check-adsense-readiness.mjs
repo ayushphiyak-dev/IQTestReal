@@ -23,11 +23,26 @@ const contentPaths = [
   '/articles/how-to-prepare-for-reasoning-test',
   '/articles/logic-puzzles-for-beginners',
   '/articles/number-sequences-explained',
+  '/articles/pattern-recognition-spatial-reasoning',
+  '/articles/memory-processing-speed',
+  '/articles/online-vs-clinical-iq-tests',
 ];
 
 function rendered(path) {
   return handler.fetch(new Request(`${origin}${path}`));
 }
+
+const homeHtml = await (await rendered('/')).text();
+assert.match(homeHtml, /Your privacy matters/);
+assert.match(homeHtml, /Essential only/);
+assert.match(homeHtml, /Allow optional/);
+assert.doesNotMatch(
+  homeHtml,
+  /adsbygoogle\.js|googletagmanager\.com\/gtag|va\.vercel-scripts\.com/,
+  'Optional advertising and analytics must not load before a consent choice',
+);
+
+const articleWordCounts = [];
 
 function visibleText(html) {
   return html
@@ -61,9 +76,21 @@ for (const path of contentPaths) {
     `${path} repeats a keyword phrase`,
   );
   if (path.startsWith('/articles/')) {
-    assert.match(html, /Written and reviewed by the IQTestReal editorial team/);
+    assert.match(html, /Written by the IQTestReal project maintainer/);
+    const articleBody = html.match(/<article\b[^>]*>[\s\S]*?<\/article>/)?.[0];
+    assert.ok(articleBody, `${path} must render an article body`);
+    articleWordCounts.push(visibleText(articleBody).split(' ').length);
   }
 }
+
+const averageArticleWords = Math.round(
+  articleWordCounts.reduce((sum, count) => sum + count, 0) /
+    articleWordCounts.length,
+);
+assert.ok(
+  averageArticleWords >= 600,
+  `Articles average ${averageArticleWords} words; review thin pages before expanding the index`,
+);
 
 const ads = await readFile(
   new URL('../public/ads.txt', import.meta.url),
@@ -75,5 +102,5 @@ assert.match(
 );
 
 console.log(
-  `AdSense readiness checks passed: ${contentPaths.length} content pages and ads.txt.`,
+  `AdSense readiness checks passed: ${contentPaths.length} content pages, ${articleWordCounts.length} articles averaging ${averageArticleWords} words, and ads.txt.`,
 );
