@@ -136,6 +136,11 @@ for (const url of urls) {
       'Large logo PNG should not load in site chrome',
     );
     assert.match(
+      html,
+      /src="\/iqtestreal-logo\.svg"/,
+      'Site chrome should use the supplied IQTestReal brand mark',
+    );
+    assert.match(
       head,
       /<title>IQTestReal — Free IQ Test &amp; Reasoning Practice<\/title>/,
     );

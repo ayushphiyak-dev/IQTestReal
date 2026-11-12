@@ -4,11 +4,11 @@ export function BrandMark() {
   return (
     <Image
       className="brand-mark"
-      src="/favicon.svg"
+      src="/iqtestreal-logo.svg"
       width={36}
       height={36}
       sizes="36px"
-      alt="IQTestReal brain logo"
+      alt="IQTestReal logo"
       priority
     />
   );
