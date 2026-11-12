@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 
 // Run after npm run build, or pass an origin to verify a deployed version.
 // Test actual rendered responses: source metadata alone missed the previous
@@ -12,6 +13,33 @@ const request = (path) =>
   origin
     ? fetch(new URL(path, origin), { redirect: 'manual' })
     : handler.fetch(new Request(new URL(path, canonicalOrigin)));
+
+const favicon = origin ? await request('/favicon.png') : null;
+if (favicon) {
+  assert.equal(favicon.status, 200, 'PNG favicon must be publicly available');
+  assert.match(
+    favicon.headers.get('content-type') || '',
+    /image\/png/i,
+    'PNG favicon must be served as an image',
+  );
+}
+const faviconBytes = new Uint8Array(
+  favicon
+    ? await favicon.arrayBuffer()
+    : await readFile(new URL('../public/favicon.png', import.meta.url)),
+);
+assert.ok(
+  [137, 80, 78, 71, 13, 10, 26, 10].every(
+    (byte, index) => faviconBytes[index] === byte,
+  ),
+  'Favicon URL must return a valid PNG',
+);
+assert.equal(
+  new DataView(faviconBytes.buffer).getUint32(16),
+  96,
+  'Search favicon should be at least 48px square',
+);
+assert.equal(new DataView(faviconBytes.buffer).getUint32(20), 96);
 
 const robots = await request('/robots.txt');
 assert.equal(robots.status, 200);
@@ -94,8 +122,13 @@ for (const url of urls) {
   if (new URL(url).pathname === '/') {
     assert.match(
       html,
-      /src="\/favicon\.svg"/,
-      'Header should use the lightweight SVG mark',
+      /<link rel="icon" href="\/favicon\.png"[^>]*type="image\/png"[^>]*sizes="96x96"/,
+      'Google Search favicon should use the supported 96px PNG mark',
+    );
+    assert.doesNotMatch(
+      head,
+      /rel="icon"[^>]+\.svg/,
+      'Do not advertise the unsupported SVG as the search favicon',
     );
     assert.doesNotMatch(
       html,

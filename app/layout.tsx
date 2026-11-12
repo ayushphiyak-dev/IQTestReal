@@ -54,8 +54,7 @@ export const metadata: Metadata = {
     images: ['/iqtestreal-brain.png'],
   },
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
+    icon: [{ url: '/favicon.png', type: 'image/png', sizes: '96x96' }],
     apple: '/iqtestreal-brain.png',
   },
   other: { 'google-adsense-account': 'ca-pub-3817850058008403' },
