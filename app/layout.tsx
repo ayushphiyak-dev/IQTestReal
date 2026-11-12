@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: '/favicon.png', type: 'image/png', sizes: '96x96' }],
-    apple: '/iqtestreal-brain.png',
+    apple: '/apple-touch-icon.png',
   },
   other: { 'google-adsense-account': 'ca-pub-3817850058008403' },
   robots: { index: true, follow: true },
@@ -82,7 +82,7 @@ export default function RootLayout({
     name: siteConfig.siteName,
     url: siteConfig.siteUrl,
     email: siteConfig.contactEmail,
-    logo: `${siteConfig.siteUrl}/iqtestreal-brain.png`,
+    logo: `${siteConfig.siteUrl}/iqtestreal-logo.png`,
     // Identity profiles, not third-party promotional posts.
     sameAs: [
       siteConfig.socialLinks.instagram,
